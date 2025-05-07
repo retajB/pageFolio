@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+            $table->string('employee');  
+            $table->double('rating');
+            $table->foreignId('sections_id');
+            $table->foreignId('icons_id');
             $table->timestamps();
         });
     }

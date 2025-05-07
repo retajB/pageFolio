@@ -13,8 +13,18 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->boolean ('who_we_are') ;
+            $table->boolean ('services') ;  
+            $table->boolean ('objectives') ;
+            $table->boolean ('partners') ; 
+            $table->boolean ('feedbacks') ;
+            $table->boolean ('individuals') ;   
+            $table->boolean ('social_media') ;
+            $table->boolean ('locations') ;  
+            $table->foreignId('companies_id');
+            $table->timestamps() ;
         });
+        
     }
 
     /**

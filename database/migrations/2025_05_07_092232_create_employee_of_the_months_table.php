@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('employee_of_the_months', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+            $table->string('employee_name');
+            $table->foreignId('images_id');
+            $table->foreignId('sections_id');
             $table->timestamps();
         });
     }

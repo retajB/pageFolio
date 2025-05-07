@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('social_media_sites', function (Blueprint $table) {
-            $table->id();
+            $table->string('instagram_url');
+            $table->string('linkedin_url');
+            $table->string('x_url');
+            $table->string('whatsapp_url');
+            $table->foreignId('sections_id');
+            $table->foreignId('icons_id');
             $table->timestamps();
         });
     }

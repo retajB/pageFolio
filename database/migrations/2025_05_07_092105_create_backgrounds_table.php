@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('backgrounds', function (Blueprint $table) {
             $table->id();
+            $table->text('content');
+            $table->foreignId('images_id');
+            $table->foreignId('sections_id');
             $table->timestamps();
         });
     }

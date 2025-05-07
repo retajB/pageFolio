@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
+            $table->string('theme_color1,7');
+            $table->string('theme_color2,7');
+            $table->string('text_color,7');
+            $table->foreignId('companies_id');
             $table->timestamps();
         });
     }
