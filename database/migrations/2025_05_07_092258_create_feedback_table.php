@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->string('employee');  
+            $table->string('feedback_icon'); 
             $table->double('rating');
             $table->foreignId('sections_id');
             $table->foreignId('icons_id');

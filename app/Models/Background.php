@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Background extends Model
 {
-    //
+    public function image() {
+        return $this->hasOne(Image::class);
+   }
+
+   public function section() {
+    return $this->belongsTo(Section::class);
+}
 }
