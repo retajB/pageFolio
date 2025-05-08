@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('employee');  
             $table->string('feedback_icon'); 
             $table->double('rating');
-            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icons_id')->constrained();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('icon_id')->constrained();
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('objectives', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icons_id')->constrained();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('icon_id')->constrained();
             $table->timestamps();
         });
     }

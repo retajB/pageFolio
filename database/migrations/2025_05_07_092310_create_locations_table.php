@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('location_url');
             $table->text('contnet');
-            $table->foreignId('images_id')->constrained();
-            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('image_id')->constrained();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
