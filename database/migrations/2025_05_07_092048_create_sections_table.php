@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean ('individuals') ;   
             $table->boolean ('social_media') ;
             $table->boolean ('locations') ;  
-            $table->foreignId('companies_id');
+            $table->foreignId('companies_id')->constrained()->cascadeOnDelete();
             $table->timestamps() ;
         });
         

@@ -11,6 +11,6 @@ class Social_media_site extends Model
        }
 
        public function icon() {
-        return $this->hasOne(Icon::class);
+        return $this->hasMany(Icon::class);
        }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('theme_color1,7');
             $table->string('theme_color2,7');
             $table->string('text_color,7');
-            $table->foreignId('companies_id');
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
