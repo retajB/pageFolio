@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('linkedin_url');
             $table->string('x_url');
             $table->string('whatsapp_url');
-            $table->foreignId('sections_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icons_id')->constrained();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('icon_id')->constrained();
             $table->timestamps();
         });
     }
