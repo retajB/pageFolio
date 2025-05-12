@@ -100,6 +100,127 @@
         </div>
       </div>
 
+
+      <!-- Landing Page Sections -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h2 class="card-title">Landing Page Sections</h2>
+
+    <!-- Checkboxes -->
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="who_we_are_checkbox">
+      <label class="form-check-label" for="who_we_are_checkbox">Who We Are</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="services_checkbox">
+      <label class="form-check-label" for="services_checkbox">Services</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="objectives_checkbox">
+      <label class="form-check-label" for="objectives_checkbox">Objectives</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="partners_checkbox">
+      <label class="form-check-label" for="partners_checkbox">Partners</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="feedbacks_checkbox">
+      <label class="form-check-label" for="feedbacks_checkbox">Feedbacks</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="individuals_checkbox">
+      <label class="form-check-label" for="individuals_checkbox">Individuals</label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="social_media_checkbox">
+      <label class="form-check-label" for="social_media_checkbox">Social Media</label>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="locations_checkbox">
+      <label class="form-check-label" for="locations_checkbox">Locations</label>
+    </div>
+
+    <!-- Hidden Forms -->
+    <div id="who_we_are_form" class="section-form mb-3">
+      <label>Who We Are Content:</label>
+      <textarea class="form-control" name="who_we_are_content" rows="3"></textarea>
+    </div>
+
+    <div id="services_form" class="section-form mb-3">
+      <label>Services Description:</label>
+      <textarea class="form-control" name="services_content" rows="3"></textarea>
+    </div>
+
+    <div id="objectives_form" class="section-form mb-3">
+      <label>Objectives:</label>
+      <textarea class="form-control" name="objectives_content" rows="3"></textarea>
+    </div>
+
+    <div id="partners_form" class="section-form mb-3">
+      <label>Partners Info:</label>
+      <textarea class="form-control" name="partners_content" rows="3"></textarea>
+    </div>
+
+    <div id="feedbacks_form" class="section-form mb-3">
+      <label>Feedbacks:</label>
+      <textarea class="form-control" name="feedbacks_content" rows="3"></textarea>
+    </div>
+
+    <div id="individuals_form" class="section-form mb-3">
+      <label>Individuals Description:</label>
+      <textarea class="form-control" name="individuals_content" rows="3"></textarea>
+    </div>
+
+    <div id="social_media_form" class="section-form mb-3">
+      <label>Social Media Links:</label>
+      <input type="url" class="form-control mb-1" name="facebook_url" placeholder="Facebook URL">
+      <input type="url" class="form-control mb-1" name="twitter_url" placeholder="Twitter URL">
+    </div>
+
+    <div id="locations_form" class="section-form mb-3">
+      <label>Locations:</label>
+      <textarea class="form-control" name="locations_content" rows="3"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- Styles + Script -->
+<style>
+  .section-form {
+    display: none;
+  }
+</style>
+
+<script>
+  const sections = [
+    'who_we_are',
+    'services',
+    'objectives',
+    'partners',
+    'feedbacks',
+    'individuals',
+    'social_media',
+    'locations'
+  ];
+
+  sections.forEach(section => {
+    const checkbox = document.getElementById(`${section}_checkbox`);
+    const form = document.getElementById(`${section}_form`);
+
+    checkbox.addEventListener('change', function () {
+      form.style.display = this.checked ? 'block' : 'none';
+    });
+  });
+</script>
+
+
       <!-- Submit Button -->
       <div class="text-center">
         <button type="submit" class="btn btn-success px-5">Submit All Information</button>
