@@ -25,22 +25,22 @@ class StoreRequest extends FormRequest
         return [
          //user information request 
         'user.name'=>'required|string|max:60', 
-        'user.email' =>'required|email|unique',
+        'user.email' =>'required|email|unique:users,email',
         'user.phone' =>'required|string|max:12',
         'national_id'=>'required|digits:10',
 
         //company information request 
         'company.name'=>'required|string|max:60',
-        'company.email'=>'required|email|unique',
+        'company.email'=>'required|email|unique:companies,email',
         'company.phone'=>'required|string|max:12',
         'domain_url' => 'required|url|max:255',
         'slogan'=>'required|string|max:255',
-        'logo_url'=>'required|url|max:255',
+        'logo_url'=>'url|max:255',
     
         //theme_color information request 
         'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
         'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'textColor'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
 
         ];
     }
