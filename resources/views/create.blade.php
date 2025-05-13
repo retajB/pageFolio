@@ -20,17 +20,17 @@
 
           <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="user.name" name="name" required>
           </div>
 
           <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="user.email" name="email" required>
           </div>
 
           <div class="mb-3">
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
+            <input type="tel" class="form-control" id="user.phone" name="phone" required>
           </div>
 
           <div class="mb-3">
@@ -47,17 +47,17 @@
 
           <div class="mb-3">
             <label for="company_name" class="form-label">Company Name:</label>
-            <input type="text" class="form-control" id="company_name" name="company_name" required>
+            <input type="text" class="form-control" id="company.name" name="company_name" required>
           </div>
 
            <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="company.email" name="email" required>
           </div>
 
           <div class="mb-3">
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
+            <input type="tel" class="form-control" id="company.phone" name="phone" required>
           </div>
 
 
