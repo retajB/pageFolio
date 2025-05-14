@@ -9,55 +9,38 @@
 
   <div class="container">
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
+@if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 
+    
     <form action="{{route('create.store')}}" method="POST" enctype="multipart/form-data">
-      @csrf
+    @csrf
 
-      <!-- User Registration Section -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">User Registration</h2>
-
-          <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="user.name" name="user.name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="user.email" name="user.email" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="user.phone" name="user.phone" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="national_id" class="form-label">National ID:</label>
-            <input type="text" class="form-control" id="national_id" name="national_id" pattern="\d{10}" required>
-          </div>
-        </div>
-      </div>
-
-      <!-- Company Information Section -->
+    <!-- Company Information Section -->
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Company Information</h2>
 
           <div class="mb-3">
             <label for="company_name" class="form-label">Company Name:</label>
-            <input type="text" class="form-control" id="company.name" name="company.name" required>
+            <input type="text" class="form-control" id="companyName" name="companyName" required>
           </div>
 
            <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="company.email" name="company.email" required>
+            <input type="email" class="form-control" id="companyEmail" name="companyEmail" required>
           </div>
 
           <div class="mb-3">
             <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="company.phone" name="company.phone" required>
+            <input type="tel" class="form-control" id="companyPhone" name="companyPhone" required>
           </div>
 
 
@@ -77,6 +60,57 @@
           </div>
         </div>
       </div>
+
+      <!-- User Registration Section -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">User Registration</h2>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="userName" name="userName" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="userEmail" name="userEmail" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number:</label>
+            <input type="tel" class="form-control" id="userPhone" name="userPhone" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="national_id" class="form-label">National ID:</label>
+            <input type="text" class="form-control" id="national_id" name="national_id" pattern="\d{10}" required>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Theme Settings Section -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">Theme Settings</h2>
+
+          <div class="mb-3">
+            <label for="backgroundColor1" class="form-label">Background Color 1:</label>
+            <input type="color" class="form-control form-control-color" id="backgroundColor1" name="backgroundColor1" value="#ffffff">
+          </div>
+
+          <div class="mb-3">
+            <label for="backgroundColor2" class="form-label">Background Color 2:</label>
+            <input type="color" class="form-control form-control-color" id="backgroundColor2" name="backgroundColor2" value="#000000">
+          </div>
+
+          <div class="mb-3">
+            <label for="textColor" class="form-label">Text Color:</label>
+            <input type="color" class="form-control form-control-color" id="textColor" name="textColor" value="#000000">
+          </div>
+        </div>
+      </div>
+
 
  
 

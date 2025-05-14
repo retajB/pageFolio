@@ -22,22 +22,33 @@ class StoreController
 
         $validated= $request->validated();
 
+        if ($request->hasFile('logo_url')) {
+            
+    
+            $file = $request->file('logo_url');
+            $filename = $request->input('companyName') . '.' . $file->getClientOriginalExtension(); // Keeps the original extension
+            $filePath = $file->storeAs('logos', $filename, 'public');   
+        }
+
+
         $company = Company::create([
-            'name' => $request->input('company.name'),
-            'email'=> $request->input('company.email'),
-            'phone_number'=> $request->input('company.phone'),
+            'name' => $request->input('companyName'),
+            'email'=> $request->input('companyEmail'),
+            'phone_number'=> $request->input('companyPhone'),
             'domain'=> $request->input('domain_url'),
-            'logo_url'=> $request->input('logo_url'),
+            'logo_url'=> $filePath,
             'slogan'=> $request->input('slogan'),
         ]);
 
         $user = User::create([
-            'name' => $request->input('user.name'),
-            'email'=> $request->input('user.email'),
-            'phone_number'=> $request->input('user.phone'),
+            'name' => $request->input('userName'),
+            'email'=> $request->input('userEmail'),
+            'phone_number'=> $request->input('userPhone'),
             'national_id'=> $request->input('national_id'),
             'company_id'=> $company->id
         ]);
+
+
         
 
         $color = Color::create([
@@ -46,5 +57,6 @@ class StoreController
         'text_color' => $request->input('textColor'),
         'company_id'=> $company->id
         ]);
+
     }
 }

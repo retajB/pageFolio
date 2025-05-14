@@ -17,4 +17,15 @@ class Company extends Model
 public function color() {
     return $this->hasOne(Color::class);
    }
+
+    protected $fillable = [
+        'name', 
+        'domain', 
+        'slogan',
+        'logo_url',
+        'email',
+        'phone_number'
+    
+    
+    ];
 }
