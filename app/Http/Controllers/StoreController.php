@@ -26,37 +26,37 @@ class StoreController
             
     
             $file = $request->file('logo_url');
-            $filename = $request->input('companyName') . '.' . $file->getClientOriginalExtension(); // Keeps the original extension
+            $filename = $validated['companyName']. '.' . $file->getClientOriginalExtension(); // Keeps the original extension
             $filePath = $file->storeAs('logos', $filename, 'public');   
         }
 
 
         $company = Company::create([
-            'name' => $request->input('companyName'),
-            'email'=> $request->input('companyEmail'),
-            'phone_number'=> $request->input('companyPhone'),
-            'domain'=> $request->input('domain_url'),
+            'name' => $validated['companyName'],
+            'email'=> $validated['companyEmail'],
+            'phone_number'=> $validated['companyPhone'],
+            'domain'=> $validated['domain_url'],
             'logo_url'=> $filePath,
-            'slogan'=> $request->input('slogan'),
+            'slogan'=> $validated['slogan'],
         ]);
 
         $user = User::create([
-            'name' => $request->input('userName'),
-            'email'=> $request->input('userEmail'),
-            'phone_number'=> $request->input('userPhone'),
-            'national_id'=> $request->input('national_id'),
+            'name' => $validated['userName'],
+            'email'=> $validated['userEmail'],
+            'phone_number'=> $validated['userPhone'],
+            'national_id'=> $validated['national_id'],
             'company_id'=> $company->id
         ]);
-
-
         
 
         $color = Color::create([
-        'theme_color1' => $request->input('backgroundColor1'),
-        'theme_color2' => $request->input('backgroundColor2'),
-        'text_color' => $request->input('textColor'),
+        'theme_color1' => $validated['backgroundColor1'],
+        'theme_color2' => $validated['backgroundColor2'],
+        'text_color' => $validated['textColor'],
         'company_id'=> $company->id
         ]);
+
+        return view('createSuccess');
 
     }
 }

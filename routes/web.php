@@ -5,7 +5,7 @@ use App\Http\Controllers\StoreController;
 
 Route::get('/', function () {
     return view('admin');
-});
+})->name('home');
 
 
 Route::post('/create', function () {

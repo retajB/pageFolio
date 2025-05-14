@@ -24,27 +24,27 @@ class StoreRequest extends FormRequest
     {
         return [
 
-    //         //company information request 
-    //     'companyName'=>'required|string|max:60',
-    //     'companyEmail'=>'required|email|unique:companies,email',
-    //     'companyPhone'=>'required|string|max:12',
-    //     'domain_url' => 'required|url|max:255',
-    //     'slogan'=>'required|string|max:255',
-    //     'logo_url'=>'url|max:255',
+            //company information request 
+        'companyName'=>'required|string|max:60',
+        'companyEmail'=>'required|email|unique:companies,email',
+        'companyPhone'=>'required|string|max:12',
+        'domain_url' => 'required|url|max:255',
+        'slogan'=>'required|string|max:255',
+        'logo_url'=>'required',
 
 
-    //      //user information request 
-    //     'userName'=>'required|string|max:60', 
-    //     'userEmail' =>'required|email|unique:users,email',
-    //     'userPhone' =>'required|string|max:12',
-    //     'national_id'=>'required|digits:10',
+         //user information request 
+        'userName'=>'required|string|max:60', 
+        'userEmail' =>'required|email|unique:users,email',
+        'userPhone' =>'required|string|max:12',
+        'national_id'=>'required|digits:10',
 
         
     
-    //     //theme_color information request 
-    //     'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-    //     'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-    //     'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        //theme_color information request 
+        'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
 
        ];
     }
