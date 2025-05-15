@@ -20,7 +20,7 @@
 
     
             <!-- زر عرض الشركات الموجودة -->
-            <a href class="btn btn-primary btn-lg">  edit existing landing page </a>
+            <a href="{{route('edit.page')}}" class="btn btn-primary btn-lg">  edit existing landing page </a>
         </div>
     </div>
 

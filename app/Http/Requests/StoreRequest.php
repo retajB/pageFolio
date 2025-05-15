@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
             //company information request 
         'companyName'=>'required|string|max:60',
         'companyEmail'=>'required|email|unique:companies,email',
-        'companyPhone'=>'required|string|max:12',
+        'companyPhone'=>'required|string|max:12|min:10',
         'domain_url' => 'required|url|max:255',
         'slogan'=>'required|string|max:255',
         'logo_url'=>'required',
@@ -36,8 +36,8 @@ class StoreRequest extends FormRequest
          //user information request 
         'userName'=>'required|string|max:60', 
         'userEmail' =>'required|email|unique:users,email',
-        'userPhone' =>'required|string|max:12',
-        'national_id'=>'required|digits:10',
+        'userPhone' =>'required|string|max:12|min:10',
+        'national_id'=>'required|digits:10|min:10',
 
         
     

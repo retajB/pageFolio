@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->boolean ('who_we_are') ;
-            $table->boolean ('services') ;  
-            $table->boolean ('objectives') ;
-            $table->boolean ('partners') ; 
-            $table->boolean ('feedbacks') ;
-            $table->boolean ('individuals') ;   
-            $table->boolean ('social_media') ;
-            $table->boolean ('locations') ;  
+            $table->boolean('who_we_are')->default(false);
+            $table->boolean('services')->default(false);
+            $table->boolean('objectives')->default(false);
+            $table->boolean('partners')->default(false);
+            $table->boolean('feedbacks')->default(false);
+            $table->boolean('employee_of_the_months')->default(false);
+            $table->boolean('social_media')->default(false);
+            $table->boolean('locations')->default(false);
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->timestamps() ;
         });

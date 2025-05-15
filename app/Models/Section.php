@@ -39,4 +39,15 @@ class Section extends Model
         return $this->hasOne(Location::class);
        }
 
+       protected $fillable =[
+         'who_we_are',
+            'services',
+            'objectives',
+            'partners',
+            'feedbacks',
+            'employee_of_the_months',
+            'social_media',
+            'locations',
+            'company_id'
+       ];
 }

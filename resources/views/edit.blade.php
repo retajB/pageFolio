@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,77 +10,10 @@
   <div class="container">
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <!-- Theme Settings -->
+    <form method="POST" action="{{route('edit.page')}}" enctype="multipart/form-data" class="mb-4">
       @csrf
-
-      
-      <!-- User Registration Section -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">User Registration</h2>
-
-          <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="national_id" class="form-label">National ID:</label>
-            <input type="text" class="form-control" id="national_id" name="national_id" pattern="\d{10}" required>
-          </div>
-        </div>
-      </div>
-
-      <!-- Company Information Section -->
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">Company Information</h2>
-
-          <div class="mb-3">
-            <label for="company_name" class="form-label">Company Name:</label>
-            <input type="text" class="form-control" id="company_name" name="company_name" required>
-          </div>
-
-           <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
-          </div>
-
-
-          <div class="mb-3">
-            <label for="domain_url" class="form-label">Domain URL:</label>
-            <input type="url" class="form-control" id="domain_url" name="domain_url" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="slogan" class="form-label">Slogan:</label>
-            <input type="text" class="form-control" id="slogan" name="slogan">
-          </div>
-
-          <div class="mb-3">
-            <label for="logo_url" class="form-label">Logo URL:</label>
-            <input type="file" class="form-control" id="logo_url" name="logo_url">
-          </div>
-        </div>
-      </div>
-
-      <!-- Theme Settings Section -->
-      <div class="card mb-4">
+      <div class="card">
         <div class="card-body">
           <h2 class="card-title">Theme Settings</h2>
 
@@ -98,144 +31,246 @@
             <label for="textColor" class="form-label">Text Color:</label>
             <input type="color" class="form-control form-control-color" id="textColor" name="textColor" value="#000000">
           </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
         </div>
       </div>
-
-
-      <!-- Landing Page Sections -->
-<div class="card mb-4">
-  <div class="card-body">
-    <h2 class="card-title">Landing Page Sections</h2>
-
-    <!-- Checkboxes -->
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="who_we_are_checkbox">
-      <label class="form-check-label" for="who_we_are_checkbox">Who We Are</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="services_checkbox">
-      <label class="form-check-label" for="services_checkbox">Services</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="objectives_checkbox">
-      <label class="form-check-label" for="objectives_checkbox">Objectives</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="partners_checkbox">
-      <label class="form-check-label" for="partners_checkbox">Partners</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="feedbacks_checkbox">
-      <label class="form-check-label" for="feedbacks_checkbox">Feedbacks</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="individuals_checkbox">
-      <label class="form-check-label" for="individuals_checkbox">Individuals</label>
-    </div>
-
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="social_media_checkbox">
-      <label class="form-check-label" for="social_media_checkbox">Social Media</label>
-    </div>
-
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="locations_checkbox">
-      <label class="form-check-label" for="locations_checkbox">Locations</label>
-    </div>
-
-    <!-- Hidden Forms -->
-    <div id="who_we_are_form" class="section-form mb-3">
-      <label>Who We Are Content:</label>
-      <textarea class="form-control" name="who_we_are_content" rows="3"></textarea>
-      <input type="file" class="form-control" id="backgrounds_url" name="backgrounds_url">
-    </div>
-
-    <div id="services_form" class="section-form mb-3">
-      <label>Services Description:</label>
-      <textarea class="form-control" name="services_content" rows="3"></textarea>
-       <input type="file" class="form-control" id="services_url" name="services_url">
-
-    </div>
-
-    <div id="objectives_form" class="section-form mb-3">
-      <label>Objectives:</label>
-      <textarea class="form-control" name="objectives_content" rows="3"></textarea>
-      <input type="file" class="form-control" id="objectives_url" name="objectives_url">
-    </div>
-
-    <div id="partners_form" class="section-form mb-3">
-      <label>Partners Info:</label>
-      <textarea class="form-control" name="partners_content" rows="3"></textarea>
-    </div>
-
-    <div id="feedbacks_form" class="section-form mb-3">
-      <label>Feedbacks:</label>
-      <textarea class="form-control" name="feedbacks_content" rows="3"></textarea>
-    </div>
-
-    <div id="individuals_form" class="section-form mb-3">
-      <label>Individuals Description:</label>
-      <textarea class="form-control" name="individuals_content" rows="3"></textarea>
-    </div>
-
-    <div id="social_media_form" class="section-form mb-3">
-      <label>Social Media Links:</label>
-      <input type="url" class="form-control mb-1" name="facebook_url" placeholder="Facebook URL">
-      <input type="url" class="form-control mb-1" name="twitter_url" placeholder="Twitter URL">
-    </div>
-
-    <div id="locations_form" class="section-form mb-3">
-      <label>Locations:</label>
-      <textarea class="form-control" name="locations_content" rows="3"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- Styles + Script -->
-<style>
-  .section-form {
-    display: none;
-  }
-</style>
-
-<script>
-  const sections = [
-    'who_we_are',
-    'services',
-    'objectives',
-    'partners',
-    'feedbacks',
-    'individuals',
-    'social_media',
-    'locations'
-  ];
-
-  sections.forEach(section => {
-    const checkbox = document.getElementById(`${section}_checkbox`);
-    const form = document.getElementById(`${section}_form`);
-
-    checkbox.addEventListener('change', function () {
-      form.style.display = this.checked ? 'block' : 'none';
-    });
-  });
-</script>
-
-
-      <!-- Submit Button -->
-      <div class="text-center">
-        <button type="submit" class="btn btn-success px-5">Submit All Information</button>
-      </div>
-
     </form>
+
+    <!-- Who We Are -->
+    <form method="POST" action="/save-who-we-are" enctype="multipart/form-data" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Who We Are</h2>
+
+          <div class="mb-3">
+            <label>Content:</label>
+            <textarea class="form-control" name="who_we_are_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Background Image:</label>
+            <input type="file" class="form-control"   id="Background_Image" name="Background_Image">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Services -->
+    <form method="POST" action="/save-services" enctype="multipart/form-data" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Services</h2>
+
+          <div class="mb-3">
+            <label>Description:</label>
+            <textarea class="form-control" name="services_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Image:</label>
+            <input type="file" class="form-control"  id="Services_Image" name="Services_Image">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Objectives -->
+    <form method="POST" action="/save-objectives" enctype="multipart/form-data" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Objectives</h2>
+
+          <div class="mb-3">
+            <label>Content:</label>
+            <textarea class="form-control" name="objectives_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Image:</label>
+            <input type="file" class="form-control" id="objectives_Image" name="objectives_Image">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Partners -->
+    <form method="POST" action="/save-partners" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Partners</h2>
+
+
+          <div class="mb-3">
+            <label>Image:</label>
+            <input type="file" class="form-control" id="partners_Image" name="partners_Image">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Feedbacks -->
+    <form method="POST" action="/save-feedbacks" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Feedbacks</h2>
+
+          <div class="mb-3">
+            <label>User Name:</label>
+            <input class="form-control" name="feedbacks_userName" rows="3"></input>
+          </div>
+
+          <div class="mb-3">
+            <label>Feedback Content:</label>
+            <textarea class="form-control" name="feedbacks_content" rows="3"></textarea>
+          </div>
+
+           <div class="mb-3">
+            <label>Rating:</label>
+            <input class="form-control" name="feedbacks_rating" rows="3"></input>
+          </div>
+
+        
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Individuals -->
+    <form method="POST" action="/save-individuals" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Individuals</h2>
+
+          <div class="mb-3">
+            <label>employee name:</label>
+            <input class="form-control" name="employee_name" rows="3"></input>
+          </div>
+
+          <div class="mb-3">
+            <label>Description:</label>
+            <textarea class="form-control" name="content" rows="3"></textarea>
+          </div>
+
+           <div class="mb-3">
+            <label>Image:</label>
+            <input type="file" class="form-control" id="employee_Image" name="employee_Image">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Social Media -->
+    <form method="POST" action="/save-social-media" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Social Media</h2>
+
+          <div class="mb-3">
+            <label>linkedIn URL:</label>
+            <input type="url" class="form-control mb-2" name="facebook_url">
+          </div>
+
+           <div class="mb-3">
+            <label> GitHub URL:</label>
+            <input type="url" class="form-control mb-2" name="facebook_url">
+          </div>
+
+           <div class="mb-3">
+            <label>linkedIn URL:</label>
+            <input type="url" class="form-control mb-2" name="facebook_url">
+          </div>
+
+        
+          <div class="mb-3">
+            <label>Twitter URL:</label>
+            <input type="url" class="form-control" name="twitter_url">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Locations -->
+    <form method="POST" action="/save-locations" class="mb-4">
+      @csrf
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Locations</h2>
+
+          <div class="mb-3">
+            <label>Locations:</label>
+            <input class="form-control" name="locations_content" rows="3"></input>
+          </div>
+
+ <div class="mb-3">
+            <label>Image:</label>
+            <input type="file" class="form-control" id="Location_Image" name="Locations_url">
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+    
+      </div>
+    
+    
+    </form>
+
+
   </div>
-
-
-
 </body>
 </html>
- 

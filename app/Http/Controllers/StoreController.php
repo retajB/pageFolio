@@ -8,19 +8,15 @@ use App\Http\Requests\StoreRequest;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Color;
+use App\Models\Section;
 
 class StoreController
 {
     public function store(StoreRequest $request){
-        // validate the request
-
-        // take user information and store it in the user table
-        // company
-        // theme
-
-        // 
 
         $validated= $request->validated();
+        $sections = $request->input('sections', []);
+
 
         if ($request->hasFile('logo_url')) {
             
@@ -55,6 +51,21 @@ class StoreController
         'text_color' => $validated['textColor'],
         'company_id'=> $company->id
         ]);
+
+ if (count($sections) > 0) {
+        // تخزين البيانات في الجدول
+        Section::create([
+            'who_we_are' => in_array('who_we_are', $sections),
+            'services' => in_array('services', $sections),
+            'objectives' => in_array('objectives', $sections),
+            'partners' => in_array('partners', $sections),
+            'feedbacks' => in_array('feedbacks', $sections),
+            'employee_of_the_months' => in_array('employee_of_the_months', $sections),
+            'social_media' => in_array('social_media', $sections),
+            'locations' => in_array('locations', $sections),
+            'company_id' => $company->id,
+        ]);
+    }
 
         return view('createSuccess');
 
