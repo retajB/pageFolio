@@ -12,12 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('social_media_sites', function (Blueprint $table) {
-            $table->string('instagram_url');
-            $table->string('linkedin_url');
-            $table->string('x_url');
-            $table->string('whatsapp_url');
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icon_id')->constrained();
+           $table->id();
+            $table-> string('media_name');
             $table->timestamps();
         });
     }

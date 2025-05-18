@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Http\Controllers\Controller;
+use App\Models\Company_media_account;
 use Illuminate\Http\Request;
 
-class CompanyController
+class CompanyMediaAccountController
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +34,7 @@ class CompanyController
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Company_media_account $company_media_account)
     {
         //
     }
@@ -43,7 +42,7 @@ class CompanyController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit(Company_media_account $company_media_account)
     {
         //
     }
@@ -51,7 +50,7 @@ class CompanyController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Company_media_account $company_media_account)
     {
         //
     }
@@ -59,10 +58,8 @@ class CompanyController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Company_media_account $company_media_account)
     {
         //
     }
-
-
 }
