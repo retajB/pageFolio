@@ -19,7 +19,6 @@ class StoreController
 
 
         if ($request->hasFile('logo_url')) {
-            
     
             $file = $request->file('logo_url');
             $filename = $validated['companyName']. '.' . $file->getClientOriginalExtension(); // Keeps the original extension
@@ -53,7 +52,6 @@ class StoreController
         ]);
 
  if (count($sections) > 0) {
-        // تخزين البيانات في الجدول
         Section::create([
             'who_we_are' => in_array('who_we_are', $sections),
             'services' => in_array('services', $sections),
