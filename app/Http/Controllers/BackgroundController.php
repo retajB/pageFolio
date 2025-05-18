@@ -13,7 +13,7 @@ class BackgroundController
      */
     public function index()
     {
-        $Background = Background::
+        
     }
 
     /**
