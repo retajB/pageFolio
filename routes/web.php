@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 
@@ -21,3 +22,7 @@ Route::get('/edit', function () {
 })->name('edit.page');
 
 Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
+
+Route::get('/companies' , [CompanyController::class ,'index'])->name('companies');
+
+Route::get('/company' , [CompanyController::class ,'show'])->name('companies.details');

@@ -10,8 +10,8 @@ class Company extends Model
         return $this->hasOne(User::class);
    }
 
-   public function section() {
-    return $this->hasOne(Section::class);
+   public function pages() {
+    return $this->hasMany(Page::class);
 }
 
 public function color() {

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('employee_of_the_months')->default(false);
             $table->boolean('social_media')->default(false);
             $table->boolean('locations')->default(false);
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('page_id')->constrained()->cascadeOnDelete();
             $table->timestamps() ;
         });
         

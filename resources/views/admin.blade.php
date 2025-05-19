@@ -15,14 +15,14 @@
 
         <div class="d-grid gap-3 col-6 mx-auto">
             <!-- زر إنشاء شركة جديدة -->
-            <a href="{{ route('create.page') }}" class="btn btn-success btn-lg"> Create New Landing Page </a>
+            <a href="{{ route('create.page') }}" class="btn  btn-success btn-lg"> Create New Landing Page </a>
 
 
     
             <!-- زر عرض الشركات الموجودة -->
 
             <a href="{{route('edit.page')}}" class="btn btn-primary btn-lg">  edit existing landing page </a>
-
+         <a href="{{route('companies')}}" class="btn btn-primary btn-lg">  list existing landing page </a>
         </div>
     </div>
 

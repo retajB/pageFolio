@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    public function company() {
-        return $this->belongsTo(Company::class);
+    public function page() {
+        return $this->belongsTo(Page::class);
    }
 
    public function background() {

@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Http\Controllers\Controller;
+use App\Models\Page;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreRequest;
 
-class CompanyController
+class PageController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-     $companies = Company::select('name')->get();
-
-       return view('list')->with('companies' , $companies);
-
+        //
     }
 
     /**
@@ -40,40 +34,32 @@ class CompanyController
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Page $page)
     {
-        return view('edit')->with('company' , $company);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit(Page $page)
     {
-        return view('edit', ['Company' => $company]);
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request , Company $company)
+    public function update(Request $request, Page $page)
     {
-          $validated= $request->validated();
-
-          $company->update($validated->all());
-
-
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Page $page)
     {
         //
     }
-
-
 }
