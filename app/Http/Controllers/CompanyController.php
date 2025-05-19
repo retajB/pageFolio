@@ -12,14 +12,22 @@ class CompanyController
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(Request $request)
+{
 
-     $companies = Company::select('name')->get();
+    $query = $request->input('search');
 
-       return view('list')->with('companies' , $companies);
-
+    if ($query) {
+        // لو فيه كلمة بحث
+        $companies = Company::where('name', 'like', "%$query%")->get();
+    } else {
+        // رجع كل الشركات
+        $companies = Company::all();
     }
+
+    return view('admin')->with('companies', $companies);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +58,7 @@ class CompanyController
      */
     public function edit(Company $company)
     {
-        return view('edit', ['Company' => $company]);
+        return view('edit')->with('company', $company);
 
     }
 
@@ -59,9 +67,9 @@ class CompanyController
      */
     public function update(StoreRequest $request , Company $company)
     {
-          $validated= $request->validated();
+        //   $validated= $request->validated();
 
-          $company->update($validated->all());
+        //   $company->update($validated->all());
 
 
 
@@ -72,7 +80,11 @@ class CompanyController
      */
     public function destroy(Company $company)
     {
-        //
+      
+    $company->delete();
+
+    return redirect()->route('home')->with('success', 'تم حذف الشركة بنجاح!');
+
     }
 
 

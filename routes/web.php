@@ -23,6 +23,16 @@ Route::get('/edit', function () {
 
 Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
 
-Route::get('/companies' , [CompanyController::class ,'index'])->name('companies');
+//Route::get('/companies' , [CompanyController::class ,'index'])->name('companies');
 
-Route::get('/company' , [CompanyController::class ,'show'])->name('companies.details');
+//Route::get('/company' , [CompanyController::class ,'show'])->name('companies.details');
+
+//Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
+
+//company routing
+
+Route::get('/', [CompanyController::class, 'index'])->name('home');
+
+Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('edit.company');
+
+Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('delete.company');
