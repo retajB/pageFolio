@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
+
+
 
 class UserController
 {
@@ -43,17 +46,31 @@ class UserController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
-    {
-        //
-    }
+    public function edit(User $user)  
+{
+   return view('edit')->with('user' , $user);
+}
+
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update( StoreRequest $StoreRequest, User $user)
     {
-        //
+         $validated= $StoreRequest->validated();
+
+
+         $user->update([
+              'name'=>$validated['userName'],
+              'email'=>$validated['userEmail'],
+              'phone_number'=>$validated['userPhone'],
+              'national_id'=>$validated['national_id']
+         ]);
+
+         
+            return redirect()->back()->withInput();
+
     }
 
     /**

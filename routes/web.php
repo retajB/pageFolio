@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('admin');
@@ -36,3 +37,12 @@ Route::get('/', [CompanyController::class, 'index'])->name('home');
 Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('edit.company');
 
 Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('delete.company');
+
+//route for updating the company info
+Route::patch('/edit/{company}' , [CompanyController::class, 'update'])
+        ->name('company.update');
+
+Route::patch('/edit/{user}' , [UserController::class, 'update'])
+        ->name('user.update');
+
+

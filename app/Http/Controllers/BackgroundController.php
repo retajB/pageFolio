@@ -6,7 +6,7 @@ use App\Models\Background;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Company;
-
+use App\Http\Requests\StoreRequest;
 class BackgroundController
 {
     /**
@@ -33,9 +33,9 @@ class BackgroundController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -51,17 +51,9 @@ class BackgroundController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Background $background)
+    public function update(Request $Request, Background $background)
     {
 
-         $background->update([
-        'companyEmail'=>$request->input('companyEmail'),
-        'companyPhone'=>$request->input('companyPhone'),
-        'slogan'=>$request->input('slogan'),
-        'logo_url'=>$request->input('logo_url'),
-            ]);
-
-            return redirect()->back()->with('success', 'updated successfully');
     }
 
     /**

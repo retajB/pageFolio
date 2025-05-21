@@ -40,9 +40,27 @@ class CompanyController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+
+        // $validated= $request->validated();
+
+        // if ($request->hasFile('logo_url')) {
+    
+        //     $file = $request->file('logo_url');
+        //     $filename = $validated['companyName']. '.' . $file->getClientOriginalExtension(); // Keeps the original extension
+        //     $filePath = $file->storeAs('logos', $filename, 'public');   
+        // }
+        //  $company = Company::create([
+        //     'name' => $validated['companyName'],
+        //     'email'=> $validated['companyEmail'],
+        //     'phone_number'=> $validated['companyPhone'],
+        //     'domain'=> $validated['domain_url'],
+        //     'logo_url'=> $filePath,
+        //     'slogan'=> $validated['slogan'],
+        // ]);
+
+        // return redirect()->route('edit');
     }
 
     /**
@@ -58,22 +76,38 @@ class CompanyController
      */
     public function edit(Company $company)
     {
-        return view('edit')->with('company', $company);
+    // $company = Company::with('user')->findOrFail($company->id);
 
+
+            return view('edit', [
+                'company' => $company,
+                'user' => $company->user
+            ]);
+      
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request , Company $company)
+    
+         public function update(StoreRequest $StoreRequest, Company $company)
     {
-        //   $validated= $request->validated();
 
-        //   $company->update($validated->all());
+       $validated= $StoreRequest->validated();
 
+         $company->update([
+        'email'=>$validated['companyEmail'],
+        'phone_number'=>$validated ['companyPhone'],
+        'slogan'=>$validated['slogan'],
+        'logo_url'=>$validated['logo_url'],
+            ]);
 
-
+            return redirect()->back()->withInput();
     }
+
+
+
+    
 
     /**
      * Remove the specified resource from storage.
