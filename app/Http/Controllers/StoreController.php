@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Color;
 use App\Models\Section;
+use App\Models\Page;
 
 class StoreController
 {
@@ -16,7 +17,7 @@ class StoreController
 
         $validated= $request->validated();
         $sections = $request->input('sections', []);
-
+        $layout = $request->input('layout');  // يصير رقم واحد: 1 أو 2
 
         if ($request->hasFile('logo_url')) {
     
@@ -51,8 +52,17 @@ class StoreController
         'company_id'=> $company->id
         ]);
 
+        $page = Page::create([
+        'layout' => $layout,
+        'page_name' => $request->input('layout_name'),
+        'company_id' => $company->id,
+        ]);
+
+
+
+
  if (count($sections) > 0) {
-        Section::create([
+        $section = Section::create([
             'who_we_are' => in_array('who_we_are', $sections),
             'services' => in_array('services', $sections),
             'objectives' => in_array('objectives', $sections),
@@ -61,11 +71,14 @@ class StoreController
             'employee_of_the_months' => in_array('employee_of_the_months', $sections),
             'social_media' => in_array('social_media', $sections),
             'locations' => in_array('locations', $sections),
-            'company_id' => $company->id,
+            'page_id' => $page->id,
         ]);
     }
 
-        return view('createSuccess');
+        return redirect()->route('createSections.page', ['pageId' => $page->id]);
+
+
+        // view('createSections')->with('section',$section);
 
     }
 }

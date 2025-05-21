@@ -63,4 +63,12 @@ class SectionController
     {
         //
     }
+
+    public function createSectionForm($pageId)
+    {
+    $section = Section::where('page_id', $pageId)->first();
+    // dd($section);
+    return view('createSections')->with('section',$section);
+    }
+
 }
