@@ -16,4 +16,10 @@ class Page extends Model
 
     }
 
+     protected $fillable = [
+       'page_name',
+       'layout',
+       'company_id'
+    ];
+
 }

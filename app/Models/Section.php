@@ -48,6 +48,6 @@ class Section extends Model
             'employee_of_the_months',
             'social_media',
             'locations',
-            'company_id'
+            'page_id'
        ];
 }

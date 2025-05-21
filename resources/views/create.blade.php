@@ -111,6 +111,27 @@
         </div>
       </div>
 
+   <!-- Landing Page Layout -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h2 class="card-title">Layout Settings</h2>
+
+    <!-- Radio buttons (choose one layout) -->
+    <div class="mb-3">
+      <label class="form-label d-block">Select a layout type:</label>
+      <label><input type="radio" name="layout" value="1"> Layout 1</label><br>
+      <label><input type="radio" name="layout" value="2"> Layout 2</label>
+    </div>
+
+    <!-- Layout name or description -->
+    <div class="mb-3">
+      <label for="layout_name" class="form-label">Layout name:</label>
+      <input type="text" class="form-control" id="layout_name" name="layout_name" placeholder="e.g., Corporate Layout" required>
+    </div>
+  </div>
+</div>
+
+ 
 
       <!-- Landing page Sections -->
        <div class="card mb-4">
@@ -133,7 +154,7 @@
 
       <!-- Submit Button -->
       <div class="text-center">
-        <button type="submit" class="btn btn-success px-5">Submit All Information</button>
+        <button type="submit" class="btn btn-success px-5"> continue </button>
       </div>
 
     </form>
