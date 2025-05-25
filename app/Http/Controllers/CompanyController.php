@@ -90,17 +90,33 @@ class CompanyController
      * Update the specified resource in storage.
      */
     
-         public function update(StoreRequest $StoreRequest, Company $company)
+         public function update(Request $request, Company $company)
     {
+        
 
-       $validated= $StoreRequest->validated();
+       $validated= $request->validate([
+        'companyName'=>'string',
+        'companyEmail' => 'email',
+        'companyPhone' => 'min:10|max:10|string',
+        'slogan'=> 'string',
+       ]);
+
+        if ($request->hasFile('logo_url')) {
+    
+            $file = $request->file('logo_url');
+            $filename = $validated['companyName']. '.' . $file->getClientOriginalExtension(); // Keeps the original extension
+            $filePath = $file->storeAs('logos', $filename, 'public');
+            $company->update([
+                'logo_url'=> $filePath,
+            ]);
+        }
 
          $company->update([
         'email'=>$validated['companyEmail'],
         'phone_number'=>$validated ['companyPhone'],
         'slogan'=>$validated['slogan'],
-        'logo_url'=>$validated['logo_url'],
             ]);
+            $company->save();
 
             return redirect()->back()->withInput();
     }
