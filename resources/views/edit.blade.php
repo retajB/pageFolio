@@ -11,8 +11,8 @@
   <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
   <!-- Company Information Form -->
-   
-<form method="POST" action="{{ route('company.update', $company->id) }}" class="mb-4">
+  <form action="{{ route('company.update', ['company' => $company->id]) }}" method="POST"  class="mb-4" enctype="multipart/form-data"
+>
     @csrf
     @method('PUT') 
 
@@ -53,7 +53,7 @@
   </form>
 
   <!-- User Registration Form -->
-  <form method="POST" action="{{route('user.update', $user->id)}}"   class="mb-4">
+  <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}"   class="mb-4">
     @csrf
     @method('PUT')
 

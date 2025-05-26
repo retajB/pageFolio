@@ -56,9 +56,17 @@ class UserController
     /**
      * Update the specified resource in storage.
      */
-    public function update( StoreRequest $StoreRequest, User $user)
+    public function update( Request $request, User $user)
     {
-         $validated= $StoreRequest->validated();
+        // dd($user);
+
+          $validated= $request->validate([
+        'userName' => 'string',
+        'userEmail' => 'email | string',
+        'userPhone'=> 'min:10',
+        'national_id'=>'min:10'
+
+       ]);
 
 
          $user->update([

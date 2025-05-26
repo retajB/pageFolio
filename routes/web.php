@@ -38,9 +38,16 @@ Route::resource('company', CompanyController::class);
     //section routing...
 Route::get('/createSection/{pageId}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
 
+//route for updating the company info
+// Route::patch('/edit/{company}' , [CompanyController::class, 'update'])
+//         ->name('company.update');
 
-    //user routing...
-Route::put('/edit/{user}' , [UserController::class, 'update'])
-        ->name('user.update');
+// Route::patch('/edit/{user}' , [UserController::class, 'update'])
+//         ->name('user.update');
 
 
+// تعديل بيانات الشركة
+Route::patch('/edit/company/{company}' , [CompanyController::class, 'update'])->name('company.update');
+
+// تعديل بيانات المستخدم
+Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('user.update');
