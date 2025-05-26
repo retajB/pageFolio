@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Http\Requests\StoreRequest;
+use Illuminate\Auth\Events\Validated;
+
 class BackgroundController
 {
     /**
@@ -14,12 +16,7 @@ class BackgroundController
      */
     public function edit($name)
     {
-     // عرفت متغير يجيب لي بيانا الشركه على حسب اسمها 
-      $company = Company::where('name' , $name)->first(); 
-
-     // يرجع لي صفحه التعديل  بيانات الشركه فيها 
-      return view('edit')->with( 'companies' ,  $company );
-
+      
     }
 
     /**
@@ -33,8 +30,18 @@ class BackgroundController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Background $request)
     {
+     $Validated= $request->validated();
+
+     $Background= Background::create([
+
+        'content' => $Validated['content']
+     ]);
+
+        return redirect()->back()->withInput();
+
+
         
     }
 

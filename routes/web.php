@@ -19,34 +19,28 @@ Route::get('/edit', function () {
 
 Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
 
-//Route::get('/companies' , [CompanyController::class ,'index'])->name('companies');
 
-//Route::get('/company' , [CompanyController::class ,'show'])->name('companies.details');
 
-//Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
-
-//company routing...
-
+    //company routing...
 Route::get('/', [CompanyController::class, 'index'])->name('home');
 
+    //go to edit page
+Route::get('edit/company/{company}', [CompanyController::class, 'edit'])->name('edit.company');
 
-//go to edit page
-Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('edit.company');
-
-//delete company information
+    //delete company information
 Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('delete.company');
 
-//end of company routing...
+    //updating the company info
+//Route::post('/edit/company/{company}' , [CompanyController::class, 'update'])->name('company.update');
+    //end of company routing...
+Route::resource('company', CompanyController::class);
 
-//section routing...
-
+    //section routing...
 Route::get('/createSection/{pageId}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
 
-//route for updating the company info
-Route::patch('/edit/{company}' , [CompanyController::class, 'update'])
-        ->name('company.update');
 
-Route::patch('/edit/{user}' , [UserController::class, 'update'])
+    //user routing...
+Route::put('/edit/{user}' , [UserController::class, 'update'])
         ->name('user.update');
 
 

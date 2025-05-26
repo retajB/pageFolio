@@ -11,9 +11,10 @@
   <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
   <!-- Company Information Form -->
-  <form action="{{ route('company.update', $company->id) }}" method="POST"  class="mb-4">
+   
+<form method="POST" action="{{ route('company.update', $company->id) }}" class="mb-4">
     @csrf
-    @method('PATCH')
+    @method('PUT') 
 
     <div class="card mb-4">
       <div class="card-body">
@@ -45,16 +46,17 @@
         </div>
 
         <div class="text-end">
-          <button type="submit" class="btn btn-success">Save</button>
+          <button type="submit" class="btn btn-success" >Save</button>
         </div>
       </div>
     </div>
   </form>
 
   <!-- User Registration Form -->
-  <form method="POST" action="{{ route('user.update', $user->id) }}"   class="mb-4">
+  <form method="POST" action="{{route('user.update', $user->id)}}"   class="mb-4">
     @csrf
-     @method('PATCH')
+    @method('PUT')
+
     <div class="card mb-4">
       <div class="card-body">
         <h2 class="card-title">Edit User Information</h2>
