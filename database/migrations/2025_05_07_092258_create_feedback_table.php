@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+             $table->string('title');
             $table->text('content');
-            $table->string('employee');  
-            $table->string('feedback_icon'); 
+            $table->string('user');  
+         // $table->string('feedback_icon'); 
             $table->double('rating');
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->foreignId('icon_id')->constrained();

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('objectives', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->text('content');
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->foreignId('icon_id')->constrained();

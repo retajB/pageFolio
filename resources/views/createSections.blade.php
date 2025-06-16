@@ -10,46 +10,81 @@
 
   <div class="container">
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
+    
 
     <!-- Who We Are -->
-    <form method="POST" action="{{route('home')}}" enctype="multipart/form-data" class="mb-4">
+<form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
       @csrf
-
-      @if($section->who_we_are)
+      
+@if($section->who_we_are)
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Who We Are</h2>
 
           <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="background_title" type="text"  placeholder="..مثلًا: من نحن ">
+          </div>
+
+          <div class="mb-3">
             <label>Content:</label>
-            <textarea class="form-control" name="who_we_are_content" rows="3"></textarea>
+            <textarea class="form-control" name="background_content" rows="3"></textarea>
           </div>
 
           <div class="mb-3">
             <label>Background Image:</label>
-            <input type="file" class="form-control" id="Background_Image" name="Background_Image">
+            <input type="file" class="form-control" id="background_image" name="background_image">
+          </div>
+
+          <div class="mb-3">
+            <label>Image name:</label>
+            <input type="text" class="form-control" id="background_image_name" name="background_image_name">
+          </div>
+          
+
+          <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
         </div>
       </div>
+    </form>
       @endif
 
       <!-- Services -->
+<form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}"  enctype="multipart/form-data">
+   @csrf
       @if($section->services)
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Services</h2>
 
+         <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="services_title" type="text"  placeholder="مثلاً : خدماتنا">
+          </div>
+
           <div class="mb-3">
-            <label>Description:</label>
+            <label>Content:</label>
             <textarea class="form-control" name="services_content" rows="3"></textarea>
           </div>
 
           <div class="mb-3">
-            <label>Image:</label>
-            <input type="file" class="form-control" id="Services_Image" name="Services_Image">
+            <label>Services Image:</label>
+            <input type="file" class="form-control" id="services_image" name="services_image">
+          </div>
+
+          <div class="mb-3">
+            <label>Image name:</label>
+            <input type="text" class="form-control" id="services_image_name" name="services_image_name">
+          </div>
+          
+
+          <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
         </div>
       </div>
+</form>
       @endif
 
       <!-- Objectives -->

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
+            $table->id();// ممكن يكون في علاقة مع الايكونز
+            $table->string('title');
             $table->text('content');
             $table->foreignId('image_id')->constrained();
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
