@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\UserController;
+
 
 
 
