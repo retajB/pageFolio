@@ -14,5 +14,11 @@ class Service extends Model
     return $this->hasOne(Image::class);
 }
 
+protected $fillable = [
+        'title',
+        'content',
+        'image_id',
+        'section_id'
+    ];
 
 }

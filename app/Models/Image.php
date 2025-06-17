@@ -25,4 +25,9 @@ class Image extends Model
    public function location() {
     return $this->belongsTo(Location::class);
    }
+
+    protected $fillable = [
+        'image_name',
+        'image_url',
+    ];
 }

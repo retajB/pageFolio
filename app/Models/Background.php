@@ -13,4 +13,10 @@ class Background extends Model
    public function section() {
     return $this->belongsTo(Section::class);
 }
+ protected $fillable = [
+        'title',
+        'content',
+        'image_id',
+        'section_id'
+    ];
 }

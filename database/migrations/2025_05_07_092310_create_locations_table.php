@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('location_url');
-            $table->text('contnet');
+            $table->text('content');
             $table->foreignId('image_id')->constrained();
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

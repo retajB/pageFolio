@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Page;
 
 class SectionController
 {
@@ -64,9 +65,9 @@ class SectionController
         //
     }
 
-    public function createSectionForm($pageId)
+    public function createSectionForm(Page $page)
     {
-    $section = Section::where('page_id', $pageId)->first();
+    $section = Section::where('page_id', $page->id)->first();
     // dd($section);
     return view('createSections')->with('section',$section);
     }

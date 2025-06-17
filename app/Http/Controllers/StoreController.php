@@ -75,10 +75,7 @@ class StoreController
         ]);
     }
 
-        return redirect()->route('createSections.page', ['pageId' => $page->id]);
-        
-
-        // view('createSections')->with('section',$section);
+        return redirect()->route('createSections.page', ['page' => $page->id]);
 
     }
 }
