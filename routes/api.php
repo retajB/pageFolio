@@ -11,6 +11,10 @@ use \App\Http\Controllers\CompanyController;
 //         ->name('company.update');
 
 
-//route for storing company background
-Route::post('\store\background' ,[BackgroundController::class, 'store'])
-        ->name('store.Background');
+// //route for storing company background
+// Route::post('\store\background' ,[BackgroundController::class, 'store'])
+//         ->name('store.Background');
+
+
+Route::get('/info/company/{company}' ,[CompanyController::class, 'show']);
+       

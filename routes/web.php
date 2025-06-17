@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ColorController;
 
 
 
@@ -20,22 +21,19 @@ Route::get('/edit', function () {
 Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
 
 
-
-    //company routing...
 Route::get('/', [CompanyController::class, 'index'])->name('home');
 
-    //go to edit page
-Route::get('edit/company/{company}', [CompanyController::class, 'edit'])->name('edit.company');
 
-    //delete company information
+//go to edit page
+Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('edit.company');
+
+//delete company information
 Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('delete.company');
 
-    //updating the company info
-//Route::post('/edit/company/{company}' , [CompanyController::class, 'update'])->name('company.update');
-    //end of company routing...
-Route::resource('company', CompanyController::class);
+//end of company routing...
 
-    //section routing...
+//section routing...
+
 Route::get('/createSection/{pageId}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
 
 //route for updating the company info
@@ -51,3 +49,6 @@ Route::patch('/edit/company/{company}' , [CompanyController::class, 'update'])->
 
 // تعديل بيانات المستخدم
 Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('user.update');
+
+Route::patch('/edit/color/{color}' , [ColorController::class, 'update'])->name('color.update');
+

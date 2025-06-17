@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
         'companyPhone'=>'required|string|max:12|min:10',
         'domain_url' => 'required|url|max:255',
         'slogan'=>'required|string|max:255',
-        'logo_url'=>'required',
+        'logo_url'=>'nullable',
 
 
          //user information request 
@@ -45,6 +45,8 @@ class StoreRequest extends FormRequest
         'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
         'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
         'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+
+    
 
        ];
     }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 
+use function Pest\Laravel\get;
+
 class CompanyController
 {
     /**
@@ -28,6 +30,11 @@ class CompanyController
         return view('admin')->with('companies', $companies);
     }
 
+
+
+
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -67,9 +74,12 @@ class CompanyController
      * Display the specified resource.
      */
     public function show(Company $company)
-    {
-        return view('edit')->with('company', $company);
-    }
+{
+    return response()->json([
+        'message' => 'تم جلب بيانات الشركة بنجاح',
+        'data' => $company
+    ]);
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -78,7 +88,8 @@ class CompanyController
     {
         return view('edit', [
             'company' => $company,
-            'user' => $company->user
+            'user' => $company->user,
+            'color'=>$company->color
         ]);
     }
 
