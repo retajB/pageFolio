@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();// ممكن يكون في علاقة مع الايكونز
-            $table->string('title');
+        Schema::create('objectives', function (Blueprint $table) {
+            $table->id();
+          
             $table->text('content');
-            $table->foreignId('image_id')->constrained();
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('objective_title_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('icon_id')->constrained();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('objectives');
     }
 };

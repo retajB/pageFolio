@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function partner_title() {
+        return $this->belongsTo(Partner_title::class);
    }
 
    public function image() {

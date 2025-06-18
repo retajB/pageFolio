@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-             $table->string('title');
+          
+            $table->string('location_url');
             $table->text('content');
-            $table->string('user');  
-         // $table->string('feedback_icon'); 
-            $table->double('rating');
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icon_id')->constrained();
+            $table->foreignId('image_id')->constrained();
+            $table->foreignId('location_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('locations');
     }
 };

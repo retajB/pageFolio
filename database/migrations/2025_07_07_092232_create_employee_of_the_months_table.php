@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('backgrounds', function (Blueprint $table) {
+        Schema::create('employee_of_the_months', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+           
             $table->text('content');
+            $table->string('employee_name');
             $table->foreignId('image_id')->constrained();
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('eotm_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('backgrounds');
+        Schema::dropIfExists('employee_of_the_months');
     }
 };

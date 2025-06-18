@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Objective extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function objective_title() {
+        return $this->belongsTo(Objective_title::class);
    }
 
    public function icons() {

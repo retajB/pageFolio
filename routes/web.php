@@ -7,6 +7,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 
 
@@ -53,7 +54,7 @@ Route::patch('/edit/company/{company}' , [CompanyController::class, 'update'])->
 // تعديل بيانات المستخدم
 Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('user.update');
 
-Route::patch('/edit/color/{color}' , [ColorController::class, 'update'])->name('color.update');
+Route::patch('/edit/color/{color}' , [PageController::class, 'Color_update'])->name('color.update');
 
 
 //

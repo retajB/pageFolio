@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('location_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('location_url');
-            $table->text('content');
-            $table->foreignId('image_id')->constrained();
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('location_titles');
     }
 };
