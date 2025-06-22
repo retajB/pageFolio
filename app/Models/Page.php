@@ -19,6 +19,9 @@ class Page extends Model
     protected $fillable = [
        'page_name',
        'layout',
+       'theme_color1' ,
+       'theme_color2',
+       'text_color',
        'company_id'
     ];
 

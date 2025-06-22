@@ -14,4 +14,11 @@ class Back_title extends Model
     return $this->belongsTo(Section::class);
    }
    
+
+   protected $fillable = [
+   'name',
+   'section_id'
+     
+
+   ];
 }

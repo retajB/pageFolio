@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 use App\Models\User;
 use App\Models\Company;
-use App\Models\Color;
 use App\Models\Section;
 use App\Models\Page;
 
@@ -45,16 +44,19 @@ class StoreController
         ]);
         
 
-        $color = Color::create([
-        'theme_color1' => $validated['backgroundColor1'],
-        'theme_color2' => $validated['backgroundColor2'],
-        'text_color' => $validated['textColor'],
-        'company_id'=> $company->id
-        ]);
+        // $color = Page::create([
+        // 'theme_color1' => $validated['backgroundColor1'],
+        // 'theme_color2' => $validated['backgroundColor2'],
+        // 'text_color' => $validated['textColor'],
+        // //'company_id'=> $company->id
+        // ]);
 
         $page = Page::create([
         'layout' => $layout,
         'page_name' => $request->input('layout_name'),
+        'theme_color1' => $validated['backgroundColor1'],
+        'theme_color2' => $validated['backgroundColor2'],
+        'text_color' => $validated['textColor'],
         'company_id' => $company->id,
         ]);
 

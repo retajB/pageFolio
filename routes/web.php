@@ -1,18 +1,15 @@
 <?php
 
 use App\Http\Controllers\BackgroundController;
+use App\Http\Controllers\BackTitleController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
-
-
-
-
+use App\Models\Back_title;
 
 Route::get('/create', function () {
     return view('create');
@@ -43,6 +40,8 @@ Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name
 Route::get('/createSection/{page}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
+
+Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store'); 
 
 Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
 
