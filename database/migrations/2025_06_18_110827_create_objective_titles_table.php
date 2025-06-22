@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('objective_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('theme_color1');
-            $table->string('theme_color2');
-            $table->string('text_color');
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+             $table->string('name');
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('objective_titles');
     }
 };

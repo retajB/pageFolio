@@ -13,4 +13,9 @@ class Icon extends Model
    public function social_media_site() {
     return $this->belongsTo(Social_media_site::class);
    }
+
+   public function feedback() {
+        return $this->belongsTo(Feedback::class);
+   }
+
 }

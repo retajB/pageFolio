@@ -10,13 +10,13 @@ class Background extends Model
         return $this->hasOne(Image::class);
    }
 
-   public function section() {
-    return $this->belongsTo(Section::class);
-}
+   public function back_title() {
+    return $this->belongsTo(Back_title::class);
+   }
+
  protected $fillable = [
-        'title',
         'content',
         'image_id',
-        'section_id'
+        'back_title_id'
     ];
 }

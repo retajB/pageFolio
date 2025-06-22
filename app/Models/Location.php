@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function location_title() {
+        return $this->belongsTo(Location_title::class);
    }
 
    public function image() {

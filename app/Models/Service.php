@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function service_title() {
+        return $this->belongsTo(Service_title::class);
    }
 
    public function image() {
@@ -15,10 +15,9 @@ class Service extends Model
 }
 
 protected $fillable = [
-        'title',
         'content',
         'image_id',
-        'section_id'
+        'service_title_id'
     ];
 
 }

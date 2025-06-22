@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('partner_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name');
-            $table->string('theme_color1');
-            $table->string('theme_color2');
-            $table->string('text_color');
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-            $table->enum('layout',['1' ,'2']);
+            $table->string('name');
+            $table->string('sub_title'); //نقصد فيه الجمله الصغيره اللي تحت العنوان في صفحه الشركاء 
+
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('partner_titles');
     }
 };

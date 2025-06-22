@@ -7,6 +7,33 @@ use Illuminate\Http\Request;
 
 class PageController
 {
+
+ public function Color_update(Request $request, Page $color)
+    {
+          $validated= $request->validate([
+        'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+
+
+       ]);
+
+
+         $color->update([
+              'theme_color1'=>$validated['backgroundColor1'],
+              'theme_color2'=>$validated['backgroundColor2'],
+              'text_color'=>$validated['textColor']
+         ]);
+
+         
+            return redirect()->back()->withInput();
+    }
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */

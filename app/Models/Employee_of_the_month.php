@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee_of_the_month extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function eotm_title() {
+        return $this->belongsTo(Eotm_title::class);
        }
 
        public function image() {
