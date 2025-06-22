@@ -40,7 +40,7 @@ class Section extends Model
        }
 
        protected $fillable =[
-         'who_we_are',
+            'who_we_are',
             'services',
             'objectives',
             'partners',

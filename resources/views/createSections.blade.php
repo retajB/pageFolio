@@ -88,36 +88,72 @@
       @endif
 
       <!-- Objectives -->
+<form method="POST" enctype="multipart/form-data">
+    @csrf
       @if($section->objectives)
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Objectives</h2>
 
-          <div class="mb-3">
-            <label>Content:</label>
-            <textarea class="form-control" name="objectives_content" rows="3"></textarea>
+           <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="Objectives_title" type="text"  placeholder="مثلاً : خدماتنا">
           </div>
 
           <div class="mb-3">
-            <label>Image:</label>
-            <input type="file" class="form-control" id="objectives_Image" name="objectives_Image">
+            <label>Content:</label>
+            <textarea class="form-control" name="Objectives_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Icon:</label>
+            <input type="file" class="form-control" id="objectives_Icon" name="objectives_Icon">
+          </div>
+
+         <div class="mb-3">
+            <label>Icon name:</label>
+            <input class="form-control" name="Objectives_icon_name" type="text" >
           </div>
         </div>
       </div>
+</form>
       @endif
 
       <!-- Partners -->
+<form method="POST" enctype="multipart/form-data">
+  @csrf
       @if($section->partners)
-      <div class="card mb-4">
+       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Partners</h2>
 
+         <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="Partners_title" type="text"  placeholder=" مثلاً: الشركاء">
+          </div>
+
           <div class="mb-3">
-            <label>Image:</label>
-            <input type="file" class="form-control" id="partners_Image" name="partners_Image">
+            <label>Content:</label>
+            <textarea class="form-control" name="Partners_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Services Image:</label>
+            <input type="file" class="form-control" id="Partners_image" name="Partners_image">
+          </div>
+
+          <div class="mb-3">
+            <label>Image name:</label>
+            <input type="text" class="form-control" id="Partners_image_name" name="Partners_image_name">
+          </div>
+          
+
+          <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
         </div>
       </div>
+</form>
       @endif
 
       <!-- Feedbacks -->
