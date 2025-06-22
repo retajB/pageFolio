@@ -13,4 +13,9 @@ class Service_title extends Model
    public function services() {
         return $this->hasMany(Service::class);
    }
+
+   protected $fillable = [
+   'name',
+   'section_id'
+   ];
 }

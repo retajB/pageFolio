@@ -13,4 +13,9 @@ class Objective_title extends Model
    public function objectives() {
         return $this->hasMany(Objective::class);
    }
+
+   protected $fillable = [
+   'name',
+   'section_id'
+   ];
 }

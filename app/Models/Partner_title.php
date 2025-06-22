@@ -13,4 +13,10 @@ class Partner_title extends Model
    public function partners() {
         return $this->hasMany(Partner::class);
    }
+
+   protected $fillable = [
+   'name',
+   'sub_title',
+   'section_id'
+   ];
 }

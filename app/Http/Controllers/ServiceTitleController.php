@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service_title;
 use Illuminate\Http\Request;
-
+use App\Models\Section;
 class ServiceTitleController
 {
     /**
@@ -26,10 +26,22 @@ class ServiceTitleController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Section $section)
     {
-        //
+         $request->validate([
+        'service_title' => 'required|string|max:255',
+        
+    ]);
+          
+        $request=Service_title::create([
+        'name' => $request->input('service_title'),
+         'section_id'=> $section->id,
+        ]);
+
+
+         return redirect()->back()->withInput();
     }
+
 
     /**
      * Display the specified resource.
