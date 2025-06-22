@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Section;
 use App\Models\Back_title;
 use Illuminate\Http\Request;
 
@@ -20,15 +20,27 @@ class BackTitleController
      */
     public function create()
     {
-        //
+         
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request , Section $section)
     {
-        //
+        $request->validate([
+        'background_title' => 'required|string|max:255',
+    ]);
+          
+        $request=Back_title::create([
+        'name' => $request->input('background_title'),
+         'section_id'=> $section->id,
+        ]);
+
+
+         return redirect()->back()->withInput();
     }
 
     /**
