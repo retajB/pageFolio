@@ -42,24 +42,32 @@ Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name
 
 
 
-//section routing...
+//section  routing...
 
 Route::get('/createSection/{page}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
+//section tiles routing...
+//route for the background title section 
 Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
 
+//route for the employee of the month title section 
 Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 
 
+//route for the feedback title section 
 Route::post('/createSection/feedbackTitle/{section}', [FeedbackTitleController::class, 'store'])->name('feedbackTitle.store'); 
 
+//route for the location title section 
 Route::post('/createSection/locationTitle/{section}', [LocationTitleController::class, 'store'])->name('locationTitle.store'); 
 
+//route for the objectives title section 
 Route::post('/createSection/objectiveTitle/{section}', [ObjectiveTitleController::class, 'store'])->name('objectiveTitle.store'); 
 
+//route for the partners title section 
 Route::post('/createSection/partnersTitle/{section}', [PartnerTitleController::class, 'store'])->name('partnersTitle.store'); 
 
+//route for the services title section 
 Route::post('/createSection/serviceTitle/{section}', [ServiceTitleController::class, 'store'])->name('serviceTitle.store'); 
 
 
@@ -67,12 +75,13 @@ Route::post('/createSection/services/{section}', [ServiceController::class, 'sto
 
 
 
-// تعديل بيانات الشركة
+// update company info 
 Route::patch('/edit/company/{company}' , [CompanyController::class, 'update'])->name('company.update');
 
-// تعديل بيانات المستخدم
+// update user info
 Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('user.update');
 
+//update company theme color
 Route::patch('/edit/color/{color}' , [PageController::class, 'Color_update'])->name('color.update');
 
 

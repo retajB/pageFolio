@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company_media_account extends Model
 {
-    public function section() {
-        return $this->belongsTo(Section::class);
+    public function media_title() {
+        return $this->belongsTo(Media_title::class);
        }
 
        public function social_media_sites(){
