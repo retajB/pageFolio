@@ -30,17 +30,7 @@ class BackTitleController
      */
     public function store(Request $request , Section $section)
     {
-        $request->validate([
-        'background_title' => 'required|string|max:255',
-    ]);
-          
-        $request=Back_title::create([
-        'name' => $request->input('background_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+       
     }
 
     /**

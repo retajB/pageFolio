@@ -11,28 +11,18 @@
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
  @if($section->who_we_are)
-    <!-- Who We Are Title -->
-    <form class="mb-4" method="POST" action="{{ route('backTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
-            @csrf
 
-    <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Who We Are</h2>
-          <label>Section name:</label>
-          <input class="form-control" name="background_title" type="text" placeholder="مثلاً: من نحن">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <!-- Who We Are Content -->
+    <!-- Who We Are -->
    
     <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
       @csrf
       <div class="card">
         <div class="card-body">
+            <h2 class="card-title">Who We Are</h2>
+
+          <label>Section name:</label>
+          <input class="form-control" name="background_title" type="text" placeholder="مثلاً: من نحن">
+
           <label>Content:</label>
           <textarea class="form-control mb-3" name="background_content" rows="3"></textarea>
 
@@ -43,11 +33,14 @@
           <input type="text" class="form-control mb-3" name="background_image_name">
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success px-5">Save</button>
+            <button type="submit" class="btn btn-success px-5 save-button">Save</button>
           </div>
         </div>
       </div>
     </form>
+
+
+    
     @endif
 
     @if($section->services)
@@ -280,7 +273,7 @@
     </form>
 
     <!-- Locations Content -->
-   
+    <form class="mb-4" method="POST" enctype="multipart/form-data">
     <div class="card mb-4">
       <div class="card-body">
         <label>Location Name:</label>
@@ -290,8 +283,24 @@
         <input type="file" class="form-control" name="Locations_url">
       </div>
     </div>
+  </form>
     @endif
 
   </div>
+
+  <script>
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function () {
+            const button = form.querySelector('.save-button');
+            if (button) {
+                button.disabled = true;
+                button.classList.remove('btn-success');
+                button.classList.add('btn-secondary');
+                button.innerHTML = 'Saved &#10003;';
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
