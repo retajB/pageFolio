@@ -13,4 +13,9 @@ class Feedback_title extends Model
    public function section() {
     return $this->belongsTo(Section::class);
    }
+
+   protected $fillable = [
+   'name',
+   'section_id'
+   ];
 }

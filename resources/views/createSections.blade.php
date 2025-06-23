@@ -52,14 +52,14 @@
 
     @if($section->services)
     <!-- Services Title -->
-    <form class="mb-4">
+   <form method="POST" action="{{ route('serviceTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
             @csrf
 
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Services</h2>
           <label>Section name:</label>
-          <input class="form-control" type="text" name="background_title" placeholder="e.g. Services">
+          <input class="form-control" type="text" name="service_title" placeholder="e.g. Services">
           <div class="text-center mt-3">
             <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
@@ -168,7 +168,7 @@
         <div class="card-body">
           <h2 class="card-title">Feedbacks</h2>
           <label>Section name:</label>
-          <input class="form-control" type="text" name="background_title" placeholder="e.g. Feedbacks">
+          <input class="form-control" type="text" name="feedback_title" placeholder="e.g. Feedbacks">
           <div class="text-center mt-3">
             <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
@@ -194,14 +194,14 @@
     @if($section->employee_of_the_months)
 
     <!-- Employee of the Month Title -->
-    <form class="mb-4">
+     <form class="mb-4" method="POST" action="{{ route('eotmTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
             @csrf
 
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Employee of the Month</h2>
           <label>Section name:</label>
-          <input class="form-control" type="text" name="background_title" placeholder="e.g. Employee of the Month">
+          <input class="form-control" type="text" name="EOTM_title" placeholder="e.g. Employee of the Month">
           <div class="text-center mt-3">
             <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
@@ -264,14 +264,14 @@
     @if($section->locations)
 
     <!-- Locations Title -->
-    <form class="mb-4">
+     <form class="mb-4" method="POST" action="{{ route('locationTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
             @csrf
 
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Locations</h2>
           <label>Section name:</label>
-          <input class="form-control" type="text" name="background_title" placeholder="e.g. Locations">
+          <input class="form-control" type="text" name="location_title" placeholder="e.g. Locations">
           <div class="text-center mt-3">
             <button type="submit" class="btn btn-success px-5">Save</button>
           </div>

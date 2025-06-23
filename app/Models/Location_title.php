@@ -13,6 +13,9 @@ class Location_title extends Model
    public function locations() {
         return $this->hasMany(Location::class);
    }
-
+protected $fillable = [
+   'name',
+   'section_id'
+   ];
 
 }

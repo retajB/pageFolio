@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Objective_title;
 use Illuminate\Http\Request;
+use App\Models\Section;
 
 class ObjectiveTitleController
 {
@@ -26,10 +27,21 @@ class ObjectiveTitleController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+     public function store(Request $request, Section $section)
     {
-        //
+         $request->validate([
+        'objective_title' => 'required|string|max:255',
+    ]);
+          
+        $request=Objective_title::create([
+        'name' => $request->input('objective_title'),
+         'section_id'=> $section->id,
+        ]);
+
+
+         return redirect()->back()->withInput();
     }
+
 
     /**
      * Display the specified resource.
