@@ -48,6 +48,8 @@ Route::get('/createSection/{page}', [SectionController::class, 'createSectionFor
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
+Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
+
 // Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
 
 Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 
@@ -60,10 +62,9 @@ Route::post('/createSection/objectiveTitle/{section}', [ObjectiveTitleController
 
 Route::post('/createSection/partnersTitle/{section}', [PartnerTitleController::class, 'store'])->name('partnersTitle.store'); 
 
-Route::post('/createSection/serviceTitle/{section}', [ServiceTitleController::class, 'store'])->name('serviceTitle.store'); 
+// Route::post('/createSection/serviceTitle/{section}', [ServiceTitleController::class, 'store'])->name('serviceTitle.store'); 
 
 
-Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
 
 
 

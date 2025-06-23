@@ -30,6 +30,7 @@ class BackgroundController
      */
     public function store(BackRequest $request ,Section $section)
     {
+        
         // dd($request->all());
         $validated= $request->validated();
         // $filePath = null;
@@ -57,7 +58,14 @@ class BackgroundController
             
         ]);
 
-        return redirect()->back()->with(['saved' => true, 'section_id' => $section->id]);
+   session()->put('saved_who', true);
+// لا نمسح saved_services لو كانت محفوظة
+session()->put('section_id', $section->id);
+
+return redirect()->back();
+
+
+
     }
 
     /**

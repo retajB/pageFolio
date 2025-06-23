@@ -33,6 +33,7 @@ class ServiceController
      */
     public function store(ServRequest $request, Section $section)
 {
+    
     $validated = $request->validated();
 
     // أولاً: نحفظ عنوان السكشن (title)
@@ -73,10 +74,14 @@ class ServiceController
         ]);
     }
 
-    return redirect()->back()->with([
-        'saved' => true,
-        'section_id' => $section->id,
-    ]);
+   session()->put('saved_services', true);
+// لا نمسح saved_who لو كانت محفوظة
+session()->put('section_id', $section->id);
+
+return redirect()->back();
+
+
+
 }
 
     /**
