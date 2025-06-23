@@ -19,13 +19,20 @@ class ServRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
-        return [
-            'services_title'   => 'nullable|string|max:30',
-             'services_content' => 'required|string|max:225',
-             'services_image'   => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // 2MB
-             'services_image_name'=>'nullable|string' ,
-        ];
-    }
+   public function rules(): array
+{
+    return [
+        'services_title' => 'nullable|string|max:30',
+
+        'services_content' => 'required|array',
+        'services_content.*' => 'required|string|max:225',
+
+        'services_image' => 'nullable|array',
+        'services_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+
+        'services_image_name' => 'nullable|array',
+        'services_image_name.*' => 'nullable|string|max:255',
+    ];
+}
+
 }

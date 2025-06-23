@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ServRequest;
 use App\Models\Image;
 use App\Models\Section;
+use App\Models\Service_title;
 
 class ServiceController
 {
@@ -30,31 +31,53 @@ class ServiceController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ServRequest $request , Section $section)
-    {
-         $validated= $request->validated();
+    public function store(ServRequest $request, Section $section)
+{
+    $validated = $request->validated();
 
-          if ($request->hasFile('services_image')) {
-            $file = $request->file('services_image');
-            $filename = $request->services_image_name . '.' . $file->getClientOriginalExtension(); // Keeps the original extension
+    // أولاً: نحفظ عنوان السكشن (title)
+    $services_title = Service_title::create([
+        'name'       => $validated['services_title'],
+        'section_id' => $section->id,
+    ]);
+
+    // ثانياً: نحصل على البيانات كمصفوفات
+    $contents     = $validated['services_content'];
+    $image_names  = $validated['services_image_name'];
+    $images       = $request->file('services_image'); // هذا لا يجي في validated
+
+    // نتأكد إن الأعداد متساوية
+    foreach ($contents as $index => $content) {
+
+        // افتراضي: بدون صورة
+        $filePath = null;
+
+        if (isset($images[$index]) && $images[$index] != null) {
+            $file = $images[$index];
+            $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('services', $filename, 'public');
         }
 
-         $image=Image::create([
-            'image_url'=>$filePath,
-            'image_name'=>$request->services_image_name
+        // حفظ الصورة (إذا فيه)
+        $image = Image::create([
+            'image_url'  => $filePath,
+            'image_name' => $image_names[$index],
         ]);
 
-        $service= $image->service()->create([
-            'title'=>$validated['services_title'],
-            'content'=>$validated['services_content'],
-            'image_id'=> $image->id,
-            'section_id'=> $section->id,
+        // إنشاء الخدمة المرتبطة
+        $image->service()->create([
+            'title'      => $validated['services_title'],
+            'content'    => $content,
+            'image_id'   => $image->id,
+            'service_title_id' => $services_title->id
         ]);
-
-        return redirect()->back()->withInput();
-
     }
+
+    return redirect()->back()->with([
+        'saved' => true,
+        'section_id' => $section->id,
+    ]);
+}
 
     /**
      * Display the specified resource.

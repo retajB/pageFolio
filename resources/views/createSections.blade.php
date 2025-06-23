@@ -10,9 +10,11 @@
   <div class="container">
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
- @if($section->who_we_are)
+
 
     <!-- Who We Are -->
+
+@if($section->who_we_are)
    
     <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
       @csrf
@@ -33,58 +35,61 @@
           <input type="text" class="form-control mb-3" name="background_image_name">
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success px-5 save-button">Save</button>
+            <button type="submit"
+        class="btn px-5 save-button {{ (session('saved') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
+        {{ (session('saved') && session('section_id') == $section->id) ? 'disabled' : '' }}>
+        {{ (session('saved') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
+      </button>
+
           </div>
         </div>
       </div>
     </form>
 
+@endif
 
-    
-    @endif
+ 
+    <!-- Services  -->
 
-    @if($section->services)
-    <!-- Services Title -->
-   <form method="POST" action="{{ route('serviceTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-            @csrf
+@if($section->services)
 
-      <div class="card">
+    <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="servicesForm">
+    @csrf
+    <div class="card">
         <div class="card-body">
-          <h2 class="card-title">Services</h2>
-          <label>Section name:</label>
-          <input class="form-control" type="text" name="service_title" placeholder="e.g. Services">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
+            <h2 class="card-title">Services</h2>
+
+            <label>Section name:</label>
+            <input class="form-control mb-3" name="services_title" type="text" placeholder="مثلاً : خدماتنا">
+
+            <div id="servicesContainer">
+                <div class="service-item mb-3">
+                    <label>Content:</label>
+                    <textarea class="form-control mb-2" name="services_content[]" rows="3"></textarea>
+
+                    <label>Services Image:</label>
+                    <input type="file" class="form-control mb-2" name="services_image[]">
+
+                    <label>Image name:</label>
+                    <input type="text" class="form-control mb-2" name="services_image_name[]">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary mb-3" id="addServiceBtn">+ Add Service</button>
+
+            <div class="text-center mt-3">
+                <button type="submit"
+                    class="btn px-5 save-button {{ (session('saved') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
+                    {{ (session('saved') && session('section_id') == $section->id) ? 'disabled' : '' }}>
+                    {{ (session('saved') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
+                </button>
+            </div>
         </div>
-      </div>
-    </form>
-
-    <!-- Services Content -->
-
-    <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-      @csrf
-      <div class="card">
-        <div class="card-body">
-          <label>Section name:</label>
-          <input class="form-control mb-3" name="services_title" type="text" placeholder="مثلاً : خدماتنا">
-
-          <label>Content:</label>
-          <textarea class="form-control mb-3" name="services_content" rows="3"></textarea>
-
-          <label>Services Image:</label>
-          <input type="file" class="form-control mb-3" name="services_image">
-
-          <label>Image name:</label>
-          <input type="text" class="form-control mb-3" name="services_image_name">
-
-          <div class="text-center">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
-        </div>
-      </div>
+    </div>
 </form>
-      @endif
+
+
+@endif
 
       <!-- Objectives -->
 <form method="POST" enctype="multipart/form-data">
@@ -301,6 +306,10 @@
         });
     });
 </script>
+
+
+<script src="{{ asset('js/services.js') }}"></script>
+
 
 </body>
 </html>
