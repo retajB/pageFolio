@@ -57,7 +57,7 @@ class BackgroundController
             
         ]);
 
-        return redirect()->back()->withInput();
+        return redirect()->back()->with(['saved' => true, 'section_id' => $section->id]);
     }
 
     /**
