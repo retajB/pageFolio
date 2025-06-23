@@ -11,28 +11,18 @@
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
  @if($section->who_we_are)
-    <!-- Who We Are Title -->
-    <form class="mb-4" method="POST" action="{{ route('backTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
-            @csrf
 
-    <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Who We Are</h2>
-          <label>Section name:</label>
-          <input class="form-control" name="background_title" type="text" placeholder="مثلاً: من نحن">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <!-- Who We Are Content -->
+    <!-- Who We Are -->
    
     <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
       @csrf
       <div class="card">
         <div class="card-body">
+            <h2 class="card-title">Who We Are</h2>
+
+          <label>Section name:</label>
+          <input class="form-control" name="background_title" type="text" placeholder="مثلاً: من نحن">
+
           <label>Content:</label>
           <textarea class="form-control mb-3" name="background_content" rows="3"></textarea>
 
@@ -43,11 +33,14 @@
           <input type="text" class="form-control mb-3" name="background_image_name">
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success px-5">Save</button>
+            <button type="submit" class="btn btn-success px-5 save-button">Save</button>
           </div>
         </div>
       </div>
     </form>
+
+
+    
     @endif
 
     @if($section->services)
@@ -90,77 +83,81 @@
           </div>
         </div>
       </div>
-    </form>
-    @endif
-    @if($section->objectives)
-    <!-- Objectives Title -->
-    <form method="POST" action="{{ route('objectiveTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-   
-            @csrf
+</form>
+      @endif
 
-      <div class="card">
+      <!-- Objectives -->
+<form method="POST" enctype="multipart/form-data">
+    @csrf
+      @if($section->objectives)
+      <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Objectives</h2>
-          <label>Section name:</label>
-          <input class="form-control" type="text" name="objective_title" placeholder="e.g. Objectives">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
+
+           <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="Objectives_title" type="text"  placeholder="مثلاً : خدماتنا">
+          </div>
+
+          <div class="mb-3">
+            <label>Content:</label>
+            <textarea class="form-control" name="Objectives_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Icon:</label>
+            <input type="file" class="form-control" id="objectives_Icon" name="objectives_Icon">
+          </div>
+
+         <div class="mb-3">
+            <label>Icon name:</label>
+            <input class="form-control" name="Objectives_icon_name" type="text" >
           </div>
         </div>
       </div>
-    </form>
+</form>
+      @endif
 
-    <!-- Objectives Content -->
-
-    <div class="card mb-4">
-      <div class="card-body">
-        <label>Content:</label>
-        <textarea class="form-control mb-3" name="objectives_content" rows="3"></textarea>
-
-        <label>Image:</label>
-        <input type="file" class="form-control" name="objectives_Image">
-      </div>
-    </div>
-    @endif
-    @if($section->partners)
-    <!-- Partners Title -->
-   <form method="POST" action="{{ route('partnersTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-            @csrf
-
-      <div class="card">
+      <!-- Partners -->
+<form method="POST" enctype="multipart/form-data">
+  @csrf
+      @if($section->partners)
+       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Partners</h2>
-          <label>Section name:</label>
-          <input class="form-control" type="text" name="partners_title" placeholder="e.g. Partners">
-          <div class="text-center mt-3">
 
-           <label>additional text:</label>
-          <input class="form-control" type="text" name="sub_partners_title" placeholder="e.g. Partners">
-          <div class="text-center mt-3">
+         <div class="mb-3">
+            <label>Section name:</label>
+            <input class="form-control" name="Partners_title" type="text"  placeholder=" مثلاً: الشركاء">
+          </div>
 
-            <button type="submit" class="btn btn-success px-5">Save</button>
+          <div class="mb-3">
+            <label>Content:</label>
+            <textarea class="form-control" name="Partners_content" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Services Image:</label>
+            <input type="file" class="form-control" id="Partners_image" name="Partners_image">
+          </div>
+
+          <div class="mb-3">
+            <label>Image name:</label>
+            <input type="text" class="form-control" id="Partners_image_name" name="Partners_image_name">
+          </div>
+          
+
+          <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success px-5">Save</button>
           </div>
         </div>
       </div>
-    </form>
+</form>
+      @endif
 
-    <!-- Partners Content -->
-   
-    <div class="card mb-4">
-      <div class="card-body">
-        <label>Image:</label>
-        <input type="file" class="form-control" name="partners_Image">
-      </div>
-    </div>
-    @endif
-    @if($section->feedbacks)
-
-
-    <!-- Feedbacks Title -->
-    <form method="POST" action="{{ route('feedbackTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-            @csrf
-
-      <div class="card">
+      <!-- Feedbacks -->
+      @if($section->feedbacks)
+      <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Feedbacks</h2>
           <label>Section name:</label>
@@ -276,7 +273,7 @@
     </form>
 
     <!-- Locations Content -->
-   
+    <form class="mb-4" method="POST" enctype="multipart/form-data">
     <div class="card mb-4">
       <div class="card-body">
         <label>Location Name:</label>
@@ -286,8 +283,24 @@
         <input type="file" class="form-control" name="Locations_url">
       </div>
     </div>
+  </form>
     @endif
 
   </div>
+
+  <script>
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function () {
+            const button = form.querySelector('.save-button');
+            if (button) {
+                button.disabled = true;
+                button.classList.remove('btn-success');
+                button.classList.add('btn-secondary');
+                button.innerHTML = 'Saved &#10003;';
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

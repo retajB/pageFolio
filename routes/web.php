@@ -48,9 +48,7 @@ Route::get('/createSection/{page}', [SectionController::class, 'createSectionFor
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
-//section tiles routing...
-//route for the background title section 
-Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
+// Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
 
 //route for the employee of the month title section 
 Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 

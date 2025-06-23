@@ -8,6 +8,7 @@ use App\Http\Requests\BackRequest;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Http\Requests\StoreRequest;
+use App\Models\Back_title;
 use App\Models\Image;
 use App\Models\Section;
 use App\Models\Page;
@@ -30,10 +31,7 @@ class BackgroundController
     public function store(BackRequest $request ,Section $section)
     {
         // dd($request->all());
-
-
         $validated= $request->validated();
-
         // $filePath = null;
 
         if ($request->hasFile('background_image')) {
@@ -42,6 +40,10 @@ class BackgroundController
             $filePath = $file->storeAs('background', $filename, 'public');
 }
 
+        $back_title=Back_title::create([
+            'name'=>$validated['background_title'],
+            'section_id'=> $section->id,
+        ]);
 
         $image=Image::create([
             'image_url'=>$filePath,
@@ -49,10 +51,10 @@ class BackgroundController
         ]);
 
         $background= $image->background()->create([
-            // 'title'=>$validated['background_title'],
             'content'=>$validated['background_content'],
             'image_id'=> $image->id,
-            'section_id'=> $section->id,
+            'back_title_id' => $back_title->id
+            
         ]);
 
         return redirect()->back()->withInput();
