@@ -6,15 +6,9 @@ use App\Models\Background;
 use \App\Http\Controllers\CompanyController;
 
 
-//route for updating the company info
-// Route::patch('\background\update\{company}' , [CompanyController::class, 'update'])
-//         ->name('company.update');
-
-
-// //route for storing company background
-// Route::post('\store\background' ,[BackgroundController::class, 'store'])
-//         ->name('store.Background');
-
-
+//API for company info
 Route::get('/info/company/{company}' ,[CompanyController::class, 'show']);
-       
+ 
+
+//API for background info
+Route::get ('/info/background/{background}' , [BackgroundController::class, 'show']);

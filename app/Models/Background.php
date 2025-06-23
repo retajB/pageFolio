@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Background extends Model
 {
-    public function image() {
-        return $this->hasOne(Image::class);
-   }
+   public function image() {
+    return $this->belongsTo(Image::class);
+}
 
    public function back_title() {
     return $this->belongsTo(Back_title::class);

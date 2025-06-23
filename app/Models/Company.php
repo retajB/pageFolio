@@ -14,9 +14,7 @@ class Company extends Model
     return $this->hasMany(Page::class);
 }
 
-public function color() {
-    return $this->hasOne(Color::class);
-   }
+
 
     protected $fillable = [
         'name', 

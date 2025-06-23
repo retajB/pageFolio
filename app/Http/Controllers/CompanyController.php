@@ -75,8 +75,11 @@ class CompanyController
      */
     public function show(Company $company)
 {
+    // هنا قاعده احمل العلاقات اللي مرتبطه بالشركه زي اليوزر و البيجز 
+    $company->load(['user', 'pages']);
+
     return response()->json([
-        'message' => 'تم جلب بيانات الشركة بنجاح',
+        'message' => 'Company info received successfully',
         'data' => $company
     ]);
 }

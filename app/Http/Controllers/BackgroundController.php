@@ -65,7 +65,14 @@ class BackgroundController
      */
     public function show(Background $background)
     {
-        
+
+     $background->load(['back_title','image']);
+
+        return response()->json([
+            'massage'=>'background info received successfully',
+            'data'=>$background
+
+        ]);
     }
 
 
