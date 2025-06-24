@@ -53,24 +53,23 @@ class ServiceController
      */
     public function store(ServRequest $request, Section $section)
 {
+    
     $validated = $request->validated();
 
-    // أولاً: نحفظ عنوان السكشن (title)
+    //  نحفظ عنوان السكشن 
     $services_title = Service_title::create([
         'name'       => $validated['services_title'],
         'section_id' => $section->id,
     ]);
 
-    // ثانياً: نحصل على البيانات كمصفوفات
+    //  نحصل على البيانات كمصفوفات
     $contents     = $validated['services_content'];
     $image_names  = $validated['services_image_name'];
-    $images       = $request->file('services_image'); // هذا لا يجي في validated
+    $images       = $request->file('services_image'); // هذا ما يجي في validated
 
-    // نتأكد إن الأعداد متساوية
     foreach ($contents as $index => $content) {
 
-        // افتراضي: بدون صورة
-        $filePath = null;
+        // $filePath = null;
 
         if (isset($images[$index]) && $images[$index] != null) {
             $file = $images[$index];
@@ -78,7 +77,7 @@ class ServiceController
             $filePath = $file->storeAs('services', $filename, 'public');
         }
 
-        // حفظ الصورة (إذا فيه)
+        // حفظ الصورة 
         $image = Image::create([
             'image_url'  => $filePath,
             'image_name' => $image_names[$index],
@@ -93,10 +92,14 @@ class ServiceController
         ]);
     }
 
-    return redirect()->back()->with([
-        'saved' => true,
-        'section_id' => $section->id,
-    ]);
+   session()->put('saved_services', true);
+// لا نمسح saved_who لو كانت محفوظة
+session()->put('section_id', $section->id);
+
+return redirect()->back();
+
+
+
 }
 
     /**

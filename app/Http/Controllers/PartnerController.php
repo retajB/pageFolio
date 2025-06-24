@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Partner;
 use App\Http\Controllers\Controller;
+use App\Models\Partner_title;
+use App\Models\Section;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use App\Http\Requests\PartRequest;
 
 class PartnerController
 {
@@ -27,10 +31,48 @@ class PartnerController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+   public function store(PartRequest $request, Section $section)
+{
+
+    $validated = $request->validated();
+
+    $partners_title = Partner_title::create([
+        'name'       => $validated['partners_title'],
+        'sub_title'  => $validated['partners_content'],
+        'section_id' => $section->id,
+    ]);
+
+    $image_names = $validated['partners_image_name'] ;
+    $images      = $request->file('partners_image') ;
+
+    foreach ($image_names as $index => $name) {
+        //$filePath = null;
+
+        if (isset($images[$index])) {
+            $file = $images[$index];
+            $filename = $name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('partners', $filename, 'public');
+        }
+
+        $image = Image::create([
+            'image_url'  => $filePath,
+            'image_name' => $name,
+        ]);
+
+        $image->partner()->create([
+            'title'            => $validated['partners_title'],
+            'content'          => $validated['partners_content'],
+            'image_id'         => $image->id,
+            'partner_title_id' => $partners_title->id,
+        ]);
     }
+
+    session()->put('saved_partners', true);
+    session()->put('section_id', $section->id);
+
+    return redirect()->back();
+}
+
 
     /**
      * Display the specified resource.
