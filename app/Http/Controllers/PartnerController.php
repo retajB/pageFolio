@@ -79,7 +79,6 @@ class PartnerController
         ]);
 
         $image->partner()->create([
-            'title'            => $validated['partners_title'],
             'image_id'         => $image->id,
             'partner_title_id' => $partners_title->id,
         ]);

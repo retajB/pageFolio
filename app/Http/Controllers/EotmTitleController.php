@@ -29,17 +29,7 @@ class EotmTitleController
      */
     public function store(Request $request, Section $section)
     {
-       $request->validate([
-        'EOTM_title' => 'required|string|max:255',
-    ]);
-          
-        $request=Eotm_title::create([
-        'name' => $request->input('EOTM_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+       
     }
 
     /**

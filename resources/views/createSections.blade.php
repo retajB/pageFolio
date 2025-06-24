@@ -11,7 +11,7 @@
     <h1 class="mb-5 text-center">Admin Control Panel</h1>
 
     <!-- Who We Are -->
-    @if($section->who_we_are)
+@if($section->who_we_are)
       <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
         @csrf
         <div class="card">
@@ -43,10 +43,10 @@
           </div>
         </div>
       </form>
-    @endif
+@endif
 
     <!-- Services -->
-    @if($section->services)
+@if($section->services)
       <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" >
         @csrf
         <div class="card">
@@ -82,7 +82,7 @@
           </div>
         </div>
       </form>
-    @endif
+@endif
 
 
       <!-- Objectives -->
@@ -163,7 +163,6 @@
     </div>
 </form>
 
-
 @endif
 
       <!-- Feedbacks -->
@@ -190,19 +189,23 @@
       </div>
     </div>
 </form>
-    @endif
+    
+@endif
 
-    @if($section->employee_of_the_months)
+ 
 
-    <!-- Employee of the Month Title -->
-     <form method="POST" action="{{ route('eotmTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="eotmForm">
+    <!-- Employee of the Month -->
+
+@if($section->employee_of_the_months)
+
+  <form method="POST" action="{{ route('eotm.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="eotmForm">
     @csrf
     <div class="card mb-4">
         <div class="card-body">
             <h2 class="card-title">Employee of the Month</h2>
 
             <label>Section name:</label>
-            <input class="form-control mb-3" type="text" name="EOTM_title" placeholder="e.g. Employee of the Month">
+            <input class="form-control mb-3" type="text" name="EOTM_title" placeholder="مثال: موظفين الشهر">
 
             <div id="eotmContainer">
                 <div class="eotm-item mb-3">
@@ -213,7 +216,7 @@
                     <textarea class="form-control mb-2" name="employee_content[]" rows="3"></textarea>
 
                     <label>Employee Image:</label>
-                    <input type="file" class="form-control mb-2" name="employee_Image[]">
+                    <input type="file" class="form-control mb-2" name="employee_image[]">
 
                     <label>Image name:</label>
                     <input type="text" class="form-control mb-2" name="employee_image_name[]">
@@ -233,7 +236,7 @@
     </div>
 </form>
 
-    @endif
+@endif
 
     @if($section->social_media)
     <!-- Social Media Title -->
@@ -271,7 +274,7 @@
     </div>
     @endif
 
-    @if($section->locations)
+@if($section->locations)
 
     <!-- Locations Title -->
      <form class="mb-4" method="POST" action="{{ route('locationTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
@@ -293,6 +296,9 @@
     <form class="mb-4" method="POST" enctype="multipart/form-data">
     <div class="card mb-4">
       <div class="card-body">
+        <h2 class="card-title">Locations</h2>
+          <label>Section name:</label>
+          <input class="form-control" type="text" name="location_title" placeholder="e.g. Locations">
         <label>Location Name:</label>
         <input class="form-control mb-3" name="locations_content" type="text">
 
@@ -323,6 +329,9 @@
 <script src="{{ asset('js/services.js') }}"></script>
 
 <script src="{{ asset('js/partners.js') }}"></script>
+
+<script src="{{ asset('js/eotm.js') }}"></script>
+
 
 
 

@@ -11,7 +11,7 @@ class EotmRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class EotmRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'EOTM_title'             => 'required|string|max:100',
+
+            'employee_name'          => 'required|array|min:1',
+            'employee_name.*'        => 'required|string|max:50',
+
+            'employee_content'       => 'required|array|min:1',
+            'employee_content.*'     => 'required|string|max:255',
+
+            'employee_image'         => 'required|array',
+            'employee_image.*'       => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+
+            'employee_image_name'    => 'required|array',
+            'employee_image_name.*'  => 'required|string|max:100',
         ];
     }
 }
