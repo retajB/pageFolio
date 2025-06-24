@@ -13,4 +13,10 @@ class Partner extends Model
    public function image() {
     return $this->hasOne(Image::class);
 } 
+
+protected $fillable = [
+       'content',
+       'image_id',
+       'partner_title_id' ,
+    ];
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\ObjectiveTitleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\PartnerController;
+
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnerTitleController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\ServiceTitleController;
 use App\Http\Controllers\UserController;
 use App\Models\Back_title;
 use App\Models\Feedback_title;
+use App\Models\Partner;
 
 Route::get('/create', function () {
     return view('create');
@@ -50,7 +53,9 @@ Route::post('/createSection/background/{section}', [BackgroundController::class,
 
 Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
 
-// Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
+Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
+
+
 
 Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 
 
@@ -60,9 +65,7 @@ Route::post('/createSection/locationTitle/{section}', [LocationTitleController::
 
 Route::post('/createSection/objectiveTitle/{section}', [ObjectiveTitleController::class, 'store'])->name('objectiveTitle.store'); 
 
-Route::post('/createSection/partnersTitle/{section}', [PartnerTitleController::class, 'store'])->name('partnersTitle.store'); 
 
-// Route::post('/createSection/serviceTitle/{section}', [ServiceTitleController::class, 'store'])->name('serviceTitle.store'); 
 
 
 

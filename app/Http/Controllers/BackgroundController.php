@@ -51,7 +51,7 @@ class BackgroundController
             'image_name'=>$request->background_image_name
         ]);
 
-        $background= $image->background()->create([
+        $image->background()->create([
             'content'=>$validated['background_content'],
             'image_id'=> $image->id,
             'back_title_id' => $back_title->id

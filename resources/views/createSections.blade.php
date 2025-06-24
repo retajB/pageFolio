@@ -46,7 +46,7 @@
 
     <!-- Services -->
     @if($section->services)
-      <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="servicesForm">
+      <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" >
         @csrf
         <div class="card">
           <div class="card-body">
@@ -86,9 +86,12 @@
 
 
       <!-- Objectives -->
+
+@if($section->objectives)
+
 <form method="POST" enctype="multipart/form-data">
     @csrf
-      @if($section->objectives)
+     
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Objectives</h2>
@@ -118,41 +121,54 @@
       @endif
 
       <!-- Partners -->
-<form method="POST" enctype="multipart/form-data">
-  @csrf
-      @if($section->partners)
-       <div class="card mb-4">
+
+@if($section->partners)
+
+<form method="POST" action="{{ route('partner.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
+    @csrf
+    <div class="card mb-4">
         <div class="card-body">
-          <h2 class="card-title">Partners</h2>
+            <h2 class="card-title">Partners</h2>
 
-         <div class="mb-3">
-            <label>Section name:</label>
-            <input class="form-control" name="Partners_title" type="text"  placeholder=" مثلاً: الشركاء">
-          </div>
+            <div class="mb-3">
+                <label>Section name:</label>
+                <input class="form-control" name="partners_title" type="text" placeholder="مثلاً: الشركاء">
+            </div>
 
-          <div class="mb-3">
-            <label>Content:</label>
-            <textarea class="form-control" name="Partners_content" rows="3"></textarea>
-          </div>
+            <div class="mb-3">
+                <label>Content:</label>
+                <textarea class="form-control" name="partners_content" rows="3"></textarea>
+            </div>
 
-          <div class="mb-3">
-            <label>Services Image:</label>
-            <input type="file" class="form-control" id="Partners_image" name="Partners_image">
-          </div>
+            <div id="partnersContainer">
+                <div class="partner-item mb-3">
+                    <label>Partner Image:</label>
+                    <input type="file" class="form-control mb-2" name="partners_image[]">
 
-          <div class="mb-3">
-            <label>Image name:</label>
-            <input type="text" class="form-control" id="Partners_image_name" name="Partners_image_name">
-          </div>
-          
+                    <label>Image name:</label>
+                    <input type="text" class="form-control mb-2" name="partners_image_name[]">
+                </div>
+            </div>
 
-          <div class="text-center mt-4">
-        <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
+            <button type="button" class="btn btn-primary mb-3" id="addPartnerBtn">+ Add Image</button>
+
+            <div class="text-center mt-4">
+                <div class="text-center mt-4">
+    <button type="submit"
+        class="btn px-5 save-button {{ (session('saved_partners') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
+        {{ (session('saved_partners') && session('section_id') == $section->id) ? 'disabled' : '' }}>
+        {{ (session('saved_partners') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
+    </button>
+</div>
+
+
+
+            </div>
         </div>
-      </div>
+    </div>
 </form>
-      @endif
+
+@endif
 
       <!-- Feedbacks -->
       @if($section->feedbacks)
@@ -303,6 +319,9 @@
 
 
 <script src="{{ asset('js/services.js') }}"></script>
+
+<script src="{{ asset('js/partners.js') }}"></script>
+
 
 
 </body>
