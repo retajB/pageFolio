@@ -58,7 +58,7 @@ class ServiceController
 
     //  نحفظ عنوان السكشن 
     $services_title = Service_title::create([
-        'name'       => $validated['services_title'],
+        'section_name'       => $validated['services_title'],
         'section_id' => $section->id,
     ]);
 

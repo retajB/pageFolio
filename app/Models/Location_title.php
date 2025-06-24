@@ -14,7 +14,7 @@ class Location_title extends Model
         return $this->hasMany(Location::class);
    }
 protected $fillable = [
-   'name',
+   'section_name',
    'section_id'
    ];
 

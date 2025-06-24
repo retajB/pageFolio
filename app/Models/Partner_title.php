@@ -15,7 +15,7 @@ class Partner_title extends Model
    }
 
    protected $fillable = [
-   'name',
+   'section_name',
    'sub_title',
    'section_id'
    ];

@@ -16,7 +16,7 @@ class Back_title extends Model
    
 
    protected $fillable = [
-   'name',
+   'section_name',
    'section_id'
      
 

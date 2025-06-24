@@ -24,7 +24,7 @@ class PartnerController
 
             $section = $partnerTitle ? [
             'id' => $partnerTitle->id,
-            'name' => $partnerTitle->name,
+            'section_name' => $partnerTitle->section_name,
             'sub_title' => $partnerTitle->sub_title,
         ] : null;
         // حذف التكرار من كل بارتنر
@@ -56,7 +56,7 @@ class PartnerController
     $validated = $request->validated();
 
     $partners_title = Partner_title::create([
-        'name'       => $validated['partners_title'],
+        'section_name'       => $validated['partners_title'],
         'sub_title'  => $validated['partners_content'],
         'section_id' => $section->id,
     ]);
