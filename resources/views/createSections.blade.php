@@ -31,11 +31,12 @@
             <input type="text" class="form-control mb-3" name="background_image_name">
 
             <div class="text-center">
-             <button type="submit"
-    class="btn px-5 save-button {{ (session('saved_who') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
-    {{ (session('saved_who') && session('section_id') == $section->id) ? 'disabled' : '' }}>
-    {{ (session('saved_who') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
-</button>
+            <button type="submit"
+              class="btn px-5 save-button {{ session('saved_who_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
+              {{ session('saved_who_' . $section->id) ? 'disabled' : '' }}>
+              {{ session('saved_who_' . $section->id) ? 'Saved ✓' : 'Save' }}
+            </button>
+
 
 
             </div>
@@ -72,11 +73,10 @@
 
             <div class="text-center mt-3">
               <button type="submit"
-    class="btn px-5 save-button {{ (session('saved_services') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
-    {{ (session('saved_services') && session('section_id') == $section->id) ? 'disabled' : '' }}>
-    {{ (session('saved_services') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
-</button>
-
+                class="btn px-5 save-button {{ session('saved_services_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
+                {{ session('saved_services_' . $section->id) ? 'disabled' : '' }}>
+                {{ session('saved_services_' . $section->id) ? 'Saved ✓' : 'Save' }}
+              </button>
 
             </div>
           </div>
@@ -153,17 +153,16 @@
             <button type="button" class="btn btn-primary mb-3" id="addPartnerBtn">+ Add Image</button>
 
             <div class="text-center mt-4">
-                <div class="text-center mt-4">
-    <button type="submit"
-        class="btn px-5 save-button {{ (session('saved_partners') && session('section_id') == $section->id) ? 'btn-secondary' : 'btn-success' }}"
-        {{ (session('saved_partners') && session('section_id') == $section->id) ? 'disabled' : '' }}>
-        {{ (session('saved_partners') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
-    </button>
-</div>
+                <button type="submit"
+                    class="btn px-5 save-button {{ session('saved_partners_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
+                    {{ session('saved_partners_' . $section->id) ? 'disabled' : '' }}>
+                    {{ session('saved_partners_' . $section->id) ? 'Saved ✓' : 'Save' }}
+                </button>
             </div>
         </div>
     </div>
 </form>
+
 
 @endif
 

@@ -58,14 +58,8 @@ class BackgroundController
             
         ]);
 
-   session()->put('saved_who', true);
-// لا نمسح saved_services لو كانت محفوظة
-session()->put('section_id', $section->id);
-
-return redirect()->back();
-
-
-
+        session()->put('saved_who_' . $section->id, true);
+        return redirect()->back();
     }
 
     /**

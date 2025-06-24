@@ -85,8 +85,7 @@ class PartnerController
         ]);
     }
 
-    session()->put('saved_partners', true);
-    session()->put('section_id', $section->id);
+    session()->put('saved_partners_' . $section->id, true);
 
     return redirect()->back();
 }

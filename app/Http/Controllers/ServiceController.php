@@ -92,11 +92,9 @@ class ServiceController
         ]);
     }
 
-   session()->put('saved_services', true);
-// لا نمسح saved_who لو كانت محفوظة
-session()->put('section_id', $section->id);
+    session()->put('saved_services_' . $section->id, true);
 
-return redirect()->back();
+    return redirect()->back();
 
 
 
