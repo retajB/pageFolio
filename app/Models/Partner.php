@@ -10,12 +10,13 @@ class Partner extends Model
         return $this->belongsTo(Partner_title::class);
    }
 
-   public function image() {
-    return $this->hasOne(Image::class);
-} 
+  public function image() {
+    return $this->belongsTo(Image::class);
+}
+
 
 protected $fillable = [
-       'content',
+     
        'image_id',
        'partner_title_id' ,
     ];

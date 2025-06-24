@@ -25,7 +25,7 @@ class ServiceController
 
     $section = $serviceTitle ? [
         'id' => $serviceTitle->id,
-        'name' => $serviceTitle->name,
+        'section_name' => $serviceTitle->section_name,
         'section_id' => $serviceTitle->section_id,
     ] : null;
 

@@ -17,7 +17,26 @@ class PartnerController
      */
     public function index()
     {
-        //
+        $partners = Partner::with(['partner_title', 'image'])->get();
+
+        // استخراج العنوان والعنوان الفرعي مرة وحدة فقط من أول عنصر
+        $partnerTitle = $partners->first()?->partner_title;
+
+            $section = $partnerTitle ? [
+            'id' => $partnerTitle->id,
+            'name' => $partnerTitle->name,
+            'sub_title' => $partnerTitle->sub_title,
+        ] : null;
+        // حذف التكرار من كل بارتنر
+        $partners->each(function ($partner) {
+            unset($partner->partner_title);
+        });
+
+        return response()->json([
+            'message' => 'Partners info loaded successfully',
+            'section' => $section,
+            'partners' => $partners
+]);
     }
 
     /**
@@ -61,7 +80,6 @@ class PartnerController
 
         $image->partner()->create([
             'title'            => $validated['partners_title'],
-            'content'          => $validated['partners_content'],
             'image_id'         => $image->id,
             'partner_title_id' => $partners_title->id,
         ]);

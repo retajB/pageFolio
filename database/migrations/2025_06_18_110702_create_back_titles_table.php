@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('back_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('section_name');
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

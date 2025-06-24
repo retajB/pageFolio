@@ -24,7 +24,7 @@ Route::get('/info/services/{service}' , [ServiceController::class, 'index']);
 Route::get('/info/objectives/{}', [ObjectiveController::class, 'index']);
 
 //API to get partners info 
-Route::get('/info/partners/{}',[PartnerController::class, 'index']);
+Route::get('/info/partners/{partners}',[PartnerController::class, 'index']);
 
 //API to get feedback info 
 Route::get('/info/feedback/{}',[FeedbackController::class, 'index']);

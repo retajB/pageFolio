@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('partner_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('section_name');
             $table->string('sub_title'); //نقصد فيه الجمله الصغيره اللي تحت العنوان في صفحه الشركاء 
 
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();

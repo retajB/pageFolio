@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
          
-            $table->text('content');
+            // $table->text('content');
             $table->foreignId('image_id')->constrained();
             $table->foreignId('partner_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

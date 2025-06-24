@@ -42,7 +42,7 @@ class BackgroundController
 }
 
         $back_title=Back_title::create([
-            'name'=>$validated['background_title'],
+            'section_name'=>$validated['background_title'],
             'section_id'=> $section->id,
         ]);
 
