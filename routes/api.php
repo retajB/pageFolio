@@ -34,3 +34,7 @@ Route::get('/info/socialMedia/{}',[CompanyMediaAccountController::class, 'index'
 
 //API to get location info 
 Route::get('/info/location/{}',[LocationController::class, 'index']);
+
+
+
+// Route::post('/sections/background/{section}', [BackgroundController::class, 'store']);
