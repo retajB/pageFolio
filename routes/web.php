@@ -1,7 +1,5 @@
 <?php
-
 use App\Http\Controllers\BackgroundController;
-use App\Http\Controllers\BackTitleController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EotmTitleController;
 use App\Http\Controllers\FeedbackTitleController;
@@ -11,15 +9,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\PartnerController;
-
+use App\Http\Controllers\EmployeeOfTheMonthController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PartnerTitleController;
-use App\Http\Controllers\ServiceTitleController;
 use App\Http\Controllers\UserController;
-use App\Models\Back_title;
-use App\Models\Feedback_title;
-use App\Models\Partner;
+
 
 Route::get('/create', function () {
     return view('create');
@@ -54,6 +48,9 @@ Route::post('/createSection/background/{section}', [BackgroundController::class,
 Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
 
 Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
+
+Route::post('/createSection/eotm/{section}', [EmployeeOfTheMonthController::class, 'store'])->name('eotm.store'); //store employee of the month for company
+
 
 
 

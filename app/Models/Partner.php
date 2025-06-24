@@ -16,7 +16,6 @@ class Partner extends Model
 
 
 protected $fillable = [
-     
        'image_id',
        'partner_title_id' ,
     ];

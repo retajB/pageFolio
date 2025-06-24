@@ -13,4 +13,11 @@ class Employee_of_the_month extends Model
        public function image() {
         return $this->hasOne(Image::class);
        }
+
+       protected $fillable = [
+       'employee_name',
+       'content' ,
+       'image_id',
+       'eotm_title_id'
+    ];
 }

@@ -85,7 +85,6 @@ class ServiceController
 
         // إنشاء الخدمة المرتبطة
         $image->service()->create([
-            'title'      => $validated['services_title'],
             'content'    => $content,
             'image_id'   => $image->id,
             'service_title_id' => $services_title->id
