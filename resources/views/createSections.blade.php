@@ -167,22 +167,18 @@
 @endif
 
       <!-- Feedbacks -->
-      @if($section->feedbacks)
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">Feedbacks</h2>
-          <label>Section name:</label>
-          <input class="form-control" type="text" name="feedback_title" placeholder="e.g. Feedbacks">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
-        </div>
-      </div>
-    </form>
 
-    <!-- Feedbacks Content -->
+@if($section->feedbacks)
+
+<form method="POST" enctype="multipart/form-data">
+
     <div class="card mb-4">
       <div class="card-body">
+         <h2 class="card-title">Feedbacks</h2>
+
+        <label>Section name:</label>
+        <input class="form-control" type="text" name="feedback_title" placeholder="e.g. Feedbacks">
+
         <label>User Name:</label>
         <input class="form-control mb-3" name="feedbacks_userName" type="text">
 
@@ -193,40 +189,50 @@
         <input class="form-control" name="feedbacks_rating" type="number" min="1" max="5">
       </div>
     </div>
+</form>
     @endif
 
     @if($section->employee_of_the_months)
 
     <!-- Employee of the Month Title -->
-     <form class="mb-4" method="POST" action="{{ route('eotmTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
-            @csrf
-
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Employee of the Month</h2>
-          <label>Section name:</label>
-          <input class="form-control" type="text" name="EOTM_title" placeholder="e.g. Employee of the Month">
-          <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-5">Save</button>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <!-- Employee of the Month Content -->
-
+     <form method="POST" action="{{ route('eotmTitle.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="eotmForm">
+    @csrf
     <div class="card mb-4">
-      <div class="card-body">
-        <label>Employee Name:</label>
-        <input class="form-control mb-3" name="employee_name" type="text">
+        <div class="card-body">
+            <h2 class="card-title">Employee of the Month</h2>
 
-        <label>Description:</label>
-        <textarea class="form-control mb-3" name="content" rows="3"></textarea>
+            <label>Section name:</label>
+            <input class="form-control mb-3" type="text" name="EOTM_title" placeholder="e.g. Employee of the Month">
 
-        <label>Image:</label>
-        <input type="file" class="form-control" name="employee_Image">
-      </div>
+            <div id="eotmContainer">
+                <div class="eotm-item mb-3">
+                    <label>Employee Name:</label>
+                    <input class="form-control mb-2" name="employee_name[]" type="text">
+
+                    <label>Description:</label>
+                    <textarea class="form-control mb-2" name="employee_content[]" rows="3"></textarea>
+
+                    <label>Employee Image:</label>
+                    <input type="file" class="form-control mb-2" name="employee_Image[]">
+
+                    <label>Image name:</label>
+                    <input type="text" class="form-control mb-2" name="employee_image_name[]">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary mb-3" id="addEOTMBtn">+ Add Employee</button>
+
+            <div class="text-center mt-3">
+                <button type="submit"
+                    class="btn px-5 save-button {{ session('saved_eotm_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
+                    {{ session('saved_eotm_' . $section->id) ? 'disabled' : '' }}>
+                    {{ session('saved_eotm_' . $section->id) ? 'Saved ✓' : 'Save' }}
+                </button>
+            </div>
+        </div>
     </div>
+</form>
+
     @endif
 
     @if($section->social_media)
