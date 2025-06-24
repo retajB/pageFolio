@@ -10,8 +10,8 @@ class Service extends Model
         return $this->belongsTo(Service_title::class);
    }
 
-   public function image() {
-    return $this->hasOne(Image::class);
+  public function image() {
+    return $this->belongsTo(Image::class);
 }
 
 protected $fillable = [

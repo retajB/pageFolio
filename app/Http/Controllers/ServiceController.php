@@ -15,11 +15,31 @@ class ServiceController
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+ public function index()
+{
+    // اجيب الخدمات مع الصورة والعنوان
+    $services = Service::with(['service_title', 'image'])->get();
 
+    // استخراج عنوان القسم من أول خدمة (إذا موجود)
+    $serviceTitle = $services->first()->service_title ?? null;
+
+    $section = $serviceTitle ? [
+        'id' => $serviceTitle->id,
+        'name' => $serviceTitle->name,
+        'section_id' => $serviceTitle->section_id,
+    ] : null;
+
+    // حذف تكرار العنوان من كل خدمة
+    $services->each(function ($service) {
+        unset($service->service_title);
+    });
+
+    return response()->json([
+        'message' => 'Services info received successfully',
+        'section' => $section,
+        'services' => $services
+    ]);
+}
     /**
      * Show the form for creating a new resource.
      */
@@ -82,10 +102,15 @@ class ServiceController
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
-    {
-        //
-    }
+//    public function show(Service $service)
+// {
+//     $service->load(['service_title']);
+
+//     return response()->json([
+//         'message' => 'services info received successfully',
+//         'data' => $service
+//     ]);
+// }
 
     /**
      * Show the form for editing the specified resource.
