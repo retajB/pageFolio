@@ -51,8 +51,13 @@ Route::get('/createSection/{page}', [SectionController::class, 'createSectionFor
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
-// Route::post('/createSection/backTitle/{section}' ,[BackTitleController::class, 'store'])->name('backTitle.store');
+Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
 
+Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
+
+
+
+//route for the employee of the month title section 
 Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 
 
 //route for the feedback title section 
@@ -64,11 +69,7 @@ Route::post('/createSection/locationTitle/{section}', [LocationTitleController::
 //route for the objectives title section 
 Route::post('/createSection/objectiveTitle/{section}', [ObjectiveTitleController::class, 'store'])->name('objectiveTitle.store'); 
 
-//route for the partners title section 
-Route::post('/createSection/partnersTitle/{section}', [PartnerTitleController::class, 'store'])->name('partnersTitle.store'); 
 
-//route for the services title section 
-Route::post('/createSection/serviceTitle/{section}', [ServiceTitleController::class, 'store'])->name('serviceTitle.store'); 
 
 
 
