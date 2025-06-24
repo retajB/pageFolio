@@ -160,9 +160,6 @@
         {{ (session('saved_partners') && session('section_id') == $section->id) ? 'Saved ✓' : 'Save' }}
     </button>
 </div>
-
-
-
             </div>
         </div>
     </div>
