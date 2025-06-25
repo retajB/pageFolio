@@ -19,7 +19,7 @@ Route::get('/info/company/{company}' ,[CompanyController::class, 'show']);
 Route::get ('/info/background/{background}' , [BackgroundController::class, 'show']);
 
 //API for services info 
-Route::get('/info/services/{service}' , [ServiceController::class, 'index']);
+Route::get('/info/services/{services}' , [ServiceController::class, 'index']);
 
 //API for objectives info
 Route::get('/info/objectives/{}', [ObjectiveController::class, 'index']);

@@ -15,11 +15,12 @@ class ServiceController
     /**
      * Display a listing of the resource.
      */
- public function index()
+ public function index(Service $services)
 {
     // اجيب الخدمات مع الصورة والعنوان
-    $services = Service::with(['service_title', 'image'])->get();
+   
 
+    $service = Service::with(['service_title', 'image'])->find($services);
     // استخراج عنوان القسم من أول خدمة (إذا موجود)
     $serviceTitle = $services->first()->service_title ?? null;
 
