@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ObjectiveController;
+
 use App\Http\Controllers\EmployeeOfTheMonthController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
@@ -50,6 +52,8 @@ Route::post('/createSection/services/{section}', [ServiceController::class, 'sto
 Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
 
 Route::post('/createSection/eotm/{section}', [EmployeeOfTheMonthController::class, 'store'])->name('eotm.store'); //store employee of the month for company
+
+Route::post('/createSection/objectives/{section}', [ObjectiveController::class, 'store'])->name('objective.store'); //store objectives for company
 
 
 

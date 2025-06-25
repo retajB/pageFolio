@@ -94,9 +94,6 @@ class ServiceController
     session()->put('saved_services_' . $section->id, true);
 
     return redirect()->back();
-
-
-
 }
 
     /**

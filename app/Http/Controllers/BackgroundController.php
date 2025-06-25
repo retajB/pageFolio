@@ -58,8 +58,12 @@ class BackgroundController
             
         ]);
 
-        session()->put('saved_who_' . $section->id, true);
-        return redirect()->back();
+   session()->put('saved_who_' . $section->id, true);
+
+return redirect()->back();
+
+
+
     }
 
     /**
@@ -67,14 +71,7 @@ class BackgroundController
      */
     public function show(Background $background)
     {
-
-     $background->load(['back_title','image']);
-
-        return response()->json([
-            'massage'=>'background info received successfully',
-            'data'=>$background
-
-        ]);
+        
     }
 
 

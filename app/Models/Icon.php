@@ -18,4 +18,9 @@ class Icon extends Model
         return $this->belongsTo(Feedback::class);
    }
 
+   protected $fillable = [
+        'icon_name',
+        'icon_url',
+    ];
+
 }

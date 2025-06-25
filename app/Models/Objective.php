@@ -13,4 +13,9 @@ class Objective extends Model
    public function icons() {
     return $this->hasMany(Icon::class);
 }
+protected $fillable = [
+        'content',
+        'objective_title_id',
+        'icon_id'
+    ];
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
           
             $table->string('location_url');
+            $table->string('city_name');
             $table->text('content');
             $table->foreignId('image_id')->constrained();
             $table->foreignId('location_title_id')->constrained()->cascadeOnDelete();
