@@ -73,10 +73,22 @@ class CompanyController
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+  public function show(Company $company)
 {
-    // هنا قاعده احمل العلاقات اللي مرتبطه بالشركه زي اليوزر و البيجز 
-    $company->load(['user', 'pages']);
+    $company->load([
+        'user',
+        'pages.sections' => function ($query) {
+            $query->with([
+                'back_title.background.image',
+                'service_title.services.image',
+                'objective_title.objectives.icons',
+                'partner_title.partners.image',
+                'eotm_title.employee_of_the_months.image',
+                'feedback_title.feedbacks.image',
+                'location_title.locations.image'
+            ]);
+        }
+    ]);
 
     return response()->json([
         'message' => 'Company info received successfully',
