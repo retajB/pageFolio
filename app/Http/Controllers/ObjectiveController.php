@@ -55,7 +55,7 @@ class ObjectiveController
         if (isset($icons[$index]) && $icons[$index] != null) {
             $file = $icons[$index];
             $filename = $icon_names[$index] . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('services', $filename, 'public');
+            $filePath = $file->storeAs('objectives', $filename, 'public');
         }
 
         // حفظ الصورة 

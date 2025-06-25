@@ -10,12 +10,12 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ObjectiveController;
-
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EmployeeOfTheMonthController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
-
+use App\Models\Feedback;
 
 Route::get('/create', function () {
     return view('create');
@@ -55,6 +55,7 @@ Route::post('/createSection/eotm/{section}', [EmployeeOfTheMonthController::clas
 
 Route::post('/createSection/objectives/{section}', [ObjectiveController::class, 'store'])->name('objective.store'); //store objectives for company
 
+Route::post('/createSection/feedbacks/{section}', [FeedbackController::class, 'store'])->name('feedback.store'); //store objectives for company
 
 
 
