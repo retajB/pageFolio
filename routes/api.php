@@ -5,6 +5,7 @@ use App\Http\Controllers\BackgroundController;
 use App\Models\Background;
 use \App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyMediaAccountController;
+use App\Http\Controllers\EmployeeOfTheMonthController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ObjectiveController;
@@ -34,3 +35,9 @@ Route::get('/info/socialMedia/{}',[CompanyMediaAccountController::class, 'index'
 
 //API to get location info 
 Route::get('/info/location/{}',[LocationController::class, 'index']);
+
+Route::get('/info/eotm/{EOTM}',[EmployeeOfTheMonthController::class, 'index']);
+
+
+
+// Route::post('/sections/background/{section}', [BackgroundController::class, 'store']);

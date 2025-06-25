@@ -10,7 +10,7 @@ class Location extends Model
         return $this->belongsTo(Location_title::class);
    }
 
-   public function image() {
-    return $this->hasOne(Image::class);
-   }
+       public function image() {
+    return $this->belongsTo(Image::class);
+}
 }

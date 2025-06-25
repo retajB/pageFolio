@@ -58,9 +58,17 @@ class BackgroundController
             
         ]);
 
+<<<<<<< HEAD
    session()->put('saved_who_' . $section->id, true);
 
 return redirect()->back();
+=======
+                session()->put('saved_who', true);
+                // لا نمسح saved_services لو كانت محفوظة
+                session()->put('section_id', $section->id);
+
+                return redirect()->back();
+>>>>>>> c4d396d77ab4f5bac650c127784b328a4ca3412a
 
 
 
@@ -69,10 +77,35 @@ return redirect()->back();
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(Background $background)
     {
         
+=======
+   public function show(Background $background)
+{
+
+ //هنا قاعده احمل العلاقات المرتبطه ب الباكجراوند
+    $background->load(['back_title','image']);
+    
+    
+// رساله خطا تشيك بعد مااحمل العلاقه و تشوف لو مافي صوره 
+    if ($background->isEmpty()) {
+        return response()->json([
+            'message' => 'Error: No backgrounds found in the system.',
+            'data' => null
+        ], 404);
+>>>>>>> c4d396d77ab4f5bac650c127784b328a4ca3412a
     }
+
+
+
+ // لو اتحملت العلاقة تمام ارجع البيانات مع رساله 
+    return response()->json([
+        'message' => 'Background info received successfully',
+        'data' => $background
+    ]);
+}
 
 
      public function edit(Background $background)

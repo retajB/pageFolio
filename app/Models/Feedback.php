@@ -10,10 +10,9 @@ class Feedback extends Model
         return $this->belongsTo(Feedback_title::class);
    }
    
-
-   public function icon() {
-        return $this->hasOne(Icon::class);
-   }
+     public function image() {
+    return $this->belongsTo(Image::class);
+}
 
    
 }
