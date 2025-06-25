@@ -15,10 +15,33 @@ class EmployeeOfTheMonthController
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+   
+      public function index()
+{
+    // جلب بيانات موظفي الشهر مع العنوان والصورة
+    $EOTM = Employee_of_the_month::with(['eotm_title', 'image'])->get();
+
+    // استخراج عنوان القسم (مرة وحدة)
+    $eotmTitle = $EOTM->first()?->eotm_title;
+
+    $section = $eotmTitle ? [
+        'id' => $eotmTitle->id,
+        'section_name' => $eotmTitle->section_name,
+        'section_id' => $eotmTitle->section_id,
+    ] : null;
+
+    // حذف التكرار من كل عنصر
+    $EOTM->each(function ($item) {
+        unset($item->eotm_title);
+    });
+
+    return response()->json([
+        'message' => 'employee_of_the_month info received successfully',
+        'section' => $section,
+        'employee_of_the_month' => $EOTM
+    ]);
+}
+    
 
     /**
      * Show the form for creating a new resource.

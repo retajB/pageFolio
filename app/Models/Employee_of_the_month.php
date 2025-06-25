@@ -10,9 +10,9 @@ class Employee_of_the_month extends Model
         return $this->belongsTo(Eotm_title::class);
        }
 
-       public function image() {
-        return $this->hasOne(Image::class);
-       }
+        public function image() {
+    return $this->belongsTo(Image::class);
+}
 
        protected $fillable = [
        'employee_name',

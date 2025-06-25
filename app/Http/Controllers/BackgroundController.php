@@ -71,17 +71,29 @@ class BackgroundController
     /**
      * Display the specified resource.
      */
-    public function show(Background $background)
-    {
+   public function show(Background $background)
+{
 
-     $background->load(['back_title','image']);
-
+ //هنا قاعده احمل العلاقات المرتبطه ب الباكجراوند
+    $background->load(['back_title','image']);
+    
+    
+// رساله خطا تشيك بعد مااحمل العلاقه و تشوف لو مافي صوره 
+    if ($background->isEmpty()) {
         return response()->json([
-            'massage'=>'background info received successfully',
-            'data'=>$background
-
-        ]);
+            'message' => 'Error: No backgrounds found in the system.',
+            'data' => null
+        ], 404);
     }
+
+
+
+ // لو اتحملت العلاقة تمام ارجع البيانات مع رساله 
+    return response()->json([
+        'message' => 'Background info received successfully',
+        'data' => $background
+    ]);
+}
 
 
      public function edit(Background $background)
