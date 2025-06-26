@@ -11,7 +11,7 @@ class Objective extends Model
    }
 
    public function icons() {
-    return $this->hasMany(Icon::class);
+    return $this->belongsTo(Icon::class);
 }
 protected $fillable = [
         'content',
