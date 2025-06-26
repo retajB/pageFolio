@@ -84,8 +84,7 @@
       </form>
 @endif
 
-
-      <!-- Objectives -->
+    <!-- Objectives -->
 
 @if($section->objectives)
 
@@ -128,7 +127,7 @@
 
 @endif
 
-      <!-- Partners -->
+    <!-- Partners -->
 
 @if($section->partners)
 
@@ -177,26 +176,46 @@
 
 @if($section->feedbacks)
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" action="{{ route('feedback.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
+    @csrf
 
     <div class="card mb-4">
-      <div class="card-body">
-         <h2 class="card-title">Feedbacks</h2>
+        <div class="card-body">
+            <h2 class="card-title">Feedbacks</h2>
 
-        <label>Section name:</label>
-        <input class="form-control" type="text" name="feedback_title" placeholder="e.g. Feedbacks">
+            <!-- يظهر مرة وحدة فقط -->
+            <label>Section name:</label>
+            <input class="form-control mb-3" type="text" name="feedback_title" placeholder="مثلاً: آراء العملاء">
 
-        <label>User Name:</label>
-        <input class="form-control mb-3" name="feedbacks_userName" type="text">
+            <label>Icon:</label>
+            <input class="form-control mb-4" type="file" name="feedback_icon">
 
-        <label>Feedback Content:</label>
-        <textarea class="form-control mb-3" name="feedbacks_content" rows="3"></textarea>
+            <!-- العناصر المتكررة -->
+            <div id="feedbacksContainer">
+                <div class="feedback-item mb-3">
+                    <label>User Name:</label>
+                    <input class="form-control mb-2" name="feedbacks_userName[]" type="text">
 
-        <label>Rating:</label>
-        <input class="form-control" name="feedbacks_rating" type="number" min="1" max="5">
-      </div>
+                    <label>Feedback Content:</label>
+                    <textarea class="form-control mb-2" name="feedbacks_content[]" rows="3"></textarea>
+
+                    <label>Rating (1-5):</label>
+                    <input class="form-control mb-2" name="feedbacks_rating[]" type="number" min="1" max="5">
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary mb-3" id="addFeedbackBtn">+ Add Feedback</button>
+
+            <div class="text-center">
+                <button type="submit"
+                        class="btn px-5 btn-success">
+                    Save
+                </button>
+            </div>
+        </div>
     </div>
 </form>
+
     
 @endif
 
@@ -341,6 +360,9 @@
 <script src="{{ asset('js/objectives.js') }}"></script>
 
 <script src="{{ asset('js/eotm.js') }}"></script>
+
+<script src="{{ asset('js/feedbacks.js') }}"></script>
+
 
 
 

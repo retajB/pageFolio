@@ -29,17 +29,7 @@ class ObjectiveTitleController
      */
      public function store(Request $request, Section $section)
     {
-         $request->validate([
-        'objective_title' => 'required|string|max:255',
-    ]);
-          
-        $request=Objective_title::create([
-        'name' => $request->input('objective_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+         
     }
 
 
