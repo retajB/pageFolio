@@ -339,9 +339,12 @@
             <button type="button" class="btn btn-primary mb-3" id="addLocationBtn">+ Add Location</button>
 
             <div class="text-center">
-                <button type="submit" class="btn px-5 btn-success">
-                    Save
+                <button type="submit"
+                  class="btn px-5 save-button {{ session('saved_locations_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
+                  {{ session('saved_locations_' . $section->id) ? 'disabled' : '' }}>
+                  {{ session('saved_locations_' . $section->id) ? 'Saved ✓' : 'Save' }}
                 </button>
+
             </div>
         </div>
     </div>
