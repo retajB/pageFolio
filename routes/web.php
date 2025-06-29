@@ -44,11 +44,14 @@ Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name
 
 //section  routing...
 
-Route::get('/createSection/{page}', [SectionController::class, 'createSectionForm'])->name('createSections.page');
+Route::get('/createSection/{page}', [SectionController::class, 'createSectionForm'])->name('show_section.page');
 
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
 Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
+Route::get('/services/{section}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+Route::put('/services/{section}', [ServiceController::class, 'update'])->name('service.update');
+
 
 Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
 

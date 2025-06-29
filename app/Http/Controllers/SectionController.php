@@ -69,7 +69,7 @@ class SectionController
     {
     $section = Section::where('page_id', $page->id)->first(); 
     // dd($section);
-    return view('createSections')->with('section',$section); // متغير البليد
+    return view('show_section')->with('section',$section); // متغير البليد
     }
 
 }

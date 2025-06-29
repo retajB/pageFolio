@@ -22,13 +22,17 @@ class ServRequest extends FormRequest
    public function rules(): array
 {
     return [
+
+        'service_id' => 'array',
+        'service_id.*' => 'nullable|integer|exists:services,id',
+
         'services_title' => 'nullable|string|max:30',
 
         'services_content' => 'required|array',
         'services_content.*' => 'required|string|max:225',
 
-        'services_image' => 'required|array',
-        'services_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        'services_image' => 'nullable|array',
+        'services_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
         'services_image_name' => 'required|array',
         'services_image_name.*' => 'required|string|max:255',

@@ -44,12 +44,6 @@ class StoreController
         ]);
         
 
-        // $color = Page::create([
-        // 'theme_color1' => $validated['backgroundColor1'],
-        // 'theme_color2' => $validated['backgroundColor2'],
-        // 'text_color' => $validated['textColor'],
-        // //'company_id'=> $company->id
-        // ]);
 
         $page = Page::create([
         'layout' => $layout,
@@ -77,7 +71,7 @@ class StoreController
         ]);
     }
 
-        return redirect()->route('createSections.page', ['page' => $page->id]);
+        return redirect()->route('show_section.page', ['page' => $page->id]);
 
     }
 }
