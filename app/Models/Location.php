@@ -13,4 +13,12 @@ class Location extends Model
        public function image() {
     return $this->belongsTo(Image::class);
 }
+    protected $fillable = [
+         'location_url',
+         'city_name',
+         'content',
+         'image_id',
+         'location_title_id'
+    ];
+
 }
