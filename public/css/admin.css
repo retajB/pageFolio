@@ -1,0 +1,122 @@
+:root {
+  --gold-primary: #FFD700;
+  --gold-secondary: #FFC72C;
+  --dark-gray: #2C3E50;
+  --medium-gray: #34495E;
+  --light-gray: #ECF0F1;
+  --black: #1A1A1A;
+}
+
+body.admin-panel {
+  background-color: var(--light-gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* شريط العنوان */
+.admin-header {
+  background: linear-gradient(135deg, var(--dark-gray), var(--black));
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-logo {
+  height: 80px;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+/* أزرار */
+.btn-gold {
+  background-color: var(--gold-primary);
+  color: var(--black);
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gold:hover {
+  background-color: var(--gold-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-gold {
+  border: 2px solid var(--gold-primary);
+  color: var(--gold-primary);
+  background: transparent;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--gold-primary);
+  color: var(--black);
+}
+
+/* جدول الشركات */
+.admin-table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, var(--dark-gray), var(--medium-gray));
+  color: white;
+}
+
+.admin-table th {
+  font-weight: 500;
+  padding: 1rem;
+}
+
+.admin-table td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: rgba(236, 240, 241, 0.5);
+}
+
+/* حقل البحث */
+.search-box {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.search-box input {
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid var(--medium-gray);
+  font-size: 1rem;
+}
+
+.search-box button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  border-radius: 50px;
+  padding: 0 1.5rem;
+}
+
+/* رسالة عدم وجود بيانات */
+.no-data {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: var(--medium-gray);
+}

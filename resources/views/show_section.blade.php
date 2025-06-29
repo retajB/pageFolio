@@ -19,13 +19,6 @@
     @include('sections.employee_of_the_months')
     @include('sections.locations')
     @include('sections.social_media')
-     </div>
-
-    
-
-
-
-  </div>
 
   <script>
     document.querySelectorAll('form').forEach(form => {
@@ -53,9 +46,6 @@
 <script src="{{ asset('js/feedbacks.js') }}"></script>
 
 <script src="{{ asset('js/locations.js') }}"></script>
-
-
-
 
 
 

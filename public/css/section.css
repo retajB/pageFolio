@@ -1,0 +1,141 @@
+/* Variables */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+.admin-body {
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  padding: 2rem 0;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.admin-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.admin-header h1 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.header-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--primary-color), transparent);
+  margin: 1.5rem auto;
+  width: 60%;
+}
+
+/* Main Grid Layout */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Cards */
+.admin-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 1.25rem;
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+.card-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn i {
+  margin-right: 0.5rem;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-container {
+    padding: 0 1rem;
+  }
+}
