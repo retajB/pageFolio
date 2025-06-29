@@ -14,10 +14,6 @@ class Icon extends Model
     return $this->belongsTo(Social_media_site::class);
    }
 
-   public function feedback() {
-        return $this->belongsTo(Feedback::class);
-   }
-
    protected $fillable = [
         'icon_name',
         'icon_url',

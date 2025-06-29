@@ -9,10 +9,13 @@ class Feedback extends Model
     public function feedback_title() {
         return $this->belongsTo(Feedback_title::class);
    }
-   
-     public function image() {
-    return $this->belongsTo(Image::class);
-}
+
+    protected $fillable = [
+   'user',
+   'content',
+   'rating',
+   'feedback_title_id'
+   ];
 
    
 }

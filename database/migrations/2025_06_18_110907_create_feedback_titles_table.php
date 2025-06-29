@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('feedback_titles', function (Blueprint $table) {
             $table->id();
             $table->string('section_name');
-            $table->foreignId('icon_id')->constrained();
+             $table->string('feedback_icon'); 
+            $table->string('icon_name');
             $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

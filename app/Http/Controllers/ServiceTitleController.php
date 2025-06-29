@@ -28,18 +28,7 @@ class ServiceTitleController
      */
     public function store(Request $request, Section $section)
     {
-         $request->validate([
-        'service_title' => 'required|string|max:255',
-        
-    ]);
-          
-        $request=Service_title::create([
-        'name' => $request->input('service_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+       
     }
 
 

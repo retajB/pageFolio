@@ -67,9 +67,9 @@ class SectionController
 
     public function createSectionForm(Page $page)
     {
-    $section = Section::where('page_id', $page->id)->first();
+    $section = Section::where('page_id', $page->id)->first(); 
     // dd($section);
-    return view('createSections')->with('section',$section);
+    return view('createSections')->with('section',$section); // متغير البليد
     }
 
 }

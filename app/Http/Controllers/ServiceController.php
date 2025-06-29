@@ -71,7 +71,7 @@ class ServiceController
     foreach ($contents as $index => $content) {
 
         // $filePath = null;
-
+// يتأكد هل الارري فيها هذا الانديكس ولا لا
         if (isset($images[$index]) && $images[$index] != null) {
             $file = $images[$index];
             $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();

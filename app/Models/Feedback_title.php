@@ -16,6 +16,8 @@ class Feedback_title extends Model
 
    protected $fillable = [
    'section_name',
+   'feedback_icon',
+   'icon_name',
    'section_id'
    ];
 }

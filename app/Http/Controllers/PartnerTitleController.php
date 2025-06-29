@@ -30,19 +30,7 @@ class PartnerTitleController
      */
     public function store(Request $request, Section $section)
     {
-         $request->validate([
-        'partners_title' => 'required|string|max:255',
-        'sub_partners_title'=>'required|string|max:255'
-    ]);
-          
-        $request=Partner_title::create([
-        'name' => $request->input('partners_title'),
-         'sub_title' => $request->input('sub_partners_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+        //
     }
 
     /**

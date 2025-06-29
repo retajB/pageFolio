@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('user');  
             $table->text('content');
-         // $table->string('feedback_icon'); 
             $table->double('rating');
             $table->foreignId('feedback_title_id')->constrained()->cascadeOnDelete();
             // $table->foreignId('icon_id')->constrained();

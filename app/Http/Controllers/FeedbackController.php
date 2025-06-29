@@ -6,12 +6,9 @@ use App\Models\Feedback;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\FeedRequest;
-use App\Models\Objective_title;
 use App\Models\Section;
 use App\Models\Icon;
-
-
-use App\Http\Controllers\ObjectiveController;
+use App\Models\Feedback_title;
 
 class FeedbackController
 {
@@ -34,49 +31,45 @@ class FeedbackController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FeedRequest $request , Section $section)
-    {
-         $validated = $request->validated();
+    public function store(FeedRequest $request, Section $section)
+{
+    $validated = $request->validated();
 
-    //  نحفظ عنوان السكشن 
-    $objective_title = Objective_title::create([
-        'section_name'       => $validated['objectives_title'],
-        'section_id' => $section->id,
+    // تخزين الصورة فقط مرة وحدة (أيقونة عامة لكل الفيدباك)
+    $filePath = null;
+    if ($request->hasFile('feedback_icon')) {
+        $file = $request->file('feedback_icon');
+        $filename = $validated['feedback_icon_name'] . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('feedbacks', $filename, 'public');
+    }
+
+    // تخزين عنوان القسم
+    $feedback_title = Feedback_title::create([
+        'section_name'   => $validated['feedback_title'],
+        'feedback_icon'  => $filePath,
+        'icon_name'      => $validated['feedback_icon_name'],
+        'section_id'     => $section->id,
     ]);
 
-    //  نحصل على البيانات كمصفوفات
-    $contents     = $validated['objectives_content'];
-    $icon_names  = $validated['objectives_icon_name'];
-    $icons       = $request->file('objectives_icon'); // هذا ما يجي في validated
+    // تكرار الفيدباكات
+    $users    = $validated['feedbacks_userName'];
+    $contents = $validated['feedbacks_content'];
+    $ratings  = $validated['feedbacks_rating'];
 
-    foreach ($contents as $index => $content) {
-
-        // $filePath = null;
-
-        if (isset($icons[$index]) && $icons[$index] != null) {
-            $file = $icons[$index];
-            $filename = $icon_names[$index] . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('services', $filename, 'public');
-        }
-
-        // حفظ الصورة 
-        $icon = Icon::create([
-            'icon_url'  => $filePath,
-            'icon_name' => $icon_names[$index],
-        ]);
-
-        // إنشاء الخدمة المرتبطة
-        $icon->objective()->create([
-            'content'    => $content,
-            'icon_id'   => $icon->id,
-            'objective_title_id' => $objective_title->id
+    foreach ($users as $index => $user) {
+        Feedback::create([
+            'user'              => $user,
+            'content'           => $contents[$index],
+            'rating'            => $ratings[$index],
+            'feedback_title_id' => $feedback_title->id,
         ]);
     }
 
-    session()->put('saved_objectives_' . $section->id, true);
+    session()->put('saved_feedbacks_' . $section->id, true);
 
     return redirect()->back();
-    }
+}
+
 
     /**
      * Display the specified resource.

@@ -29,18 +29,7 @@ class FeedbackTitleController
      */
     public function store(Request $request, Section $section)
     {
-        
-        $request->validate([
-        'feedback_title' => 'required|string|max:255',
-    ]);
-          
-        $request=Feedback_title::create([
-        'name' => $request->input('feedback_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+        //
     }
 
     /**

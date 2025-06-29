@@ -29,17 +29,7 @@ class LocationTitleController
      */
     public function store(Request $request, Section $section)
     {
-         $request->validate([
-        'location_title' => 'required|string|max:255',
-    ]);
-          
-        $request=Location_title::create([
-        'name' => $request->input('location_title'),
-         'section_id'=> $section->id,
-        ]);
-
-
-         return redirect()->back()->withInput();
+       //
     }
 
     /**
