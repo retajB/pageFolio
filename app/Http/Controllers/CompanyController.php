@@ -76,7 +76,7 @@ class CompanyController
   public function show(Company $company)
 {
     $company->load([
-        'user',
+        // 'user',
         'pages.sections' => function ($query) {
             $query->with([
                 'back_title.background.image',
