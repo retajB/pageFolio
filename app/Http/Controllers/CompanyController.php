@@ -73,26 +73,22 @@ class CompanyController
     /**
      * Display the specified resource.
      */
-  public function show(Company $company)
+ public function show(Company $company)
 {
-    $company->load([
-        // 'user',
-        'pages.sections' => function ($query) {
-            $query->with([
-                'back_title.background.image',
-                'service_title.services.image',
-                'objective_title.objectives.icons',
-                'partner_title.partners.image',
-                'eotm_title.employee_of_the_months.image',
-                'feedback_title.feedbacks.image',
-                'location_title.locations.image'
-            ]);
-        }
-    ]);
+    $pages = $company->pages()->with([
+        'company', // تضمين بيانات الكومباني مع الصفحة
+        'sections.back_title.background.image',
+        'sections.service_title.services.image',
+        'sections.objective_title.objectives.icons',
+        'sections.partner_title.partners.image',
+        'sections.eotm_title.employee_of_the_months.image',
+        'sections.feedback_title.feedbacks.image',
+        'sections.location_title.locations.image'
+    ])->get();
 
     return response()->json([
-        'message' => 'Company info received successfully',
-        'data' => $company
+        'message' => 'Pages info retrieved successfully',
+        'data' => $pages
     ]);
 }
 
