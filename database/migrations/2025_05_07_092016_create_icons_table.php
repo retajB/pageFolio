@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('icon_name');
             $table->string('icon_url');
             $table->timestamps();
+
+            
         });
     }
 
