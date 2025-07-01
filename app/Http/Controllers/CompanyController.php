@@ -79,10 +79,10 @@ class CompanyController
         'company', // تضمين بيانات الكومباني مع الصفحة
         'sections.back_title.background.image',
         'sections.service_title.services.image',
-        'sections.objective_title.objectives.icons',
+        'sections.objective_title.objectives.icon',
         'sections.partner_title.partners.image',
         'sections.eotm_title.employee_of_the_months.image',
-        'sections.feedback_title.feedbacks.image',
+        'sections.feedback_title.feedbacks',
         'sections.location_title.locations.image'
     ])->get();
 

@@ -10,7 +10,7 @@ class Objective extends Model
         return $this->belongsTo(Objective_title::class);
    }
 
-   public function icons() {
+   public function icon() {
     return $this->belongsTo(Icon::class);
 }
 protected $fillable = [
