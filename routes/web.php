@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\BackgroundController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyMediaAccountController;
 use App\Http\Controllers\EotmTitleController;
 use App\Http\Controllers\FeedbackTitleController;
 use App\Http\Controllers\LocationTitleController;
@@ -63,6 +64,7 @@ Route::post('/createSection/feedbacks/{section}', [FeedbackController::class, 's
 
 Route::post('/createSection/locations/{section}', [LocationController::class, 'store'])->name('location.store'); //store locations for company
 
+Route::post('/createSection/Social-Media/{section}', [CompanyMediaAccountController::class, 'store'])->name('social.store'); //store accounts for company
 
 
 //route for the employee of the month title section 

@@ -39,6 +39,12 @@ class Section extends Model
         return $this->hasOne(Location_title::class);
        }
 
+       public function company_media_accounts() {
+        return $this->hasMany(Company_media_account::class);
+       }
+
+    
+
        protected $fillable =[
             'who_we_are',
             'services',
@@ -51,24 +57,4 @@ class Section extends Model
             'page_id'
        ];
 
-       public function getContentAttribute()
-    {
-        if ($this->services()->exists()) {
-            return ['type' => 'service', 'data' => $this->services];
-        }
-
-        if ($this->partners()->exists()) {
-            return ['type' => 'partner', 'data' => $this->partners];
-        }
-
-        if ($this->objectives()->exists()) {
-            return ['type' => 'objective', 'data' => $this->objectives];
-        }
-
-        if ($this->backgrounds()->exists()) {
-            return ['type' => 'background', 'data' => $this->backgrounds];
-        }
-
-        return ['type' => 'empty', 'data' => []];
-    }
 }

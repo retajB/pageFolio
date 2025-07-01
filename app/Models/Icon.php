@@ -10,9 +10,9 @@ class Icon extends Model
         return $this->belongsTo(Objective::class);
    }
 
-   public function social_media_site() {
-    return $this->belongsTo(Social_media_site::class);
-   }
+    public function company_media_account(){
+            return $this->belongsTo(Company_media_account::class);
+    }
 
    protected $fillable = [
         'icon_name',

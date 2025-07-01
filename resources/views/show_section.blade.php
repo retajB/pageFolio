@@ -47,6 +47,9 @@
 
 <script src="{{ asset('js/locations.js') }}"></script>
 
+<script src="{{ asset('js/social-media.js') }}"></script>
+
+
 
 
 </body>
