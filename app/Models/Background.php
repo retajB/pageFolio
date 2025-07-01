@@ -11,7 +11,7 @@ class Background extends Model
 }
 
    public function back_title() {
-    return $this->belongsTo(Back_title::class);
+    return $this->hasOne(Back_title::class);
    }
 
  protected $fillable = [

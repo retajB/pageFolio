@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('company_media_accounts', function (Blueprint $table) {
          $table->id();
          $table->string('username_account');
-         $table->foreignId('media_title_id')->constrained()->cascadeOnDelete();
-         $table->foreignId('social_media_sites')->constrained()->cascadeOnDelete();
+         $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+
+        //  $table->foreignId('media_title_id')->constrained()->cascadeOnDelete();
+        //  $table->foreignId('social_media_site_id')->constrained()->cascadeOnDelete();
          $table->foreignId('icon_id')->constrained();
          $table->timestamps();
         });
