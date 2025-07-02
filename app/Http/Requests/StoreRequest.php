@@ -44,7 +44,8 @@ class StoreRequest extends FormRequest
         //theme_color information request 
         'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
         'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'textColor1'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'textColor2'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/'
 
     
 
