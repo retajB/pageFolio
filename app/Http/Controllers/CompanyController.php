@@ -83,7 +83,8 @@ class CompanyController
         'sections.partner_title.partners.image',
         'sections.eotm_title.employee_of_the_months.image',
         'sections.feedback_title.feedbacks',
-        'sections.location_title.locations.image'
+        'sections.location_title.locations.image',
+        'sections.Company_media_account.icons'
     ])->get();
 
     return response()->json([
