@@ -50,7 +50,8 @@ class StoreController
         'page_name' => $request->input('layout_name'),
         'theme_color1' => $validated['backgroundColor1'],
         'theme_color2' => $validated['backgroundColor2'],
-        'text_color' => $validated['textColor'],
+        'text_color1' => $validated['textColor1'],
+         'text_color2' => $validated['textColor2'],
         'company_id' => $company->id,
         ]);
 

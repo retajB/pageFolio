@@ -22,6 +22,7 @@ class Page extends Model
        'theme_color1' ,
        'theme_color2',
        'text_color',
+       'text_color2',
        'company_id'
     ];
 

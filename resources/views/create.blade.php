@@ -121,8 +121,13 @@
             </div>
 
             <div class="admin-form-group">
-              <label for="textColor">Text Color</label>
-              <input type="color" id="textColor" name="textColor" value="#333333">
+              <label for="textColor">Primary Text Color</label>
+              <input type="color" id="textColor" name="textColor1" value="#333333">
+            </div>
+
+             <div class="admin-form-group">
+              <label for="textColor">Secondary Text Color</label>
+              <input type="color" id="textColor" name="textColor2" value="#333333">
             </div>
           </div>
         </div>

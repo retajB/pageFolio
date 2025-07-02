@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('page_name');
             $table->string('theme_color1');
             $table->string('theme_color2');
-            $table->string('text_color');
+            $table->string('text_color1');
+            $table->string('text_color2');
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->enum('layout',['1' ,'2']);
             $table->timestamps();
