@@ -51,7 +51,7 @@ class StoreController
         'theme_color1' => $validated['backgroundColor1'],
         'theme_color2' => $validated['backgroundColor2'],
         'text_color1' => $validated['textColor1'],
-         'text_color2' => $validated['textColor2'],
+        'text_color2' => $validated['textColor2'],
         'company_id' => $company->id,
         ]);
 

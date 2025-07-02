@@ -24,7 +24,7 @@ class BackRequest extends FormRequest
         return [
              'background_title'   => 'required|string|max:30',
              'background_content' => 'required|string',
-             'background_image'   => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // 2MB
+             'background_image'   => 'image|mimes:jpeg,png,jpg,gif,webp,|max:2048', // 2MB
              'background_image_name'=>'nullable|string' ,
         ];
     }
