@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage ;
 use App\Http\Requests\StoreRequest;
 
 use function Pest\Laravel\get;
@@ -109,36 +110,43 @@ class CompanyController
      * Update the specified resource in storage.
      */
     
-         public function update(Request $request, Company $company)
-    {
-        
+     
 
-       $validated= $request->validate([
-        'companyName'=>'string',
-        'companyEmail' => 'email',
-        'companyPhone' => 'min:10|max:10|string',
-        'slogan'=> 'string',
-       ]);
+public function update(Request $request, Company $company)
+{
+    $validated = $request->validate([
+        'companyName'   => 'string',
+        'companyEmail'  => 'email',
+        'companyPhone'  => 'min:10|max:10|string',
+        'slogan'        => 'string',
+    ]);
 
-        if ($request->hasFile('logo_url')) {
-    
-            $file = $request->file('logo_url');
-            $filename = $validated['companyName']. '.' . $file->getClientOriginalExtension(); // Keeps the original extension
-            $filePath = $file->storeAs('logos', $filename, 'public');
-            $company->update([
-                'logo_url'=> $filePath,
-            ]);
+    // إذا فيه صورة جديدة
+    if ($request->hasFile('logo_url')) {
+
+        // حذف الصورة القديمة أولاً إذا كانت موجودة
+        if ($company->logo_url && Storage::disk('public')->exists($company->logo_url)) {
+            Storage::disk('public')->delete($company->logo_url);
         }
 
-         $company->update([
-        'email'=>$validated['companyEmail'],
-        'phone_number'=>$validated ['companyPhone'],
-        'slogan'=>$validated['slogan'],
-            ]);
-            $company->save();
+        $file = $request->file('logo_url');
+        $companyName = $company->name ?? 'company_' . uniqid();
+        $filename = $companyName . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('logos', $filename, 'public');
 
-        return redirect()->back()->withInput();
+        // تحديث مسار الصورة الجديد
+        $company->logo_url = $filePath;
     }
+
+    // تحديث باقي الحقول
+    $company->email         = $validated['companyEmail'];
+    $company->phone_number  = $validated['companyPhone'];
+    $company->slogan        = $validated['slogan'];
+
+    $company->save();
+
+    return redirect()->back()->withInput();
+}
 
 
 
