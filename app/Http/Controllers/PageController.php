@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use App\Models\Company;
 
 class PageController
 {
@@ -29,6 +30,14 @@ class PageController
             return redirect()->back()->withInput();
     }
 
+
+    public function listByCompany($companyId)
+{
+    $company = Company::findOrFail($companyId);
+    $pages = Page::where('company_id', $companyId)->get();
+
+    return view('pages', compact('company', 'pages'));
+}
 
 
 

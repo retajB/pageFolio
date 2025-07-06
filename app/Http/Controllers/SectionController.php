@@ -72,4 +72,12 @@ class SectionController
     return view('show_section')->with('section',$section); // متغير البليد
     }
 
+    public function editSectionForm(Page $page)
+{
+    $section = Section::where('page_id', $page->id)->first();
+
+    return view('edit_sections')->with('section',$section); 
+}
+
+
 }

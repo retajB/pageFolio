@@ -90,29 +90,13 @@
 
   
 
-    <!-- Landing page Sections -->
-       <!-- <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title">Sections</h2>
-          <div>
-          <label><input type="checkbox" name="sections[]" value="who_we_are"> who_we_are</label><br>
-          <label><input type="checkbox" name="sections[]" value="services"> services</label><br>
-          <label><input type="checkbox" name="sections[]" value="objectives"> objectives</label><br>
-          <label><input type="checkbox" name="sections[]" value="partners"> partners</label><br>
-          <label><input type="checkbox" name="sections[]" value="feedbacks"> feedbacks</label><br>
-          <label><input type="checkbox" name="sections[]" value="employee_of_the_months"> employee_of_the_months</label><br>
-          <label><input type="checkbox" name="sections[]" value="social_media"> social_media</label><br>
-          <label><input type="checkbox" name="sections[]" value="locations"> locations</label><br>
-          </div>
-        </div>
-      </div> -->
-
- 
-
+  
       <!-- Submit Button -->
-      <div class="text-center">
-        <button type="submit" class="btn btn-success px-5"> continue </button>
-      </div>
+     <div class="d-flex justify-content-center mt-4">
+  <a href="{{ route('pages.byCompany', ['company' => $company->id]) }}" class="btn btn-primary">Select a page to edit</a>
+
+</div>
+
   </div>
 
 </div>

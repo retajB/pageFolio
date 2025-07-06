@@ -2,10 +2,6 @@
 use App\Http\Controllers\BackgroundController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyMediaAccountController;
-use App\Http\Controllers\EotmTitleController;
-use App\Http\Controllers\FeedbackTitleController;
-use App\Http\Controllers\LocationTitleController;
-use App\Http\Controllers\ObjectiveTitleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SectionController;
@@ -33,8 +29,20 @@ Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
 Route::get('/', [CompanyController::class, 'index'])->name('home');
 
 
+
+
 //go to edit page
 Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('edit.company');
+
+// Show all pages of a company for admin to select which page to edit
+Route::get('/company/{company}/pages', [PageController::class, 'listByCompany'])->name('pages.byCompany'); 
+
+// Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
+
+Route::get('/pages/{page}/edit', [SectionController::class, 'editSectionForm'])->name('edit_sections');
+
+
+
 
 //delete company information
 Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('delete.company');
@@ -67,20 +75,6 @@ Route::post('/createSection/locations/{section}', [LocationController::class, 's
 Route::post('/createSection/Social-Media/{section}', [CompanyMediaAccountController::class, 'store'])->name('social.store'); //store accounts for company
 
 
-//route for the employee of the month title section 
-Route::post('/createSection/eotmTitle/{section}' ,[EotmTitleController::class, 'store'])->name('eotmTitle.store'); 
-
-//route for the feedback title section 
-Route::post('/createSection/feedbackTitle/{section}', [FeedbackTitleController::class, 'store'])->name('feedbackTitle.store'); 
-
-//route for the location title section 
-Route::post('/createSection/locationTitle/{section}', [LocationTitleController::class, 'store'])->name('locationTitle.store'); 
-
-//route for the objectives title section 
-Route::post('/createSection/objectiveTitle/{section}', [ObjectiveTitleController::class, 'store'])->name('objectiveTitle.store'); 
-
-
-
 
 
 
@@ -94,6 +88,3 @@ Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('use
 //update company theme color
 Route::patch('/edit/color/{color}' , [PageController::class, 'Color_update'])->name('color.update');
 
-
-//
-//Route::post('/createSections/background/{request}' ,[BackgroundController::class ,'store'])->name('store.background');
