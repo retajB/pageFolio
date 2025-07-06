@@ -88,39 +88,10 @@
     </div>
   </form>
 
-  <!-- Theme Settings Form -->
-  <form method="POST" action="{{ route('color.update', ['color' => $color->id]) }}"  class="mb-4">
-    @csrf
-
-      @method('PATCH')
-    <div class="card mb-4">
-      <div class="card-body">
-        <h2 class="card-title">Theme Settings</h2>
-
-        <div class="mb-3">
-          <label for="backgroundColor1" class="form-label">Background Color 1:</label>
-          <input type="color" class="form-control form-control-color" id="backgroundColor1" name="backgroundColor1" value="{{ $color->theme_color1 }}">
-        </div>
-
-        <div class="mb-3">
-          <label for="backgroundColor2" class="form-label">Background Color 2:</label>
-          <input type="color" class="form-control form-control-color" id="backgroundColor2" name="backgroundColor2" value="{{ $color->theme_color2 }}">
-        </div>
-
-        <div class="mb-3">
-          <label for="textColor" class="form-label">Text Color:</label>
-          <input type="color" class="form-control form-control-color" id="textColor" name="textColor" value="{{ $color->text_color }}">
-        </div>
-
-        <div class="text-end">
-          <button type="submit" class="btn btn-success">Save</button>
-        </div>
-      </div>
-    </div>
-  </form>
+  
 
     <!-- Landing page Sections -->
-       <div class="card mb-4">
+       <!-- <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">Sections</h2>
           <div>
@@ -134,7 +105,7 @@
           <label><input type="checkbox" name="sections[]" value="locations"> locations</label><br>
           </div>
         </div>
-      </div>
+      </div> -->
 
  
 
@@ -142,8 +113,6 @@
       <div class="text-center">
         <button type="submit" class="btn btn-success px-5"> continue </button>
       </div>
-
-    </form>
   </div>
 
 </div>

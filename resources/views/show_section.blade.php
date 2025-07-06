@@ -20,6 +20,13 @@
     @include('sections.locations')
     @include('sections.social_media')
 
+
+  <div class="d-flex justify-content-center mt-4">
+    <a href="{{ route('home') }}" class="btn btn-primary">Finish</a>
+</div>
+
+
+
   <script>
     document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', function () {
