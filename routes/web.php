@@ -58,9 +58,6 @@ Route::get('/createSection/{page}', [SectionController::class, 'createSectionFor
 Route::post('/createSection/background/{section}', [BackgroundController::class, 'store'])->name('background.store'); //store background for company
 
 Route::post('/createSection/services/{section}', [ServiceController::class, 'store'])->name('service.store'); //store services for company
-Route::get('/services/{section}/edit', [ServiceController::class, 'edit'])->name('service.edit');
-Route::put('/services/{section}', [ServiceController::class, 'update'])->name('service.update');
-
 
 Route::post('/createSection/partners/{section}', [PartnerController::class, 'store'])->name('partner.store'); //store partners for company
 
@@ -91,5 +88,7 @@ Route::patch('/edit/color/{page}' , [PageController::class, 'Color_update'])->na
 // Route::get('/pagesColor/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
 
 Route::patch('/section/{section}/background/{back_title}', [BackgroundController::class, 'update'])->name('background.update');
+
+Route::patch('/section/{section}/service/{service_title}', [ServiceController::class, 'update'])->name('service.update');
 
 //Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');

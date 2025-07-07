@@ -112,9 +112,58 @@ class ServiceController
      * Update the specified resource in storage.
      */
     
-  public function update(ServRequest $request, Section $section)
+ public function update(ServRequest $request, Section $section, Service_title $service_title)
 {
-    //
+    $validated    = $request->validated();
+
+    // تحديث عنوان القسم
+    $service_title->update([
+        'section_name' => $validated['services_title']
+    ]);
+
+    $contents     = $validated['services_content'];
+    $image_names  = $validated['services_image_name'];
+    $images       = $request->file('services_image');
+    $service_ids  = $request->input('service_id');
+    $image_ids    = $request->input('image_id');
+
+    foreach ($contents as $index => $content) {
+        $filePath = null;
+        $image = null;
+
+        // إذا فيه صورة جديدة مرفوعة
+        if (isset($images[$index]) && $images[$index] != null) {
+            $file = $images[$index];
+            $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('services', $filename, 'public');
+
+            // نحدث الصورة بنفس ID
+            if (!empty($image_ids[$index])) {  // اذا الصورة بنفس الاي دي موجود , بنحدث نفس الاي دي بصورة مختلفه
+                $image = Image::find($image_ids[$index]); // اوجد الصوره
+                if ($image) { // لقيتها؟ هيا حدثها الان
+                    $image->update([
+                        'image_url' => $filePath,
+                        'image_name' => $image_names[$index],
+                    ]);
+                }
+            }
+        }
+
+        // تحديث الخدمة
+        if (!empty($service_ids[$index])) {
+            $service = Service::find($service_ids[$index]);
+            if ($service) {
+                $service->update([
+                    'content'          => $content,
+                    'service_title_id' => $service_title->id,
+                    // ما نغيّر image_id لأنه نفس الصورة القديمة
+                ]);
+            }
+        }
+    }
+
+    session()->flash('update_success_' . $section->id, true);
+    return redirect()->back();
 }
 
     /**
