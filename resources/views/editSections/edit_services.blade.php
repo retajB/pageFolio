@@ -20,14 +20,12 @@
     <input type="hidden" name="image_id[]" value="{{ $service->image->id ?? '' }}">
 
     <label>Content:</label>
-    <textarea class="form-control mb-2" name="services_content[]" rows="3">{{ old("services_content.$index", $service->content) }}</textarea>
-
+<textarea class="form-control mb-2" name="services_content[]" rows="3">{{ old('services_content.' . $index, $service->content) }}</textarea>
     <label>Services Image:</label>
     <input type="file" class="form-control mb-2" name="services_image[]">
 
     <label>Image name:</label>
-    <input type="text" class="form-control mb-2" name="services_image_name[]" value="{{ old("services_image_name.$index", $service->image->image_name ?? '') }}">
-
+<input type="text" class="form-control mb-2" name="services_image_name[]" value="{{ old('services_image_name.' . $index, $service->image->image_name ?? '') }}">
   </div>
 @endforeach
 

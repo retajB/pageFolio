@@ -90,10 +90,51 @@ class FeedbackController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Feedback $feedback)
-    {
-        //
+ public function update(FeedRequest $request, Section $section, Feedback_title $feedback_title)
+{
+    $validated = $request->validated();
+
+    // رفع الأيقونة إن وجدت
+    $filePath = $feedback_title->feedback_icon;
+    if ($request->hasFile('feedback_icon')) {
+        $file = $request->file('feedback_icon');
+        $filename = $validated['feedback_icon_name'] . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('feedbacks', $filename, 'public');
     }
+
+    // تحديث عنوان القسم والأيقونة
+    $feedback_title->update([
+        'section_name'  => $validated['feedback_title'],
+        'feedback_icon' => $filePath,
+        'icon_name'     => $validated['feedback_icon_name'],
+    ]);
+
+    // تحديث كل feedback
+    $feedback_ids = $request->input('feedbacks_id');
+    $user_names   = $validated['feedbacks_userName'];
+    $contents     = $validated['feedbacks_content'];
+    $ratings      = $validated['feedbacks_rating'];
+
+    foreach ($feedback_ids as $index => $id) {
+       if (!empty($feedback_ids[$index])) {
+    $feedback = Feedback::find($feedback_ids[$index]);
+    if ($feedback) {
+        $feedback->update([
+            'user'              => $user_names[$index] ?? '',
+            'content'           => $contents[$index] ?? '',
+            'rating'            => $ratings[$index] ?? null,
+            'feedback_title_id' => $feedback_title->id,
+        ]);
+    }
+}
+        }
+    
+
+    session()->flash('update_success_' . $section->id, true);
+    return redirect()->back();
+}
+
+
 
     /**
      * Remove the specified resource from storage.
