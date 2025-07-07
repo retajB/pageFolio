@@ -9,27 +9,27 @@ use App\Models\Company;
 class PageController
 {
 
- public function Color_update(Request $request, Page $color)
-    {
-          $validated= $request->validate([
-        'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'textColor'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+ public function Color_update(Request $request, $id)
+{
 
+    $page = Page::findOrFail($id);
 
-       ]);
+    $validated = $request->validate([
+        'theme_color1' => 'required|regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'theme_color2' => 'required|regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'text_color1' => 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+        'text_color2' => 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+    ]);
 
+    $page->update([
+        'theme_color1' => $validated['theme_color1'],
+        'theme_color2' => $validated['theme_color2'],
+        'text_color1' => $validated['text_color1'] ,
+        'text_color2' => $validated['text_color2'] ,
+    ]);
 
-         $color->update([
-              'theme_color1'=>$validated['backgroundColor1'],
-              'theme_color2'=>$validated['backgroundColor2'],
-              'text_color'=>$validated['textColor']
-         ]);
-
-         
-            return redirect()->back()->withInput();
-    }
-
+    return redirect()->back()->with('success', 'Theme colors updated successfully.');
+}
 
     public function listByCompany($companyId)
 {
@@ -78,10 +78,12 @@ class PageController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Page $page)
-    {
-        //
-    }
+   public function edit(Page $page)
+{
+    return view('edit_sections', [
+        'page' => $page
+    ]);
+}
 
     /**
      * Update the specified resource in storage.

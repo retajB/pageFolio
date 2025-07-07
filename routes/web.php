@@ -86,5 +86,10 @@ Route::patch('/edit/company/{company}' , [CompanyController::class, 'update'])->
 Route::patch('/edit/user/{user}' , [UserController::class, 'update'])->name('user.update');
 
 //update company theme color
-Route::patch('/edit/color/{color}' , [PageController::class, 'Color_update'])->name('color.update');
+Route::patch('/edit/color/{page}' , [PageController::class, 'Color_update'])->name('color.update');
+// راوتات جديده للكولور
+// Route::get('/pagesColor/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
 
+//Route::put('/section/{section}/background/{back_title}', [BackgroundController::class, 'update'])->name('background.update');
+
+Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');

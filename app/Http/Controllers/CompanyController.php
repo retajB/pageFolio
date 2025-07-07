@@ -102,7 +102,6 @@ class CompanyController
         return view('edit', [
             'company' => $company,
             'user' => $company->user,
-            'color'=>$company->color
         ]);
     }
 

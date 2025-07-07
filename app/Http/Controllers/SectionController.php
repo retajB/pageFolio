@@ -76,8 +76,11 @@ class SectionController
 {
     $section = Section::where('page_id', $page->id)->first();
 
-    return view('edit_sections')->with('section',$section); 
-}
+    return view('edit_sections', [
+    'section' => $section,
+    'page' => $page
+]); 
+} 
 
 
 }
