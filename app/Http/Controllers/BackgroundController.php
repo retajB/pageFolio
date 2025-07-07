@@ -95,10 +95,10 @@ return redirect()->back();
 }
 
 
-     public function edit(Section $section, Back_title $back_title)
-{
-    return view('editSection.edit_background', compact('section', 'back_title'));
-}
+//      public function edit(Section $section, Back_title $back_title)
+// {
+//     return view('editSection.edit_background', compact('section', 'back_title'));
+// }
 
     /**
      * Update the specified resource in storage.

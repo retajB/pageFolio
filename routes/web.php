@@ -90,6 +90,6 @@ Route::patch('/edit/color/{page}' , [PageController::class, 'Color_update'])->na
 // راوتات جديده للكولور
 // Route::get('/pagesColor/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
 
-//Route::put('/section/{section}/background/{back_title}', [BackgroundController::class, 'update'])->name('background.update');
+Route::patch('/section/{section}/background/{back_title}', [BackgroundController::class, 'update'])->name('background.update');
 
-Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');
+//Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');
