@@ -103,11 +103,7 @@ class ServiceController
      */
     public function edit(Section $section)
 {
-    $serviceTitle = Service_title::where('section_id', $section->id)->first();
-    $services = $serviceTitle ? $serviceTitle->services()->with('image')->get() : collect();
-    $services_title = $serviceTitle?->section_name ?? '';
-
-    return view('editSections/edit_services', compact('section', 'services', 'services_title'));
+    
 }
 
 
@@ -118,61 +114,7 @@ class ServiceController
     
   public function update(ServRequest $request, Section $section)
 {
-    $validated = $request->validated();
-
-    // تحديث أو إنشاء عنوان القسم
-    $serviceTitle = Service_title::updateOrCreate(
-        ['section_id' => $section->id],
-        ['section_name' => $validated['services_title']]
-    );
-
-    $serviceIds = $validated['service_id'] ?? [];
-    $contents = $validated['services_content'] ?? [];
-    $imageNames = $validated['services_image_name'] ?? [];
-    $images = $request->file('services_image') ?? [];
-
-    foreach ($contents as $index => $content) {
-        $serviceId = $serviceIds[$index] ?? null;
-        $imagePath = $this->storeImage($images[$index] ?? null, $imageNames[$index] ?? null);
-
-        if ($serviceId && $service = Service::find($serviceId)) {
-            $service->content = $content;
-
-            if ($imagePath) {
-                $image = Image::create($imagePath);
-                $service->image_id = $image->id;
-            }
-
-            $service->save();
-        } else {
-            $image = $imagePath ? Image::create($imagePath) : null;
-
-            Service::create([
-                'content' => $content,
-                'image_id' => $image?->id,
-                'service_title_id' => $serviceTitle->id,
-            ]);
-        }
-    }
-
-    session()->put('saved_services_' . $section->id, true);
-
-    return redirect()->back()->with('success', 'تم تحديث البيانات بنجاح');
-}
-
-private function storeImage($file, $name): ?array
-{
-    if (!$file || !$name) {
-        return null;
-    }
-
-    $filename = $name . '.' . $file->getClientOriginalExtension();
-    $path = $file->storeAs('services', $filename, 'public');
-
-    return [
-        'image_url' => $path,
-        'image_name' => $name,
-    ];
+    //
 }
 
     /**

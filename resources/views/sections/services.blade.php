@@ -34,7 +34,7 @@
   <a href="{{ route('service.edit', ['section' => $section->id]) }}" class="btn btn-warning">
     Edit Services
   </a>
-@endif
+
 
 
             </div>
