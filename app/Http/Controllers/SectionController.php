@@ -6,6 +6,7 @@ use App\Models\Section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Back_title;
 
 class SectionController
 {
@@ -74,13 +75,24 @@ class SectionController
 
     public function editSectionForm(Page $page)
 {
-    $section = Section::where('page_id', $page->id)->first();
+    $section = Section::where('page_id', $page->id)
+        ->with([
+            'back_title',
+            'service_title',
+            'objective_title',
+            'partner_title',
+            'eotm_title',
+            'feedback_title',
+            'location_title',
+            'company_media_accounts' 
+        ])
+        ->firstOrFail();
 
     return view('edit_sections', [
-    'section' => $section,
-    'page' => $page
-]); 
-} 
+        'section' => $section,
+        'page' => $page,
+    ]);
+}
 
 
 }
