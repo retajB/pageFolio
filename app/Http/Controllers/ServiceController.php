@@ -103,11 +103,7 @@ class ServiceController
      */
     public function edit(Section $section)
 {
-    $serviceTitle = Service_title::where('section_id', $section->id)->first();
-    $services = $serviceTitle ? $serviceTitle->services()->with('image')->get() : collect();
-    $services_title = $serviceTitle?->section_name ?? '';
-
-    return view('editSections/edit_services', compact('section', 'services', 'services_title'));
+    
 }
 
 
@@ -116,63 +112,58 @@ class ServiceController
      * Update the specified resource in storage.
      */
     
-  public function update(ServRequest $request, Section $section)
+ public function update(ServRequest $request, Section $section, Service_title $service_title)
 {
-    $validated = $request->validated();
+    $validated    = $request->validated();
 
-    // تحديث أو إنشاء عنوان القسم
-    $serviceTitle = Service_title::updateOrCreate(
-        ['section_id' => $section->id],
-        ['section_name' => $validated['services_title']]
-    );
+    // تحديث عنوان القسم
+    $service_title->update([
+        'section_name' => $validated['services_title']
+    ]);
 
-    $serviceIds = $validated['service_id'] ?? [];
-    $contents = $validated['services_content'] ?? [];
-    $imageNames = $validated['services_image_name'] ?? [];
-    $images = $request->file('services_image') ?? [];
+    $contents     = $validated['services_content'];
+    $image_names  = $validated['services_image_name'];
+    $images       = $request->file('services_image');
+    $service_ids  = $request->input('service_id');
+    $image_ids    = $request->input('image_id');
 
     foreach ($contents as $index => $content) {
-        $serviceId = $serviceIds[$index] ?? null;
-        $imagePath = $this->storeImage($images[$index] ?? null, $imageNames[$index] ?? null);
+        $filePath = null;
+        $image = null;
 
-        if ($serviceId && $service = Service::find($serviceId)) {
-            $service->content = $content;
+        // إذا فيه صورة جديدة مرفوعة
+        if (isset($images[$index]) && $images[$index] != null) {
+            $file = $images[$index];
+            $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('services', $filename, 'public');
 
-            if ($imagePath) {
-                $image = Image::create($imagePath);
-                $service->image_id = $image->id;
+            // نحدث الصورة بنفس ID
+            if (!empty($image_ids[$index])) {  // اذا الصورة بنفس الاي دي موجود , بنحدث نفس الاي دي بصورة مختلفه
+                $image = Image::find($image_ids[$index]); // اوجد الصوره
+                if ($image) { // لقيتها؟ هيا حدثها الان
+                    $image->update([
+                        'image_url' => $filePath,
+                        'image_name' => $image_names[$index],
+                    ]);
+                }
             }
+        }
 
-            $service->save();
-        } else {
-            $image = $imagePath ? Image::create($imagePath) : null;
-
-            Service::create([
-                'content' => $content,
-                'image_id' => $image?->id,
-                'service_title_id' => $serviceTitle->id,
-            ]);
+        // تحديث الخدمة
+        if (!empty($service_ids[$index])) {
+            $service = Service::find($service_ids[$index]);
+            if ($service) {
+                $service->update([
+                    'content'          => $content,
+                    'service_title_id' => $service_title->id,
+                    // ما نغيّر image_id لأنه نفس الصورة القديمة
+                ]);
+            }
         }
     }
 
-    session()->put('saved_services_' . $section->id, true);
-
-    return redirect()->back()->with('success', 'تم تحديث البيانات بنجاح');
-}
-
-private function storeImage($file, $name): ?array
-{
-    if (!$file || !$name) {
-        return null;
-    }
-
-    $filename = $name . '.' . $file->getClientOriginalExtension();
-    $path = $file->storeAs('services', $filename, 'public');
-
-    return [
-        'image_url' => $path,
-        'image_name' => $name,
-    ];
+    session()->flash('update_success_' . $section->id, true);
+    return redirect()->back();
 }
 
     /**

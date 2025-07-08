@@ -25,8 +25,8 @@ class FeedRequest extends FormRequest
              // العنوان
             'feedback_title'        => 'required|string|max:100',
 
-            'feedback_icon'         => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'feedback_icon_name'    => 'required|string|max:100',
+            'feedback_icon'         => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'feedback_icon_name'    => 'string|max:100',
 
             'feedbacks_userName'    => 'required|array|min:1',
             'feedbacks_userName.*'  => 'required|string|max:50',

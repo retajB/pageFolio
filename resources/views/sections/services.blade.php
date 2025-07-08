@@ -29,14 +29,6 @@
                 {{ session('saved_services_' . $section->id) ? 'disabled' : '' }}>
                 {{ session('saved_services_' . $section->id) ? 'Saved ✓' : 'Save' }}
               </button>
-
-              @if($section->services)
-  <a href="{{ route('service.edit', ['section' => $section->id]) }}" class="btn btn-warning">
-    Edit Services
-  </a>
-@endif
-
-
             </div>
           </div>
         </div>
