@@ -93,10 +93,49 @@ class CompanyMediaAccountController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company_media_account $company_media_account)
-    {
-        //
+   public function update(MediaRequest $request, Section $section)
+{
+    $validated = $request->validated();
+
+    $urls        = $validated['media_url'];
+    $icon_names  = $validated['media_icon_name'];
+    $icons       = $request->file('media_icon'); // غير موجود في validated لأنه ملف
+    $account_ids = $request->input('media_ids'); 
+
+    foreach ($account_ids as $index => $account_id) {
+        $account = Company_media_account::find($account_id);
+        if (!$account) continue;
+
+        $icon = $account->icon;
+        $filePath = $icon->icon_url;
+
+       
+        if (isset($icons[$index]) && $icons[$index]) {
+            $file = $icons[$index];
+            $filename = $icon_names[$index] . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('socialMedia', $filename, 'public');
+
+            $icon->update([
+                'icon_url' => $filePath,
+                'icon_name' => $icon_names[$index],
+            ]);
+        } else {
+            
+            $icon->update([
+                'icon_name' => $icon_names[$index],
+            ]);
+        }
+
+      
+        $account->update([
+            'username_account' => $urls[$index],
+            'section_id' => $section->id,
+        ]);
     }
+
+    session()->flash('updated_media_' . $section->id, true);
+    return redirect()->back();
+}
 
     /**
      * Remove the specified resource from storage.

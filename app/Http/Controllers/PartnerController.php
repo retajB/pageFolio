@@ -109,11 +109,46 @@ class PartnerController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Partner $partner)
-    {
-        //
+ public function update(PartRequest $request, Section $section, Partner_title $partner_title)
+{
+    $validated = $request->validated();
+
+    // تحديث بيانات عنوان القسم
+    $partner_title->update([
+        'section_name' => $validated['partners_title'],
+        'sub_title' => $validated['partners_content'],
+        'section_id' => $section->id,
+    ]);
+
+    // رفع وتخزين صور الشركاء
+    $images = $request->file('partners_image');
+    $names  = $request->input('partners_image_name');
+
+    if ($images && $names) {
+        foreach ($images as $index => $imageFile) {
+            if ($imageFile) {
+                $imageName = $names[$index] ?? 'partner_' . time();
+                $filename = $imageName . '.' . $imageFile->getClientOriginalExtension();
+                $filePath = $imageFile->storeAs('partners', $filename, 'public');
+
+                // إنشاء سجل الصورة
+                $image = Image::create([
+                    'image_url' => $filePath,
+                    'image_name' => $imageName,
+                ]);
+
+                // ربط الصورة بعنوان القسم كـ شريك جديد
+                Partner::create([
+                    'image_id' => $image->id,
+                    'partner_title_id' => $partner_title->id,
+                ]);
+            }
+        }
     }
 
+    session()->flash('partner_update_success_' . $section->id, true);
+    return redirect()->back();
+}
     /**
      * Remove the specified resource from storage.
      */

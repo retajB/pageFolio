@@ -13,6 +13,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Models\Company_media_account;
 use App\Models\Feedback;
 
 Route::get('/create', function () {
@@ -96,4 +97,8 @@ Route::patch('/section/{section}/objective/{objective_title}', [objectiveControl
 Route::patch('/section/{section}/feedback/{feedback_title}', [FeedbackController::class, 'update'])->name('feedback.update');
 
 
-//Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');
+Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, 'update'])->name('partner.update');
+
+Route::patch('/media/{section}', [Company_media_account::class, 'update'])->name('media.update');
+
+Route::patch('/sections/{section}/locations/{location_title}', [LocationController::class, 'update'])->name('locations.update');
