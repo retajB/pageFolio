@@ -49,6 +49,7 @@
     <div class="container">
     @include('editSections.edit_background')
     @include('editSections.edit_services')
+    @include('editSections.edit_partners')
     
     <div class="d-flex justify-content-center mt-4">
       <a href="{{ route('home') }}" class="btn btn-primary">Finish</a>

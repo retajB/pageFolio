@@ -92,4 +92,4 @@ Route::patch('/edit/color/{page}' , [PageController::class, 'Color_update'])->na
 
 Route::patch('/section/{section}/background/{back_title}', [BackgroundController::class, 'update'])->name('background.update');
 
-//Route::get('/section/{section}/background/{back_title}/edit', [BackgroundController::class, 'edit'])->name('background.edit');
+Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, 'update'])->name('partner.update');
