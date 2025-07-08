@@ -6,7 +6,7 @@
   <title>Create Company | Admin Panel</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="{{ asset('css/admin-create.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/section.css') }}" rel="stylesheet">
 </head>
 <body class="admin-create-page">
   <div class="admin-create-container">
@@ -213,12 +213,12 @@
         </div>
       </div>
 
-      <!-- Submit Button -->
-      <div class="admin-form-actions">
-        <button type="submit" class="admin-btn admin-btn-primary">
-          <i class="fas fa-arrow-right"></i> Continue
-        </button>
-      </div>
+  <!-- Submit Button -->
+<div class="admin-form-actions">
+  <button type="submit" class="admin-btn admin-btn-primary">
+    Continue <i class="fas fa-arrow-right ms-2"></i>
+  </button>
+</div>
     </form>
   </div>
 

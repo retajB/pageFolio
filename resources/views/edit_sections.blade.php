@@ -4,76 +4,94 @@
   <meta charset="UTF-8">
   <title>Edit Page Sections</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="{{ asset('css/section.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-light p-4">
+<body class="admin-create-page">
   <div class="container">
-    <h1 class="mb-5 text-center">Edit Page Sections:</h1>
+    <!-- عنوان الصفحة -->
+    <div class="admin-create-header text-center mb-5">
+      <h1><i class="fas fa-pen-ruler me-2"></i> Edit Page Sections</h1>
+    </div>
 
- <!-- Theme Settings Form -->
-<form method="POST" action="{{ route('color.update', ['page' => $page->id]) }}" class="mb-4">
+    <!-- Theme Settings Form -->
+ <form method="POST" action="{{ route('color.update', ['page' => $page->id]) }}" class="mb-4">
   @csrf
   @method('PATCH')
 
- <div class="card mb-4">
-  <div class="card-body">
-    <h2 class="card-title">Edit Theme Colors</h2>
-
-    <div class="mb-3">
-      <label for="theme_color1" class="form-label">Background Color 1</label>
-      <input type="color" class="form-control form-control-color" name="theme_color1" value="{{ $page->theme_color1 ?? '#ffffff' }}">
+  <div class="admin-card">
+    
+    <div class="admin-card-header">
+      <h2><i class="fas fa-palette me-2"></i> Edit Theme Colors</h2>
     </div>
 
-    <div class="mb-3">
-      <label for="theme_color2" class="form-label">Background Color 2</label>
-      <input type="color" class="form-control form-control-color" name="theme_color2" value="{{ $page->theme_color2 ?? '#ffffff' }}">
-    </div>
+    <div class="admin-card-body">
+      <div class="row">
+        <!-- Background Color 1 -->
+        <div class="col-md-6">
+          <div class="admin-form-group">
+            <label for="theme_color1">Background Color 1</label>
+            <input type="color" class="form-control form-control-color" name="theme_color1" value="{{ $page->theme_color1 ?? '#ffffff' }}">
+          </div>
+        </div>
 
-    <div class="mb-3">
-      <label for="text_color1" class="form-label">Text Color 1</label>
-      <input type="color" class="form-control form-control-color" name="text_color1" value="{{ $page->text_color1 ?? '#000000' }}">
-    </div>
+        <!-- Background Color 2 -->
+        <div class="col-md-6">
+          <div class="admin-form-group">
+            <label for="theme_color2">Background Color 2</label>
+            <input type="color" class="form-control form-control-color" name="theme_color2" value="{{ $page->theme_color2 ?? '#ffffff' }}">
+          </div>
+        </div>
+      </div>
 
-    <div class="mb-3">
-      <label for="text_color2" class="form-label">Text Color 2</label>
-      <input type="color" class="form-control form-control-color" name="text_color2" value="{{ $page->text_color2 ?? '#000000' }}">
-    </div>
+      <div class="row">
+        <!-- Text Color 1 -->
+        <div class="col-md-6">
+          <div class="admin-form-group">
+            <label for="text_color1">Text Color 1</label>
+            <input type="color" class="form-control form-control-color" name="text_color1" value="{{ $page->text_color1 ?? '#000000' }}">
+          </div>
+        </div>
 
-    <div class="text-end">
-      <button type="submit" class="btn btn-success">Save</button>
+        <!-- Text Color 2 -->
+        <div class="col-md-6">
+          <div class="admin-form-group">
+            <label for="text_color2">Text Color 2</label>
+            <input type="color" class="form-control form-control-color" name="text_color2" value="{{ $page->text_color2 ?? '#000000' }}">
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-form-actions text-center mt-4">
+        <button type="submit" class="admin-btn admin-btn-navy save-button">
+          <i class="fas fa-save me-2"></i> Save Changes
+        </button>
+      </div>
     </div>
   </div>
-</div>
 </form>
 
-    <div class="container">
+    <!-- باقي السكشنات -->
     @include('editSections.edit_background')
     @include('editSections.edit_services')
-    @include('editSections.edit_partners')
     @include('editSections.edit_objective')
+    @include('editSections.edit_partners')
     @include('editSections.edit_feedback')
+    @include('editSections.edit_EOTM')
+    @include('editSections.edit_location')
     @include('editSections.edit_Media')
-     @include('editSections.edit_location')
-    
-    <div class="d-flex justify-content-center mt-4">
-      <a href="{{ route('home') }}" class="btn btn-primary">Finish</a>
+
+    <!-- زر إنهاء -->
+    <div class="admin-form-actions text-center mt-5">
+      <a href="{{ route('home') }}" class="admin-btn admin-btn-primary d-inline-block text-decoration-none">
+        Finish <i class="fas fa-check-circle ms-2"></i>
+      </a>
     </div>
   </div>
 
-  <script>
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function () {
-            const button = form.querySelector('.save-button');
-            if (button) {
-                button.disabled = true;
-                button.classList.remove('btn-success');
-                button.classList.add('btn-secondary');
-                button.innerHTML = 'Saved &#10003;';
-            }
-        });
-    });
-  </script>
-
+ 
+  <!-- سكربتات السكشنات -->
   <script src="{{ asset('js/services.js') }}"></script>
   <script src="{{ asset('js/partners.js') }}"></script>
   <script src="{{ asset('js/objectives.js') }}"></script>

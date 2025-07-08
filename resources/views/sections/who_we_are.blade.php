@@ -1,30 +1,49 @@
 @if($section->who_we_are)
-      <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
-        @csrf
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Who We Are</h2>
+  <form method="POST" action="{{ route('background.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
+    @csrf
 
-            <label>Section name:</label>
-            <input class="form-control" name="background_title" type="text" placeholder="مثلاً: من نحن">
+    <!-- Who We Are Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2><i class="fas fa-users"></i> Who We Are</h2>
+      </div>
 
-            <label>Content:</label>
-            <textarea class="form-control mb-3" name="background_content" rows="3"></textarea>
+      <div class="section-bg-white mb-3">
+        <div class="admin-subcard mb-3">
+          <div class="admin-form-group">
+            <label for="background_title">Section name:</label>
+            <input type="text" id="background_title" name="background_title" placeholder="مثلاً: من نحن" required>
+          </div>
 
-            <label>Background Image:</label>
-            <input type="file" class="form-control mb-3" name="background_image">
+          <div class="admin-form-group">
+            <label for="background_content">Content:</label>
+            <textarea id="background_content" name="background_content" rows="3" required></textarea>
+          </div>
 
-            <label>Image name:</label>
-            <input type="text" class="form-control mb-3" name="background_image_name">
-
-            <div class="text-center">
-            <button type="submit"
-              class="btn px-5 save-button {{ session('saved_who_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
-              {{ session('saved_who_' . $section->id) ? 'disabled' : '' }}>
-              {{ session('saved_who_' . $section->id) ? 'Saved ✓' : 'Save' }}
-            </button>
+          <div class="admin-form-group">
+            <label for="background_image">Background Image:</label>
+            <div class="admin-file-upload">
+              <input type="file" id="background_image" name="background_image">
+              <span class="admin-file-upload-label">Choose file...</span>
             </div>
           </div>
+
+          <div class="admin-form-group">
+            <label for="background_image_name">Image name:</label>
+            <input type="text" id="background_image_name" name="background_image_name">
+          </div>
+            <div class="admin-form-actions text-center mt-4">
+          <button type="submit"
+            class="admin-btn admin-btn-primary save-button {{ session('saved_who_' . $section->id) ? 'disabled' : '' }}"
+            {{ session('saved_who_' . $section->id) ? 'disabled' : '' }}>
+           
+            {{ session('saved_who_' . $section->id) ? 'Saved ✓' : 'Save' }}
+          </button>
         </div>
-      </form>
+
+      
+        </div>
+      </div>
+    </div>
+  </form>
 @endif

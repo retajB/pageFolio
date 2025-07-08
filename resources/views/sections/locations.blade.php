@@ -1,45 +1,69 @@
 @if($section->locations)
-
-    <form class="mb-4" method="POST" action="{{ route('location.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
+  <form class="mb-4" method="POST" action="{{ route('location.store', ['section' => $section->id]) }}" enctype="multipart/form-data">
     @csrf
-    <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Locations</h2>
 
-            <label>Section name:</label>
-            <input class="form-control mb-3" type="text" name="location_title" placeholder="مثلاً: فروعنا">
+    <!-- Locations Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2><i class="fas fa-map-marker-alt"></i> Locations</h2>
+      </div>
 
-            <div id="locationsContainer">
-                <div class="location-item mb-3">
-                    <label>Location content:</label>
-                    <input class="form-control mb-2" name="locations_content[]" type="text">
-
-                    <label>City Name:</label>
-                    <input class="form-control mb-2" name="locations_city[]" type="text">
-
-                    <label>URL:</label>
-                    <input class="form-control mb-2" name="locations_url[]" type="text">
-
-                    <label>Image:</label>
-                    <input type="file" class="form-control mb-2" name="locations_image[]">
-
-                     <label>Image name:</label>
-                    <input type="text" class="form-control mb-2" name="location_image_name[]">
-                </div>
-            </div>
-
-            <button type="button" class="btn btn-primary mb-3" id="addLocationBtn">+ Add Location</button>
-
-            <div class="text-center">
-                <button type="submit"
-                  class="btn px-5 save-button {{ session('saved_locations_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
-                  {{ session('saved_locations_' . $section->id) ? 'disabled' : '' }}>
-                  {{ session('saved_locations_' . $section->id) ? 'Saved ✓' : 'Save' }}
-                </button>
-
-            </div>
+      <div class="admin-card-body">
+        <!-- Section name with border -->
+        <div class="admin-subcard mb-4">
+          <div class="admin-form-group">
+            <label for="location_title">Section name:</label>
+            <input type="text" id="location_title" name="location_title" placeholder="مثلاً: فروعنا" required>
+          </div>
         </div>
-    </div>
-</form>
 
+        <!-- Dynamic location items -->
+        <div id="locationsContainer">
+          <div class="location-item admin-subcard mb-3">
+            <div class="admin-form-group">
+              <label>Location content:</label>
+              <input type="text" name="locations_content[]" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label>City Name:</label>
+              <input type="text" name="locations_city[]" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label>URL:</label>
+              <input type="text" name="locations_url[]" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label>Image:</label>
+              <div class="admin-file-upload">
+                <input type="file" name="locations_image[]">
+                <span class="admin-file-upload-label">Choose file...</span>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label>Image name:</label>
+              <input type="text" name="location_image_name[]">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-form-actions mb-3 text-center">
+          <button type="button" class="admin-btn admin-btn-secondary" id="addLocationBtn">
+            + Add Location
+          </button>
+        </div>
+
+        <div class="admin-form-actions text-center mt-4">
+          <button type="submit"
+            class="admin-btn admin-btn-primary save-button {{ session('saved_locations_' . $section->id) ? 'disabled' : '' }}"
+            {{ session('saved_locations_' . $section->id) ? 'disabled' : '' }}>
+            {{ session('saved_locations_' . $section->id) ? 'Saved ✓' : 'Save' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 @endif

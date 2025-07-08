@@ -1,36 +1,59 @@
 @if($section->services)
-      <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" >
-        @csrf
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Services</h2>
+  <form method="POST" action="{{ route('service.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4">
+    @csrf
 
-            <label>Section name:</label>
-            <input class="form-control mb-3" name="services_title" type="text" placeholder="مثلاً : خدماتنا">
+    <!-- Services Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2><i class="fas fa-concierge-bell"></i> Services</h2>
+      </div>
 
-            <div id="servicesContainer">
-              <div class="service-item mb-3">
-                <label>Content:</label>
-                <textarea class="form-control mb-2" name="services_content[]" rows="3"></textarea>
+      <div class="admin-card-body">
+        <!-- Section name with border -->
+        <div class="admin-subcard mb-4">
+          <div class="admin-form-group">
+            <label for="services_title">Section name:</label>
+            <input type="text" id="services_title" name="services_title" placeholder="مثلاً : خدماتنا" required>
+          </div>
+        </div>
 
-                <label>Services Image:</label>
-                <input type="file" class="form-control mb-2" name="services_image[]">
+        <!-- Dynamic service items -->
+        <div id="servicesContainer">
+          <div class="service-item admin-subcard mb-3">
+            <div class="admin-form-group">
+              <label>Content:</label>
+              <textarea name="services_content[]" rows="3" required></textarea>
+            </div>
 
-                <label>Image name:</label>
-                <input type="text" class="form-control mb-2" name="services_image_name[]">
+            <div class="admin-form-group">
+              <label>Services Image:</label>
+              <div class="admin-file-upload">
+                <input type="file" name="services_image[]">
+                <span class="admin-file-upload-label">Choose file...</span>
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary mb-3" id="addServiceBtn">+ Add Service</button>
-
-            <div class="text-center mt-3">
-              <button type="submit"
-                class="btn px-5 save-button {{ session('saved_services_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
-                {{ session('saved_services_' . $section->id) ? 'disabled' : '' }}>
-                {{ session('saved_services_' . $section->id) ? 'Saved ✓' : 'Save' }}
-              </button>
+            <div class="admin-form-group">
+              <label>Image name:</label>
+              <input type="text" name="services_image_name[]">
             </div>
           </div>
         </div>
-      </form>
+
+        <div class="admin-form-actions mb-3 text-center">
+          <button type="button" class="admin-btn admin-btn-secondary" id="addServiceBtn">
+            + Add Service
+          </button>
+        </div>
+
+        <div class="admin-form-actions text-center mt-4">
+          <button type="submit"
+            class="admin-btn admin-btn-primary save-button {{ session('saved_services_' . $section->id) ? 'disabled' : '' }}"
+            {{ session('saved_services_' . $section->id) ? 'disabled' : '' }}>
+            {{ session('saved_services_' . $section->id) ? 'Saved ✓' : 'Save' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 @endif

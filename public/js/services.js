@@ -1,24 +1,34 @@
+
 document.addEventListener("DOMContentLoaded", function () {
-    const addBtn = document.getElementById('addServiceBtn');
-    const container = document.getElementById('servicesContainer');
+  const addBtn = document.getElementById('addServiceBtn');
+  const container = document.getElementById('servicesContainer');
 
-    if (addBtn && container) {
-        addBtn.addEventListener('click', function () {
-            const newService = document.createElement('div');
-            newService.classList.add('service-item', 'mb-3');
+  if (addBtn && container) {
+    addBtn.addEventListener('click', function () {
+      const newService = document.createElement('div');
+      newService.classList.add('service-item', 'admin-subcard', 'mb-3');
 
-            newService.innerHTML = `
-                <label>Content:</label>
-                <textarea class="form-control mb-2" name="services_content[]" rows="3"></textarea>
+      newService.innerHTML = `
+        <div class="admin-form-group">
+          <label>Content:</label>
+          <textarea name="services_content[]" rows="3" required></textarea>
+        </div>
 
-                <label>Services Image:</label>
-                <input type="file" class="form-control mb-2" name="services_image[]">
+        <div class="admin-form-group">
+          <label>Services Image:</label>
+          <div class="admin-file-upload">
+            <input type="file" name="services_image[]">
+            <span class="admin-file-upload-label">Choose file...</span>
+          </div>
+        </div>
 
-                <label>Image name:</label>
-                <input type="text" class="form-control mb-2" name="services_image_name[]">
-            `;
+        <div class="admin-form-group">
+          <label>Image name:</label>
+          <input type="text" name="services_image_name[]">
+        </div>
+      `;
 
-            container.appendChild(newService);
-        });
-    }
+      container.appendChild(newService);
+    });
+  }
 });

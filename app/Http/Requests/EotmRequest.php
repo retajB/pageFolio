@@ -30,8 +30,8 @@ class EotmRequest extends FormRequest
             'employee_content'       => 'required|array|min:1',
             'employee_content.*'     => 'required|string|max:255',
 
-            'employee_image'         => 'required|array',
-            'employee_image.*'       => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'employee_image'         => 'array',
+            'employee_image.*'       => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
             'employee_image_name'    => 'required|array',
             'employee_image_name.*'  => 'required|string|max:100',

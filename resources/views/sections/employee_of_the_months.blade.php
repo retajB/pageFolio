@@ -1,41 +1,64 @@
 @if($section->employee_of_the_months)
-
   <form method="POST" action="{{ route('eotm.store', ['section' => $section->id]) }}" enctype="multipart/form-data" class="mb-4" id="eotmForm">
     @csrf
-    <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Employee of the Month</h2>
 
-            <label>Section name:</label>
-            <input class="form-control mb-3" type="text" name="EOTM_title" placeholder="مثال: موظفين الشهر">
+    <!-- Employee of the Month Section -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2><i class="fas fa-user-tie"></i> Employee of the Month</h2>
+      </div>
 
-            <div id="eotmContainer">
-                <div class="eotm-item mb-3">
-                    <label>Employee Name:</label>
-                    <input class="form-control mb-2" name="employee_name[]" type="text">
-
-                    <label>Description:</label>
-                    <textarea class="form-control mb-2" name="employee_content[]" rows="3"></textarea>
-
-                    <label>Employee Image:</label>
-                    <input type="file" class="form-control mb-2" name="employee_image[]">
-
-                    <label>Image name:</label>
-                    <input type="text" class="form-control mb-2" name="employee_image_name[]">
-                </div>
-            </div>
-
-            <button type="button" class="btn btn-primary mb-3" id="addEOTMBtn">+ Add Employee</button>
-
-            <div class="text-center mt-3">
-                <button type="submit"
-                    class="btn px-5 save-button {{ session('saved_eotm_' . $section->id) ? 'btn-secondary' : 'btn-success' }}"
-                    {{ session('saved_eotm_' . $section->id) ? 'disabled' : '' }}>
-                    {{ session('saved_eotm_' . $section->id) ? 'Saved ✓' : 'Save' }}
-                </button>
-            </div>
+      <div class="admin-card-body">
+        <!-- Section name with border -->
+        <div class="admin-subcard mb-4">
+          <div class="admin-form-group">
+            <label for="EOTM_title">Section name:</label>
+            <input type="text" id="EOTM_title" name="EOTM_title" placeholder="مثال: موظفين الشهر" required>
+          </div>
         </div>
-    </div>
-</form>
 
+        <!-- Dynamic employee items -->
+        <div id="eotmContainer">
+          <div class="eotm-item admin-subcard mb-3">
+            <div class="admin-form-group">
+              <label>Employee Name:</label>
+              <input type="text" name="employee_name[]" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label>Description:</label>
+              <textarea name="employee_content[]" rows="3" required></textarea>
+            </div>
+
+            <div class="admin-form-group">
+              <label>Employee Image:</label>
+              <div class="admin-file-upload">
+                <input type="file" name="employee_image[]">
+                <span class="admin-file-upload-label">Choose file...</span>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label>Image name:</label>
+              <input type="text" name="employee_image_name[]">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-form-actions mb-3 text-center">
+          <button type="button" class="admin-btn admin-btn-secondary" id="addEOTMBtn">
+            + Add Employee
+          </button>
+        </div>
+
+        <div class="admin-form-actions text-center mt-4">
+          <button type="submit"
+            class="admin-btn admin-btn-primary save-button {{ session('saved_eotm_' . $section->id) ? 'disabled' : '' }}"
+            {{ session('saved_eotm_' . $section->id) ? 'disabled' : '' }}>
+            {{ session('saved_eotm_' . $section->id) ? 'Saved ✓' : 'Save' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 @endif
