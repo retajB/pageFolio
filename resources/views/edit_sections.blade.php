@@ -49,6 +49,7 @@
     <div class="container">
     @include('editSections.edit_background')
     @include('editSections.edit_services')
+    @include('editSections.edit_objective')
     @include('editSections.edit_feedback')
     
     <div class="d-flex justify-content-center mt-4">

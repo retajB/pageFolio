@@ -91,6 +91,8 @@ Route::patch('/section/{section}/background/{back_title}', [BackgroundController
 
 Route::patch('/section/{section}/service/{service_title}', [ServiceController::class, 'update'])->name('service.update');
 
+Route::patch('/section/{section}/objective/{objective_title}', [objectiveController::class, 'update'])->name('objective.update');
+
 Route::patch('/section/{section}/feedback/{feedback_title}', [FeedbackController::class, 'update'])->name('feedback.update');
 
 
