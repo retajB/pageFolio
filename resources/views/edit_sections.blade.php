@@ -51,6 +51,8 @@
     @include('editSections.edit_services')
     @include('editSections.edit_partners')
     @include('editSections.edit_feedback')
+    @include('editSections.edit_Media')
+     @include('editSections.edit_location')
     
     <div class="d-flex justify-content-center mt-4">
       <a href="{{ route('home') }}" class="btn btn-primary">Finish</a>

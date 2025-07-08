@@ -24,22 +24,39 @@
 
         <hr>
 
-        <!-- صور الشركاء -->
+        <!-- صور الشركاء الحاليين -->
         <div id="partner-images-wrapper">
-          @for($i = 0; $i < 3; $i++)
+          @foreach($section->partner_title->partners as $index => $partner)
             <div class="border p-3 mb-3 rounded">
               <div class="mb-2">
-                <label for="partners_image_{{ $i }}" class="form-label">Partner Image #{{ $i + 1 }}</label>
-                <input type="file" class="form-control" id="partners_image_{{ $i }}" name="partners_image[]">
+                <label for="partners_image_{{ $index }}" class="form-label">Partner Image #{{ $index + 1 }}</label>
+                <input type="file" class="form-control" id="partners_image_{{ $index }}" name="partners_image[]">
               </div>
 
               <div class="mb-2">
-                <label for="partners_image_name_{{ $i }}" class="form-label">Image name:</label>
-                <input type="text" class="form-control" id="partners_image_name_{{ $i }}" name="partners_image_name[]"
-                       placeholder="اسم الصورة #{{ $i + 1 }}">
+                <label for="partners_image_name_{{ $index }}" class="form-label">Image name:</label>
+                <input type="text" class="form-control" id="partners_image_name_{{ $index }}" name="partners_image_name[]"
+                       value="{{ old("partners_image_name.$index", $partner->image->image_name ?? '') }}"
+                       placeholder="اسم الصورة #{{ $index + 1 }}">
               </div>
             </div>
-          @endfor
+          @endforeach
+
+          <!-- حقل إضافي واحد في حال لا يوجد شركاء مسجلين -->
+          @if($section->partner_title->partners->isEmpty())
+            <div class="border p-3 mb-3 rounded">
+              <div class="mb-2">
+                <label for="partners_image_0" class="form-label">Partner Image #1</label>
+                <input type="file" class="form-control" id="partners_image_0" name="partners_image[]">
+              </div>
+
+              <div class="mb-2">
+                <label for="partners_image_name_0" class="form-label">Image name:</label>
+                <input type="text" class="form-control" id="partners_image_name_0" name="partners_image_name[]"
+                       placeholder="اسم الصورة #1">
+              </div>
+            </div>
+          @endif
         </div>
 
         <div class="text-end">

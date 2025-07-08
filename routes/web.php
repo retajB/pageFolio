@@ -13,6 +13,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Models\Company_media_account;
 use App\Models\Feedback;
 
 Route::get('/create', function () {
@@ -95,3 +96,7 @@ Route::patch('/section/{section}/feedback/{feedback_title}', [FeedbackController
 
 
 Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, 'update'])->name('partner.update');
+
+Route::patch('/media/{section}', [Company_media_account::class, 'update'])->name('media.update');
+
+Route::patch('/sections/{section}/locations/{location_title}', [LocationController::class, 'update'])->name('locations.update');

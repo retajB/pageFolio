@@ -15,7 +15,7 @@ class Company_media_account extends Model
 
     //    }
 
-     public function icons() {
+     public function icon() {
         return $this->belongsTo(Icon::class);
     }
 
