@@ -75,7 +75,7 @@
       <!-- User Registration Section -->
       <div class="admin-card">
         <div class="admin-card-header">
-          <h2><i class="fas fa-user-plus"></i> Admin User Registration</h2>
+          <h2><i class="fas fa-user-plus"></i> User Registration</h2>
         </div>
         <div class="admin-card-body">
           <div class="admin-form-group">
