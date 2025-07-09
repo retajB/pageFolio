@@ -75,7 +75,7 @@
       <!-- User Registration Section -->
       <div class="admin-card">
         <div class="admin-card-header">
-          <h2><i class="fas fa-user-plus"></i> Admin User Registration</h2>
+          <h2><i class="fas fa-user-plus"></i> User Registration</h2>
         </div>
         <div class="admin-card-body">
           <div class="admin-form-group">
@@ -219,7 +219,6 @@
     Continue <i class="fas fa-arrow-right ms-2"></i>
   </button>
 </div>
-    </form>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

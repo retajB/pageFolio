@@ -13,7 +13,8 @@
 <body class="admin-create-page">
   <div class="admin-create-container">
     <div class="admin-create-header">
-      <h1><i class="fas fa-clipboard"></i>Add Sections</h1>
+      <h1><i class="fas fa-clipboard"></i>Data Entry Sections
+</h1>
     </div>
 
    
