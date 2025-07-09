@@ -9,25 +9,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="admin-panel">
+    <img src="{{ asset('pagefolioLogo.png') }}" class="logo-bg">
+
   <div class="admin-container">
     <!-- شريط العنوان -->
     <div class="admin-header">
-      <img src="{{ asset('pagefolioLogo.png') }}" alt="Logo" class="admin-logo">
+      
+    
       <a href="{{ route('create.page') }}" class="btn btn-gold btn-lg">
         <i class="fas fa-plus-circle me-2"></i> إنشاء صفحة جديدة
       </a>
+        <img src="{{ asset('pagefolioLogo.png') }}" alt="Logo" class="admin-logo">
     </div>
 
-    <!-- شريط البحث -->
-    <form action="{{ route('home') }}" method="GET" class="search-box">
-      <div class="input-group">
-        <input type="text" name="search" class="form-control" 
-               placeholder="ابحث عن شركة..." value="{{ request('search') }}">
-        <button type="submit" class="btn btn-outline-gold">
-          <i class="fas fa-search"></i> بحث
-        </button>
-      </div>
-    </form>
+  <!-- شريط البحث -->
+<form action="{{ route('home') }}" method="GET" class="search-box">
+  <button type="submit" class="btn btn-outline-gold">
+    <i class="fas fa-search"></i> بحث
+  </button>
+  <input
+    type="text"
+    name="search"
+    class="search-box-input"
+    placeholder="ابحث عن شركة..."
+    value="{{ request('search') }}"
+  />
+</form>
 
     <!-- جدول الشركات -->
     @if(isset($companies) && $companies->count())

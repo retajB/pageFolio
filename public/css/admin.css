@@ -10,7 +10,23 @@
 body.admin-panel {
   background-color: var(--light-gray);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+  
 }
+
+.logo-bg {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.3;
+  width: 600px;
+  pointer-events: none; /* عشان ما تمنع الضغط على العناصر فوقها */
+  z-index: -1; /* ترجعها ورا */
+}
+
+
+
 
 .admin-container {
   max-width: 1200px;
@@ -95,21 +111,32 @@ body.admin-panel {
   margin-bottom: 2rem;
 }
 
+.search-box {
+  display: flex;
+  flex-direction: row-reverse; /* يعكس الترتيب: الزر يمين والبحث يسار */
+  width: 100%; /* يمد العرض حسب الحاجة */
+}
+
 .search-box input {
+  flex-grow: 1; /* يخلي الحقل يتمدد ويأخذ أكبر مساحة ممكنة */
   padding: 1rem 1.5rem;
-  border-radius: 50px;
   border: 2px solid var(--medium-gray);
   font-size: 1rem;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .search-box button {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  bottom: 5px;
-  border-radius: 50px;
   padding: 0 1.5rem;
+  border: 2px solid var(--gold-secondary);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
+
 
 /* رسالة عدم وجود بيانات */
 .no-data {
