@@ -24,7 +24,7 @@ class LocationRequest extends FormRequest
         return [
             'location_title'         => 'required|string|max:100',
 
-            'locations_content'      => 'required|array|min:1',
+            'locations_content'      => 'nullable|array|min:1',
             'locations_content.*'    => 'nullable|string|max:255',
 
             'locations_city'         => 'required|array|min:1',

@@ -96,10 +96,59 @@ class ObjectiveController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Objective $objective)
-    {
-        //
+    public function update(ObjecRequest $request, Section $section, Objective_title $objective_title)
+{
+    $validated = $request->validated();
+
+    // تحديث عنوان القسم
+    $objective_title->update([
+        'section_name' => $validated['objectives_title'],
+    ]);
+
+    $contents       = $validated['objectives_content'];
+    $icon_names     = $validated['objectives_icon_name'];
+    $icons          = $request->file('objectives_icon'); // غير موجود في validated
+    $objective_ids  = $request->input('objective_id');
+    $icon_ids       = $request->input('icon_id');
+
+    foreach ($contents as $index => $content) {
+        $filePath = null;
+        $icon = null;
+
+        // إذا فيه أيقونة جديدة مرفوعة
+        if (isset($icons[$index]) && $icons[$index] != null) {
+            $file = $icons[$index];
+            $filename = $icon_names[$index] . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('objectives', $filename, 'public');
+
+            // تحديث الأيقونة الحالية
+            if (!empty($icon_ids[$index])) {
+                $icon = \App\Models\Icon::find($icon_ids[$index]);
+                if ($icon) {
+                    $icon->update([
+                        'icon_url'  => $filePath,
+                        'icon_name' => $icon_names[$index],
+                    ]);
+                }
+            }
+        }
+
+        // تحديث الهدف
+        if (!empty($objective_ids[$index])) {
+            $objective = \App\Models\Objective::find($objective_ids[$index]);
+            if ($objective) {
+                $objective->update([
+                    'content'             => $content,
+                    'objective_title_id'  => $objective_title->id,
+                    // نحتفظ بنفس icon_id إذا ما تم رفع صورة جديدة
+                ]);
+            }
+        }
     }
+
+    session()->flash('update_success_' . $section->id, true);
+    return redirect()->back();
+}
 
     /**
      * Remove the specified resource from storage.

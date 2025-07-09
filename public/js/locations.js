@@ -1,28 +1,42 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    const addBtn = document.getElementById('addLocationBtn');
-    const container = document.getElementById('locationsContainer');
+  const addBtn = document.getElementById('addLocationBtn');
+  const container = document.getElementById('locationsContainer');
 
-    addBtn.addEventListener('click', function () {
-        const newItem = document.createElement('div');
-        newItem.classList.add('location-item', 'mb-3');
-        newItem.innerHTML = `
-            <label>Location content:</label>
-            <input class="form-control mb-2" name="locations_content[]" type="text">
+  addBtn.addEventListener('click', function () {
+    const newItem = document.createElement('div');
+    newItem.classList.add('location-item', 'admin-subcard', 'mb-3');
 
-            <label>City Name:</label>
-            <input class="form-control mb-2" name="locations_city[]" type="text">
+    newItem.innerHTML = `
+      <div class="admin-form-group">
+        <label>Location content:</label>
+        <input type="text" name="locations_content[]" required>
+      </div>
 
-            <label>URL:</label>
-            <input class="form-control mb-2" name="locations_url[]" type="text">
+      <div class="admin-form-group">
+        <label>City Name:</label>
+        <input type="text" name="locations_city[]" required>
+      </div>
 
-            <label>Image:</label>
-            <input type="file" class="form-control mb-2" name="locations_image[]">
+      <div class="admin-form-group">
+        <label>URL:</label>
+        <input type="text" name="locations_url[]" required>
+      </div>
 
-            <label>Image name:</label>
-            <input type="text" class="form-control mb-2" name="location_image_name[]">
-        `;
-        container.appendChild(newItem);
-    });
+      <div class="admin-form-group">
+        <label>Image:</label>
+        <div class="admin-file-upload">
+          <input type="file" name="locations_image[]">
+          <span class="admin-file-upload-label">Choose file...</span>
+        </div>
+      </div>
+
+      <div class="admin-form-group">
+        <label>Image name:</label>
+        <input type="text" name="location_image_name[]">
+      </div>
+    `;
+
+    container.appendChild(newItem);
+  });
 });
-

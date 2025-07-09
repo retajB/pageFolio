@@ -92,10 +92,13 @@ Route::patch('/section/{section}/background/{back_title}', [BackgroundController
 
 Route::patch('/section/{section}/service/{service_title}', [ServiceController::class, 'update'])->name('service.update');
 
+Route::patch('/section/{section}/objective/{objective_title}', [objectiveController::class, 'update'])->name('objective.update');
+
 Route::patch('/section/{section}/feedback/{feedback_title}', [FeedbackController::class, 'update'])->name('feedback.update');
 
-
 Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, 'update'])->name('partner.update');
+
+Route::patch('/section/{section}/EOTM/{eotm_title}', [EmployeeOfTheMonthController::class, 'update'])->name('eotm.update');
 
 Route::patch('/media/{section}', [Company_media_account::class, 'update'])->name('media.update');
 

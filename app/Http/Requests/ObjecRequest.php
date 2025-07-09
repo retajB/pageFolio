@@ -27,8 +27,8 @@ class ObjecRequest extends FormRequest
         'objectives_content' => 'required|array',
         'objectives_content.*' => 'required|string|max:225',
 
-        'objectives_icon' => 'required|array',
-        'objectives_icon.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        'objectives_icon' => 'array',
+        'objectives_icon.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
 
         'objectives_icon_name' => 'required|array',
         'objectives_icon_name.*' => 'required|string|max:255',

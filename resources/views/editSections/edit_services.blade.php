@@ -3,36 +3,62 @@
     @csrf
     @method('PATCH')
 
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">Services</h2>
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2><i class="fas fa-concierge-bell me-2"></i> Services</h2>
+      </div>
 
-        <label>Section name:</label>
-        <input class="form-control mb-3" name="services_title" type="text"
-               value="{{ old('services_title', $section->service_title->section_name ?? '') }}"
-               placeholder="مثلاً : خدماتنا">
+      <div class="admin-card-body">
+        <!-- سكشن اسم القسم داخل حدود -->
+        <div class="admin-subcard mb-4 p-3">
+          <div class="admin-form-group">
+            <label for="services_title">Section name:</label>
+            <input type="text" class="form-control" name="services_title"
+                   value="{{ old('services_title', $section->service_title->section_name ?? '') }}"
+                   placeholder="مثلاً : خدماتنا">
+          </div>
+        </div>
 
+        <!-- الخدمات الديناميكية -->
         <div id="servicesContainer">
-         @foreach($section->service_title->services as $index => $service)
-  <div class="service-item mb-3">
-
+        @foreach($section->service_title->services as $index => $service)
+  <div class="service-item admin-subcard mb-4 p-3">
     <input type="hidden" name="service_id[]" value="{{ $service->id }}">
     <input type="hidden" name="image_id[]" value="{{ $service->image->id ?? '' }}">
 
-    <label>Content:</label>
-<textarea class="form-control mb-2" name="services_content[]" rows="3">{{ old('services_content.' . $index, $service->content) }}</textarea>
-    <label>Services Image:</label>
-    <input type="file" class="form-control mb-2" name="services_image[]">
+    <div class="admin-form-group">
+      <label>Content:</label>
+      <textarea class="form-control" name="services_content[]" rows="3">{{ old('services_content.' . $index, $service->content) }}</textarea>
+    </div>
 
-    <label>Image name:</label>
-<input type="text" class="form-control mb-2" name="services_image_name[]" value="{{ old('services_image_name.' . $index, $service->image->image_name ?? '') }}">
+    <div class="admin-form-group">
+      <label>Services Image:</label>
+
+      @if ($service->image->image_url ?? false)
+        <div class="mb-2">
+          <img src="{{ asset('storage/' . $service->image->image_url) }}" alt="Current Service Image" height="80">
+        </div>
+      @endif
+
+      <div class="admin-file-upload">
+        <input type="file" name="services_image[]">
+        <span class="admin-file-upload-label">Choose file...</span>
+      </div>
+    </div>
+
+    <div class="admin-form-group">
+      <label>Image name:</label>
+      <input type="text" class="form-control" name="services_image_name[]" value="{{ old('services_image_name.' . $index, $service->image->image_name ?? '') }}">
+    </div>
   </div>
 @endforeach
-
         </div>
 
-        <div class="text-end">
-          <button type="submit" class="btn btn-success">Save</button>
+        <!-- زر الحفظ -->
+        <div class="admin-form-actions text-center mt-4">
+          <button type="submit" class="admin-btn admin-btn-navy">
+            <i class="fas fa-save me-2"></i> Save Changes
+          </button>
         </div>
       </div>
     </div>

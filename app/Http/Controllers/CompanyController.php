@@ -117,7 +117,8 @@ public function update(Request $request, Company $company)
         'companyName'   => 'string',
         'companyEmail'  => 'email',
         'companyPhone'  => 'min:10|max:10|string',
-        'slogan'        => 'string',
+        'slogan'        => 'string|nullable',
+        'domain_url'    => 'url|required',
     ]);
 
     // إذا فيه صورة جديدة
@@ -138,15 +139,16 @@ public function update(Request $request, Company $company)
     }
 
     // تحديث باقي الحقول
-    $company->email         = $validated['companyEmail'];
-    $company->phone_number  = $validated['companyPhone'];
-    $company->slogan        = $validated['slogan'];
+    $company->name         = $validated['companyName'];
+    $company->email        = $validated['companyEmail'];
+    $company->phone_number = $validated['companyPhone'];
+    $company->slogan       = $validated['slogan'];
+    $company->domain   = $validated['domain_url'];
 
     $company->save();
 
     return redirect()->back()->withInput();
 }
-
 
 
 

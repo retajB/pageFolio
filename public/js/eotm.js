@@ -1,26 +1,37 @@
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const addBtn = document.getElementById('addEOTMBtn');
-        const container = document.getElementById('eotmContainer');
+document.addEventListener('DOMContentLoaded', function () {
+  const addBtn = document.getElementById('addEOTMBtn');
+  const container = document.getElementById('eotmContainer');
 
-        addBtn.addEventListener('click', function () {
-            const newItem = document.createElement('div');
-            newItem.classList.add('eotm-item', 'mb-3');
-            newItem.innerHTML = `
-                <label>Employee Name:</label>
-                <input class="form-control mb-2" name="employee_name[]" type="text">
+  addBtn.addEventListener('click', function () {
+    const newItem = document.createElement('div');
+    newItem.classList.add('eotm-item', 'admin-subcard', 'mb-3');
 
-                <label>Description:</label>
-                <textarea class="form-control mb-2" name="employee_content[]" rows="3"></textarea>
+    newItem.innerHTML = `
+      <div class="admin-form-group">
+        <label>Employee Name:</label>
+        <input type="text" name="employee_name[]" required>
+      </div>
 
-                <label>Employee Image:</label>
-                <input type="file" class="form-control mb-2" name="employee_image[]">
+      <div class="admin-form-group">
+        <label>Description:</label>
+        <textarea name="employee_content[]" rows="3" required></textarea>
+      </div>
 
-                <label>Image name:</label>
-                <input type="text" class="form-control mb-2" name="employee_image_name[]">
-            `;
+      <div class="admin-form-group">
+        <label>Employee Image:</label>
+        <div class="admin-file-upload">
+          <input type="file" name="employee_image[]">
+          <span class="admin-file-upload-label">Choose file...</span>
+        </div>
+      </div>
 
-            container.appendChild(newItem);
-        });
-    });
+      <div class="admin-form-group">
+        <label>Image name:</label>
+        <input type="text" name="employee_image_name[]">
+      </div>
+    `;
 
+    container.appendChild(newItem);
+  });
+});

@@ -119,10 +119,61 @@ public function store(EotmRequest $request, Section $section)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee_of_the_month $employee_of_the_month)
-    {
-        //
+   public function update(EotmRequest $request, Section $section, Eotm_title $eotm_title)
+{
+    $validated = $request->validated();
+
+    // تحديث عنوان القسم
+    $eotm_title->update([
+        'section_name' => $validated['EOTM_title'],
+    ]);
+
+    $employee_ids       = $request->input('employee_id');
+    $image_ids          = $request->input('employee_image_id');
+    $employee_names     = $validated['employee_name'];
+    $employee_contents  = $validated['employee_content'];
+    $image_names        = $validated['employee_image_name'];
+    $images             = $request->file('employee_image');
+
+    foreach ($employee_names as $index => $name) {
+        $filePath = null;
+        $image = null;
+
+        // إذا فيه صورة جديدة مرفوعة
+        if (isset($images[$index]) && $images[$index] != null) {
+            $file = $images[$index];
+            $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('eotms', $filename, 'public');
+
+            // تحديث الصورة الحالية
+            if (!empty($image_ids[$index])) {
+                $image = \App\Models\Image::find($image_ids[$index]);
+                if ($image) {
+                    $image->update([
+                        'image_url'  => $filePath,
+                        'image_name' => $image_names[$index],
+                    ]);
+                }
+            }
+        }
+
+        // تحديث بيانات الموظف
+        if (!empty($employee_ids[$index])) {
+            $employee = \App\Models\Employee_of_the_month::find($employee_ids[$index]);
+            if ($employee) {
+                $employee->update([
+                    'employee_name' => $name,
+                    'content'       => $employee_contents[$index],
+                    'eotm_title_id' => $eotm_title->id,
+                    // نحتفظ بنفس image_id إذا ما تم رفع صورة جديدة
+                ]);
+            }
+        }
     }
+
+    session()->flash('update_success_' . $section->id, true);
+    return redirect()->back();
+}
 
     /**
      * Remove the specified resource from storage.
