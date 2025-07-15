@@ -39,14 +39,6 @@ class StoreRequest extends FormRequest
         'userPhone' =>'required|string|max:12|min:10',
         'national_id'=>'required|digits:10|min:10',
 
-        
-    
-        //theme_color information request 
-        'backgroundColor1'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'backgroundColor2'=>'required', 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'textColor1'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
-        'textColor2'=>'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/'
-
     
 
        ];

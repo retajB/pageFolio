@@ -26,6 +26,10 @@ Route::get('/edit', function () {
 
 Route::post('/create' ,[StoreController::class ,'store'])->name('create.store');
 
+Route::post('/create/page/{company}', [StoreController::class, 'storePage'])->name('page.setup');
+
+Route::get('/create/page/{company}', [PageController::class, 'index'])->name('page.setup.form');
+
 
 Route::get('/', [CompanyController::class, 'index'])->name('home');
 

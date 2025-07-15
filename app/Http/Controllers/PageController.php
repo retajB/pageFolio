@@ -46,9 +46,11 @@ class PageController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Company $company)
+
     {
-        //
+          return view('page_setup', compact('company'));
+
     }
 
     /**

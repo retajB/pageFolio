@@ -1,6 +1,7 @@
 :root {
   --gold-primary: #FFD700;
   --gold-secondary: #FFC72C;
+    --primary-color: #2C3E50;
   --dark-gray: #2C3E50;
   --medium-gray: #34495E;
   --light-gray: #ECF0F1;
@@ -146,4 +147,29 @@ body.admin-panel {
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   color: var(--medium-gray);
+}
+
+.btn-outline-primary-dark {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+    text-decoration: none;
+  background: transparent;
+}
+
+.btn-outline-primary-dark:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-outline-danger-soft {
+  border: 2px solid #dc3545; 
+  color: #dc3545;
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger-soft:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
