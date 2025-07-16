@@ -138,6 +138,19 @@ public function update(Request $request, Company $company)
         $company->logo_url = $filePath;
     }
 
+    if ($request->hasFile('header_photo')) {
+        if ($company->header_photo && Storage::disk('public')->exists($company->header_photo)) {
+            Storage::disk('public')->delete($company->header_photo);
+        }
+
+        $headerFile = $request->file('header_photo');
+        $headerFilename = $company->name . '_header.' . $headerFile->getClientOriginalExtension();
+        $headerPath = $headerFile->storeAs('headers', $headerFilename, 'public');
+
+        $company->header_photo = $headerPath;
+    }
+
+
     // تحديث باقي الحقول
     $company->name         = $validated['companyName'];
     $company->email        = $validated['companyEmail'];

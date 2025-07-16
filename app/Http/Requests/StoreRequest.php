@@ -31,6 +31,7 @@ class StoreRequest extends FormRequest
         'domain_url' => 'required|url|max:255',
         'slogan'=>'required|string|max:255',
         'logo_url'=>'nullable',
+       'header_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
 
 
          //user information request 

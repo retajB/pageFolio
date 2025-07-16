@@ -73,6 +73,20 @@
             </div>
           </div>
 
+         <!-- رفع صورة الهيدر -->
+            <div class="admin-form-group">
+              <label for="header_photo">Header Photo</label>
+              @if ($company->header_photo)
+              <div class="mb-2">
+                <img src="{{ asset('storage/' . $company->header_photo) }}" alt="Current Header" height="80">
+              </div>
+              @endif
+              <div class="admin-file-upload">
+                <input type="file" id="header_photo" name="header_photo">
+                <span class="admin-file-upload-label">Choose file...</span>
+              </div>
+            </div>
+
           <div class="admin-form-actions text-center mt-4">
             <button type="submit" class="admin-btn admin-btn-navy">
               <i class="fas fa-save me-2"></i> Save Changes
