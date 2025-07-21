@@ -16,11 +16,17 @@ class StoreController
 {
     $validated = $request->validated();
     $filePath = null;
-
+//تخزين اللوجو
     if ($request->hasFile('logo_url')) {
         $file = $request->file('logo_url');
         $filename = $validated['companyName'] . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs('logos', $filename, 'public');
+    }
+//تخزين الهيدر فوتو 
+        if ($request->hasFile('header_photo')) {
+        $file = $request->file('header_photo');
+        $filename = $validated['companyName'] . '_header.' . $file->getClientOriginalExtension();
+        $headerPhotoPath = $file->storeAs('headers', $filename, 'public');
     }
 
     $company = Company::create([
@@ -30,6 +36,7 @@ class StoreController
         'domain' => $validated['domain_url'],
         'logo_url' => $filePath,
         'slogan' => $validated['slogan'],
+        'header_photo' => $headerPhotoPath,
     ]);
 
     $user = User::create([

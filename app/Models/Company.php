@@ -21,6 +21,7 @@ class Company extends Model
         'domain', 
         'slogan',
         'logo_url',
+        'header_photo',
         'email',
         'phone_number'
     

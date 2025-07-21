@@ -68,6 +68,14 @@
               <input type="file" id="logo_url" name="logo_url">
               <span class="admin-file-upload-label">Choose file...</span>
             </div>
+
+          <div class="admin-form-group">
+              <label for="header_photo">Header Photo</label>
+              <div class="admin-file-upload">
+                <input type="file" id="header_photo" name="header_photo">
+                <span class="admin-file-upload-label">Choose file...</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
