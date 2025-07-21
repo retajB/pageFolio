@@ -113,6 +113,9 @@ class CompanyController
 
 public function update(Request $request, Company $company)
 {
+
+// dd($request->hasFile('logo_url'), $request->hasFile('header_photo'));
+
     $validated = $request->validate([
         'companyName'   => 'string',
         'companyEmail'  => 'email',

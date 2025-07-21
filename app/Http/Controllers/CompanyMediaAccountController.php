@@ -95,12 +95,24 @@ class CompanyMediaAccountController
      */
    public function update(MediaRequest $request, Section $section)
 {
+
+// dd([
+//     'media_url' => gettype($request->input('media_url')),
+//     'media_icon_name' => gettype($request->input('media_icon_name')),
+// ]);
+
     $validated = $request->validated();
 
     $urls        = $validated['media_url'];
     $icon_names  = $validated['media_icon_name'];
     $icons       = $request->file('media_icon'); // غير موجود في validated لأنه ملف
     $account_ids = $request->input('media_ids'); 
+
+//     dd([
+//     'urls' => gettype($urls),
+//     'icon_names' => gettype($icon_names),
+//     'account_ids' => gettype($account_ids),
+// ]);
 
     foreach ($account_ids as $index => $account_id) {
         $account = Company_media_account::find($account_id);

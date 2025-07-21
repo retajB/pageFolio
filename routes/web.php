@@ -15,6 +15,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Models\Company_media_account;
 use App\Models\Feedback;
+use Database\Seeders\CompanyMediaAccountSeeder;
 
 Route::get('/create', function () {
     return view('create');
@@ -104,6 +105,6 @@ Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, '
 
 Route::patch('/section/{section}/EOTM/{eotm_title}', [EmployeeOfTheMonthController::class, 'update'])->name('eotm.update');
 
-Route::patch('/media/{section}', [Company_media_account::class, 'update'])->name('media.update');
+Route::patch('/media/{section}', [CompanyMediaAccountController::class, 'update'])->name('media.update');
 
 Route::patch('/sections/{section}/locations/{location_title}', [LocationController::class, 'update'])->name('locations.update');
