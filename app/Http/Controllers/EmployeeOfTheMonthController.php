@@ -9,6 +9,7 @@ use App\Models\Eotm_title;
 use App\Models\Section;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeOfTheMonthController
 {
@@ -78,19 +79,20 @@ public function store(EotmRequest $request, Section $section)
             $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('eotms', $filename, 'public');
         }
+ // نحفظ الموظف
+        $eotm=Employee_of_the_month::create([
+            'employee_name'      => $employee_name,
+            'content' => $employees_contents[$index],
+            'eotm_title_id'      => $eotm_title->id
+        ]);
 
         $image = Image::create([
             'image_url'  => $filePath,
             'image_name' => $image_names[$index] ,
+            'employee_of_the_month_id'=>$eotm->id,
         ]);
 
-        // نحفظ الموظف
-        $image->employee_of_the_month()->create([
-            'employee_name'      => $employee_name,
-            'content' => $employees_contents[$index],
-            'image_id'           => $image->id,
-            'eotm_title_id'      => $eotm_title->id
-        ]);
+       
     }
 
     // نستخدم session مخصصة للقسم
@@ -147,7 +149,7 @@ public function store(EotmRequest $request, Section $section)
 
             // تحديث الصورة الحالية
             if (!empty($image_ids[$index])) {
-                $image = \App\Models\Image::find($image_ids[$index]);
+                $image = Image::find($image_ids[$index]);
                 if ($image) {
                     $image->update([
                         'image_url'  => $filePath,
@@ -159,7 +161,7 @@ public function store(EotmRequest $request, Section $section)
 
         // تحديث بيانات الموظف
         if (!empty($employee_ids[$index])) {
-            $employee = \App\Models\Employee_of_the_month::find($employee_ids[$index]);
+            $employee = Employee_of_the_month::find($employee_ids[$index]);
             if ($employee) {
                 $employee->update([
                     'employee_name' => $name,
@@ -178,8 +180,14 @@ public function store(EotmRequest $request, Section $section)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee_of_the_month $employee_of_the_month)
+    public function destroy(Employee_of_the_month $employee)
     {
-        //
+        
+        if($employee->image?->image_url){
+Storage::disk('public')->delete($employee->image->image_url);
+            $employee->delete();
+
+    return redirect()->back()->with('status', 'employee of the month and image deleted successfully.');
+        }
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Requests\LocationRequest;
 use App\Models\Section;
 use App\Models\Location_title;
 use App\Models\Image;
+ use Illuminate\Support\Facades\Storage;
 
 
 
@@ -54,18 +55,20 @@ class LocationController
         $filename =  $image_names[$index] . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs('locations', $filename, 'public');
 
-        $image = Image::create([
-            'image_url' => $filePath,
-            'image_name' => $filename,
-        ]);
-
-        Location::create([
+        $location = Location::create([
             'content' => $content,
             'location_url'=>$location_url[$index],
             'city_name' => $cities[$index],
-            'image_id' => $image->id,
             'location_title_id' => $title->id,
         ]);
+
+        $image = Image::create([
+            'image_url' => $filePath,
+            'image_name' => $image_names[$index],
+            'location_id'=> $location->id,
+        ]);
+
+     
     }
 
     session()->put('saved_locations_' . $section->id, true);
@@ -101,34 +104,51 @@ class LocationController
         'section_id' => $section->id,
     ]);
 
-    $location_url = $validated['locations_url'];
+    $location_urls = $validated['locations_url'];
     $contents = $validated['locations_content'];
     $cities = $validated['locations_city'];
     $images = $request->file('locations_image');
     $image_names = $validated['location_image_name'];
+    $location_ids    = $request->input('location_id');
+    $image_ids    = $request->input('image_id');
 
-    foreach ($location_title->locations as $index => $location) {
-        $data = [
-            'content' => $contents[$index],
-            'location_url' => $location_url[$index],
-            'city_name' => $cities[$index],
-        ];
 
-        if (isset($images[$index])) {
+    foreach ($contents as $index => $content) {
+
+        $filePath = null;
+        $image = null;
+
+        if (isset($images[$index]) && $images[$index] != null) {
             $file = $images[$index];
             $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('locations', $filename, 'public');
 
-            $image = $location->image;
-            $image->update([
-                'image_url' => $filePath,
-                'image_name' => $filename,
-            ]);
-
-            $data['image_id'] = $image->id;
+              // نحدث الصورة بنفس ID
+            if (!empty($image_ids[$index])) {  // اذا الصورة بنفس الاي دي موجود , بنحدث نفس الاي دي بصورة مختلفه
+                $image = Image::find($image_ids[$index]); // اوجد الصوره
+                if ($image) { // لقيتها؟ هيا حدثها الان
+                    $image->update([
+                        'image_url' => $filePath,
+                        'image_name' => $image_names[$index],
+                    ]);
+                }
+            }
         }
 
-        $location->update($data);
+       // تحديث الخدمة
+        if (!empty($location_ids[$index])) {
+            $location = Location::find($location_ids[$index]);
+            if ($location) {
+                $location->update([
+                    'location_url'=> $location_urls[$index],
+                    'city_name'=> $cities[$index],
+                    'content'          => $content,
+                    'location_title_id' => $location_title->id,
+                    
+                    // ما نغيّر image_id لأنه نفس الصورة القديمة
+                ]);
+            }
+        }
     }
 
     return redirect()->back()->with('success', 'تم التحديث بنجاح');
@@ -139,6 +159,13 @@ class LocationController
      */
     public function destroy(Location $location)
     {
-        //
+     // حذف الصورة من التخزين أولاً
+    if ($location->image?->image_url) {
+        Storage::disk('public')->delete($location->image->image_url);
     }
+
+    $location->delete();
+
+    return redirect()->back();
+}
 }

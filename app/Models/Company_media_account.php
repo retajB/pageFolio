@@ -10,20 +10,13 @@ class Company_media_account extends Model
     return $this->belongsTo(Section::class);
    }
 
-    //    public function social_media_sites(){
-    //         return $this->hasMany(Social_media_site::class);
-
-    //    }
 
      public function icon() {
-        return $this->belongsTo(Icon::class);
+        return $this->hasOne(Icon::class);
     }
 
        protected $fillable = [
    'username_account',
-//    'media_title_id',
-//    'social_media_site_id',
-   'icon_id',
    'section_id'
    ];
 }

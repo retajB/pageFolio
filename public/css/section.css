@@ -454,3 +454,18 @@
 .admin-btn-navy:hover {
   background-color: #001737; /* أغمق شوي عند المرور */
 }
+
+.admin-btn-danger {
+  background-color: #dc3545; /* أحمر Bootstrap */
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn-danger:hover {
+  background-color: #bb2d3b; /* ظل أغمق عند التأشير */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

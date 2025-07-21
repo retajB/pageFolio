@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Icon;
 use Illuminate\Http\Request;
 use App\Http\Requests\ObjecRequest;
+ use Illuminate\Support\Facades\Storage;
+
 
 
 class ObjectiveController
@@ -58,18 +60,20 @@ class ObjectiveController
             $filePath = $file->storeAs('objectives', $filename, 'public');
         }
 
+        // إنشاء الخدمة المرتبطة
+        $objective = Objective ::create([
+            'content'    => $content,
+            'objective_title_id' => $objective_title->id
+        ]);
+
         // حفظ الصورة 
         $icon = Icon::create([
             'icon_url'  => $filePath,
             'icon_name' => $icon_names[$index],
+            'objective_id'=>$objective->id
         ]);
 
-        // إنشاء الخدمة المرتبطة
-        $icon->objective()->create([
-            'content'    => $content,
-            'icon_id'   => $icon->id,
-            'objective_title_id' => $objective_title->id
-        ]);
+        
     }
 
     session()->put('saved_objectives_' . $section->id, true);
@@ -123,7 +127,7 @@ class ObjectiveController
 
             // تحديث الأيقونة الحالية
             if (!empty($icon_ids[$index])) {
-                $icon = \App\Models\Icon::find($icon_ids[$index]);
+                $icon = Icon::find($icon_ids[$index]);
                 if ($icon) {
                     $icon->update([
                         'icon_url'  => $filePath,
@@ -135,7 +139,7 @@ class ObjectiveController
 
         // تحديث الهدف
         if (!empty($objective_ids[$index])) {
-            $objective = \App\Models\Objective::find($objective_ids[$index]);
+            $objective = Objective::find($objective_ids[$index]);
             if ($objective) {
                 $objective->update([
                     'content'             => $content,
@@ -155,6 +159,14 @@ class ObjectiveController
      */
     public function destroy(Objective $objective)
     {
-        //
+         // حذف الصورة من التخزين
+    if ($objective->icon?->icon_url) {
+        Storage::disk('public')->delete($objective->icon->icon_url);
+    }
+
+    // حذف الشريك نفسه
+    $objective->delete();
+
+    return redirect()->back();
     }
 }

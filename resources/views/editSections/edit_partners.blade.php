@@ -1,5 +1,7 @@
 @if($section->partners && isset($section->partner_title))
-  <form method="POST" action="{{ route('partner.update', ['section' => $section->id, 'partner_title' => $section->partner_title->id]) }}" enctype="multipart/form-data">
+  <form method="POST"
+        action="{{ route('partner.update', ['section' => $section->id, 'partner_title' => $section->partner_title->id]) }}"
+        enctype="multipart/form-data">
     @csrf
     @method('PATCH')
 
@@ -28,9 +30,12 @@
         <!-- صور الشركاء -->
         <div id="partner-images-wrapper">
           @forelse($section->partner_title->partners as $index => $partner)
+<input type="hidden" name="partner_id[]" value="{{ $partner->id }}">
+<input type="hidden" name="image_id[]" value="{{ $partner->image->id ?? '' }}">
             <div class="admin-subcard mb-4 p-3">
+              <!-- صورة الشريك -->
               <div class="admin-form-group">
-                <label for="partners_image_{{ $index }}">Partner Image #{{ $index + 1 }}</label>
+                <label for="partners_image_{{ $index }}">Partner Image</label>
 
                 @if ($partner->image->image_url ?? false)
                   <div class="mb-2">
@@ -41,26 +46,25 @@
                 <input type="file" class="form-control" id="partners_image_{{ $index }}" name="partners_image[]">
               </div>
 
+              <!-- اسم الصورة -->
               <div class="admin-form-group">
                 <label for="partners_image_name_{{ $index }}">Image name:</label>
                 <input type="text" class="form-control" id="partners_image_name_{{ $index }}" name="partners_image_name[]"
-                       value="{{ old('partners_image_name.$index', $partner->image->image_name ?? '') }}"
+                       value="{{ old('partners_image_name.' . $index, $partner->image->image_name ?? '') }}"
                        placeholder="اسم الصورة #{{ $index + 1 }}">
+              </div>
+
+              <!-- زر الحذف -->
+              <div class="text-end mt-3">
+                <button type="button"
+                        class="admin-btn admin-btn-danger btn-sm"
+                        onclick="confirmDeletePartner('{{ $partner->id }}')">
+                  <i class="fas fa-trash me-1"></i> Delete Partner
+                </button>
               </div>
             </div>
           @empty
-            <div class="admin-subcard mb-4 p-3">
-              <div class="admin-form-group">
-                <label for="partners_image_0">Partner Image #1</label>
-                <input type="file" class="form-control" id="partners_image_0" name="partners_image[]">
-              </div>
-
-              <div class="admin-form-group">
-                <label for="partners_image_name_0">Image name:</label>
-                <input type="text" class="form-control" id="partners_image_name_0" name="partners_image_name[]"
-                       placeholder="اسم الصورة #1">
-              </div>
-            </div>
+            <p class="text-muted">لا توجد شركاء حاليًا</p>
           @endforelse
         </div>
 
@@ -73,4 +77,26 @@
       </div>
     </div>
   </form>
+
+  <!-- نماذج الحذف المخفية -->
+  @foreach($section->partner_title->partners as $partner)
+    <form id="delete-partner-form-{{ $partner->id }}"
+          action="{{ route('partner.delete', ['partner' => $partner->id]) }}"
+          method="POST" style="display: none;">
+      @csrf
+      @method('DELETE')
+    </form>
+  @endforeach
+
+  
 @endif
+
+<!-- سكربت الحذف -->
+  <script>
+    function confirmDeletePartner(partnerId) {
+      if (confirm('هل أنت متأكد من حذف هذا الشريك؟')) {
+        const form = document.getElementById('delete-partner-form-' + partnerId);
+        if (form) form.submit();
+      }
+    }
+  </script>
