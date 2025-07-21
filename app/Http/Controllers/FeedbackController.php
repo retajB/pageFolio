@@ -9,6 +9,8 @@ use App\Http\Requests\FeedRequest;
 use App\Models\Section;
 use App\Models\Icon;
 use App\Models\Feedback_title;
+ use Illuminate\Support\Facades\Storage;
+
 
 class FeedbackController
 {
@@ -141,6 +143,9 @@ class FeedbackController
      */
     public function destroy(Feedback $feedback)
     {
-        //
-    }
+        
+    $feedback->delete();
+
+    return redirect()->back();
+}
 }

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('employee_name');
             $table->text('content');
-            $table->foreignId('image_id')->constrained();
             $table->foreignId('eotm_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

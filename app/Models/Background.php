@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Background extends Model
 {
    public function image() {
-    return $this->belongsTo(Image::class);
+    return $this->hasOne(Image::class);
 }
 
    public function back_title() {
@@ -16,7 +16,6 @@ class Background extends Model
 
  protected $fillable = [
         'content',
-        'image_id',
         'back_title_id'
     ];
 }

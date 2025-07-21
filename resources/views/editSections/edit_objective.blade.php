@@ -1,5 +1,7 @@
 @if($section->objectives && isset($section->objective_title))
-  <form method="POST" action="{{ route('objective.update', ['section' => $section->id ,'objective_title' => $section->objective_title->id ]) }}" enctype="multipart/form-data" class="mb-4">
+  <form method="POST"
+        action="{{ route('objective.update', ['section' => $section->id ,'objective_title' => $section->objective_title->id ]) }}"
+        enctype="multipart/form-data" class="mb-4">
     @csrf
     @method('PATCH')
 
@@ -9,7 +11,7 @@
       </div>
 
       <div class="admin-card-body">
-        <!-- عنوان القسم داخل حدود -->
+        <!-- عنوان القسم -->
         <div class="admin-subcard mb-4 p-3">
           <div class="admin-form-group">
             <label>Section name:</label>
@@ -28,7 +30,7 @@
 
               <div class="admin-form-group">
                 <label>Content:</label>
-                <textarea class="form-control" name="objectives_content[]" rows="3">{{ old("objectives_content.$index", $objective->content) }}</textarea>
+                <textarea class="form-control" name="objectives_content[{{ $index }}]" rows="3">{{ old("objectives_content.$index", $objective->content) }}</textarea>
               </div>
 
               <div class="admin-form-group">
@@ -41,7 +43,7 @@
                 @endif
 
                 <div class="admin-file-upload">
-                  <input type="file" name="objectives_icon[]">
+                  <input type="file" name="objectives_icon[{{ $index }}]">
                   <span class="admin-file-upload-label">Choose file...</span>
                 </div>
               </div>
@@ -49,7 +51,16 @@
               <div class="admin-form-group">
                 <label>Icon name:</label>
                 <input class="form-control" name="objectives_icon_name[]" type="text"
-                  value="{{ old('objectives_icon_name.' . $index, $objective->icon->icon_name ?? '') }}">
+                  value="{{ old('objectives_icon_name.'.$index, $objective->icon->icon_name ) }}">
+              </div>
+
+              <!-- زر الحذف -->
+              <div class="text-end mt-3">
+                <button type="button"
+                        class="admin-btn admin-btn-danger btn-sm"
+                        onclick="confirmDeleteObjective('{{ $objective->id }}')">
+                  <i class="fas fa-trash me-1"></i> Delete Objective
+                </button>
               </div>
             </div>
           @endforeach
@@ -64,4 +75,24 @@
       </div>
     </div>
   </form>
+
+  <!-- نموذج حذف الأهداف -->
+  @foreach($section->objective_title->objectives as $objective)
+    <form id="delete-objective-form-{{ $objective->id }}"
+          action="{{ route('objective.delete', ['objective' => $objective->id]) }}"
+          method="POST" style="display: none;">
+      @csrf
+      @method('DELETE')
+    </form>
+  @endforeach
 @endif
+
+<!-- سكربت الحذف -->
+<script>
+  function confirmDeleteObjective(id) {
+    if (confirm('هل أنت متأكد من حذف هذا الهدف؟')) {
+      const form = document.getElementById('delete-objective-form-' + id);
+      if (form) form.submit();
+    }
+  }
+</script>

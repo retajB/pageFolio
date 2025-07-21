@@ -11,12 +11,11 @@ class Service extends Model
    }
 
   public function image() {
-    return $this->belongsTo(Image::class);
+    return $this->hasOne(Image::class);
 }
 
 protected $fillable = [
         'content',
-        'image_id',
         'service_title_id'
     ];
 

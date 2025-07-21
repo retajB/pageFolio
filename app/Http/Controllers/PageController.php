@@ -99,7 +99,8 @@ class PageController
      * Remove the specified resource from storage.
      */
     public function destroy(Page $page)
-    {
-        //
-    }
+{
+    $page->delete();
+    return redirect()->back()->with('status', 'Page deleted successfully.');
+}
 }

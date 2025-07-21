@@ -30,6 +30,21 @@ Route::post('/create/page/{company}', [StoreController::class, 'storePage'])->na
 
 Route::get('/create/page/{company}', [PageController::class, 'index'])->name('page.setup.form');
 
+Route::delete('/page/{page}', [PageController::class, 'destroy'])->name('delete_page');
+
+Route::delete('/service/{service}', [ServiceController::class, 'destroy'])->name('service.delete');
+
+Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('partner.delete');
+
+Route::delete('/eotm/{employee}', [EmployeeOfTheMonthController::class, 'destroy'])->name('eotm.delete');
+
+Route::delete('/location/{location}', [LocationController::class, 'destroy'])->name('location.delete');
+
+Route::delete('/objective/{objective}', [ObjectiveController::class, 'destroy'])->name('objective.delete');
+
+Route::delete('/feedback/{feedback}', [FeedbackController::class, 'destroy'])->name('feedback.delete');
+
+Route::delete('/media/{account}', [CompanyMediaAccountController::class, 'destroy'])->name('media.delete');
 
 Route::get('/', [CompanyController::class, 'index'])->name('home');
 
@@ -104,6 +119,6 @@ Route::patch('/partners/{section}/{partner_title}', [PartnerController::class, '
 
 Route::patch('/section/{section}/EOTM/{eotm_title}', [EmployeeOfTheMonthController::class, 'update'])->name('eotm.update');
 
-Route::patch('/media/{section}', [Company_media_account::class, 'update'])->name('media.update');
+Route::patch('/media/{section}', [CompanyMediaAccountController::class, 'update'])->name('media.update');
 
 Route::patch('/sections/{section}/locations/{location_title}', [LocationController::class, 'update'])->name('locations.update');

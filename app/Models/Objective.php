@@ -11,11 +11,10 @@ class Objective extends Model
    }
 
    public function icon() {
-    return $this->belongsTo(Icon::class);
+    return $this->hasOne(Icon::class);
 }
 protected $fillable = [
         'content',
         'objective_title_id',
-        'icon_id'
     ];
 }

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('backgrounds', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignId('image_id')->constrained();
             $table->foreignId('back_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

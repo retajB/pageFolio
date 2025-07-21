@@ -29,5 +29,10 @@ class Image extends Model
     protected $fillable = [
         'image_name',
         'image_url',
+        'service_id',
+        'background_id',
+        'partner_id',
+        'employee_of_the_month_id',
+        'location_id'
     ];
 }

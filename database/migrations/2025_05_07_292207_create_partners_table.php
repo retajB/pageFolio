@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();// ممكن يكون في علاقة مع الايكونز
-          
-            $table->text('content');
-            $table->foreignId('image_id')->constrained();
-            $table->foreignId('service_title_id')->constrained()->cascadeOnDelete();
+        Schema::create('partners', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('partner_title_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('partners');
     }
 };

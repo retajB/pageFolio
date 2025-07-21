@@ -25,11 +25,11 @@ class mediaRequest extends FormRequest
         'media_url' => 'required | array',
         'media_url.*' => 'required | url',
 
-        'media_icon' => 'required | array',
-        'media_icon.*' => 'nullable | file | mimes:jpg,jpeg,png,svg | max:2048',
+        'media_icon' => 'array',
+        'media_icon.*' => ' file | mimes:jpg,jpeg,png,svg | max:2048',
 
-        'media_icon_name' => 'required | array',
-        'media_icon_name.*' => 'required | string | max:255',
+        'media_icon_name' => ' array',
+        'media_icon_name.*' => ' string | max:255',
     ];
     }
 }

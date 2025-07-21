@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('icon_name');
             $table->string('icon_url');
+            $table->foreignId('objective_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('company_media_account_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
 
             

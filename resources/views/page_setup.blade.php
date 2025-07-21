@@ -127,7 +127,7 @@
         
 
           </div> <!-- إغلاق div.admin-card-body الخاص بالسكشنات -->
-        </div> <!-- إغلاق div.admin-card -->
+        </div>
 
         <!-- ✅ زر الإرسال داخل الفورم وتحت السكشنات -->
         <div class="admin-form-actions mt-4 text-center">

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->foreignId('objective_title_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('icon_id')->constrained();
             $table->timestamps();
         });
     }

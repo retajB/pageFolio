@@ -9,6 +9,7 @@ use App\Http\Requests\ServRequest;
 use App\Models\Image;
 use App\Models\Section;
 use App\Models\Service_title;
+ use Illuminate\Support\Facades\Storage;
 
 class ServiceController
 {
@@ -54,49 +55,49 @@ class ServiceController
      */
     public function store(ServRequest $request, Section $section)
 {
-    
     $validated = $request->validated();
 
-    //  نحفظ عنوان السكشن 
+    // حفظ عنوان القسم
     $services_title = Service_title::create([
-        'section_name'       => $validated['services_title'],
-        'section_id' => $section->id,
+        'section_name' => $validated['services_title'],
+        'section_id'   => $section->id,
     ]);
 
-    //  نحصل على البيانات كمصفوفات
+    // استرجاع الحقول كمصفوفات
     $contents     = $validated['services_content'];
     $image_names  = $validated['services_image_name'];
-    $images       = $request->file('services_image'); // هذا ما يجي في validated
+    $images       = $request->file('services_image'); // الملفات لا تدخل في validated
 
     foreach ($contents as $index => $content) {
+        $filePath = null;
 
-        // $filePath = null;
-// يتأكد هل الارري فيها هذا الانديكس ولا لا
-        if (isset($images[$index]) && $images[$index] != null) {
-            $file = $images[$index];
+        // التحقق من وجود صورة في هذا السطر
+        if (isset($images[$index]) && $images[$index]) {
+            $file     = $images[$index];
             $filename = $image_names[$index] . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('services', $filename, 'public');
         }
 
-        // حفظ الصورة 
+        // إنشاء الخدمة أولاً
+        $service = Service::create([
+            'content'            => $content,
+            'service_title_id'   => $services_title->id,
+        ]);
+
+        // إنشاء الصورة وربطها بالخدمة
         $image = Image::create([
             'image_url'  => $filePath,
             'image_name' => $image_names[$index],
+            'service_id' => $service->id,
         ]);
 
-        // إنشاء الخدمة المرتبطة
-        $image->service()->create([
-            'content'    => $content,
-            'image_id'   => $image->id,
-            'service_title_id' => $services_title->id
-        ]);
+        $service->save();
     }
 
     session()->put('saved_services_' . $section->id, true);
 
     return redirect()->back();
 }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -118,7 +119,8 @@ class ServiceController
 
     // تحديث عنوان القسم
     $service_title->update([
-        'section_name' => $validated['services_title']
+        'section_name' => $validated['services_title'],
+        'section_id' => $section->id,
     ]);
 
     $contents     = $validated['services_content'];
@@ -169,8 +171,17 @@ class ServiceController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
-    {
-        //
+   
+
+public function destroy(Service $service)
+{
+    // حذف الصورة من التخزين أولاً
+    if ($service->image?->image_url) {
+        Storage::disk('public')->delete($service->image->image_url);
     }
+    $service->delete();
+
+    return redirect()->back();
+}
+
 }

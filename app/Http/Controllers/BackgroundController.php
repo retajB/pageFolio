@@ -28,43 +28,40 @@ class BackgroundController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BackRequest $request ,Section $section)
-    {
-        
-        // dd($request->all());
-        $validated= $request->validated();
-        // $filePath = null;
+    public function store(BackRequest $request, Section $section)
+{
+    $validated = $request->validated();
+    $filePath = null;
 
-        if ($request->hasFile('background_image')) {
-            $file = $request->file('background_image');
-            $filename = $request->background_image_name . '.' . $file->getClientOriginalExtension(); // Keeps the original extension
-            $filePath = $file->storeAs('background', $filename, 'public');
-}
-
-        $back_title=Back_title::create([
-            'section_name'=>$validated['background_title'],
-            'section_id'=> $section->id,
-        ]);
-
-        $image=Image::create([
-            'image_url'=>$filePath,
-            'image_name'=>$request->background_image_name
-        ]);
-
-        $image->background()->create([
-            'content'=>$validated['background_content'],
-            'image_id'=> $image->id,
-            'back_title_id' => $back_title->id
-            
-        ]);
-
-   session()->put('saved_who_' . $section->id, true);
-
-return redirect()->back();
-
-
-
+    // تخزين الصورة أولاً (إن وجدت)
+    if ($request->hasFile('background_image')) {
+        $file = $request->file('background_image');
+        $filename = $request->background_image_name . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('background', $filename, 'public');
     }
+
+    // إنشاء عنوان الخلفية المرتبط بالقسم
+    $back_title = Back_title::create([
+        'section_name' => $validated['background_title'],
+        'section_id'   => $section->id,
+    ]);
+
+    // إنشاء الخلفية نفسها (Background)
+    $background = Background::create([
+        'content'        => $validated['background_content'],
+        'back_title_id'  => $back_title->id,
+    ]);
+
+    // إنشاء الصورة وربطها بالخلفية
+    $image = Image::create([
+        'image_url'   => $filePath,
+        'image_name'  => $request->background_image_name,
+        'background_id' => $background->id, // المفتاح الخارجي هنا
+    ]);
+
+    session()->put('saved_who_' . $section->id, true);
+    return redirect()->back();
+}
 
     /**
      * Display the specified resource.

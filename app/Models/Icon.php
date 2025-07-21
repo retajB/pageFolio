@@ -17,6 +17,8 @@ class Icon extends Model
    protected $fillable = [
         'icon_name',
         'icon_url',
+        'objective_id',
+        'company_media_account_id'
     ];
 
 }

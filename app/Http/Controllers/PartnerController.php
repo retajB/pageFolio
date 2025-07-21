@@ -9,6 +9,8 @@ use App\Models\Section;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\PartRequest;
+use Illuminate\Support\Facades\Storage;
+
 
 class PartnerController
 {
@@ -73,15 +75,16 @@ class PartnerController
             $filePath = $file->storeAs('partners', $filename, 'public');
         }
 
-        $image = Image::create([
-            'image_url'  => $filePath,
-            'image_name' => $name,
-        ]);
+      $partner = Partner::create([
+    'partner_title_id' => $partners_title->id,
+    // بيانات أخرى
+]);
 
-        $image->partner()->create([
-            'image_id'         => $image->id,
-            'partner_title_id' => $partners_title->id,
-        ]);
+$image = Image::create([
+    'image_url'  => $filePath,
+    'image_name' => $name,
+    'partner_id' => $partner->id
+]);
     }
 
     session()->put('saved_partners_' . $section->id, true);
@@ -113,47 +116,67 @@ class PartnerController
 {
     $validated = $request->validated();
 
-    // تحديث بيانات عنوان القسم
+    // تحديث عنوان القسم
     $partner_title->update([
         'section_name' => $validated['partners_title'],
-        'sub_title' => $validated['partners_content'],
-        'section_id' => $section->id,
+        'sub_title'    => $validated['partners_content'],
+        'section_id'   => $section->id,
     ]);
 
-    // رفع وتخزين صور الشركاء
-    $images = $request->file('partners_image');
-    $names  = $request->input('partners_image_name');
+    $contents     = []; // لو فيه محتوى إضافي لكل شريك مستقبلاً
+    $image_names  = $validated['partners_image_name'] ;
+    $images       = $request->file('partners_image') ;
+    $partner_ids  = $request->input('partner_id') ;
+    $image_ids    = $request->input('image_id') ;
 
-    if ($images && $names) {
-        foreach ($images as $index => $imageFile) {
-            if ($imageFile) {
-                $imageName = $names[$index] ?? 'partner_' . time();
-                $filename = $imageName . '.' . $imageFile->getClientOriginalExtension();
-                $filePath = $imageFile->storeAs('partners', $filename, 'public');
+    foreach ($image_names as $index => $name) {
+        $filePath = null;
 
-                // إنشاء سجل الصورة
-                $image = Image::create([
-                    'image_url' => $filePath,
-                    'image_name' => $imageName,
-                ]);
+        // إذا فيه صورة جديدة مرفوعة
+        if (isset($images[$index]) && $images[$index]) {
+            $file = $images[$index];
+            $filename = $name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('partners', $filename, 'public');
 
-                // ربط الصورة بعنوان القسم كـ شريك جديد
-                Partner::create([
-                    'image_id' => $image->id,
+            // تحديث الصورة إن وجدت
+            if (!empty($image_ids[$index])) {
+                $image = Image::find($image_ids[$index]);
+                if ($image) {
+                    $image->update([
+                        'image_url'  => $filePath,
+                        'image_name' => $image_names[$index],
+                    ]);
+                }
+            }
+        }
+        
+    }
+    // تحديث الشريك
+        if (!empty($partner_ids[$index])) {
+            $partner = Partner::find($partner_ids[$index]);
+            if ($partner) {
+                $partner->update([
                     'partner_title_id' => $partner_title->id,
+
                 ]);
             }
         }
-    }
 
     session()->flash('partner_update_success_' . $section->id, true);
     return redirect()->back();
 }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Partner $partner)
-    {
-        //
+
+
+public function destroy(Partner $partner)
+{
+    // حذف الصورة من التخزين
+    if ($partner->image?->image_url) {
+        Storage::disk('public')->delete($partner->image->image_url);
     }
+
+    // حذف الشريك نفسه
+    $partner->delete();
+
+    return redirect()->back();
+}
 }
