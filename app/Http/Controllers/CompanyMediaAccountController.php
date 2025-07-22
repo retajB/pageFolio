@@ -98,12 +98,19 @@ class CompanyMediaAccountController
      */
   public function update(MediaRequest $request, Section $section)
 {
-    $validated    = $request->validated();
 
-    $urls        = $validated['media_url'];
-    $icon_names  = $validated['media_icon_name'];
-    $icons       = $request->file('media_icon'); // غير موجود في validated لأنه ملف
-    $account_ids = $request->input('media_ids'); 
+// dd([
+//     'media_url' => gettype($request->input('media_url')),
+//     'media_icon_name' => gettype($request->input('media_icon_name')),
+// ]);
+
+    $validated = $request->validated();
+
+    $urls         = $validated['media_url'];
+    $icon_names   = $validated['media_icon_name'];
+    $icons        = $request->file('media_icon');
+    $account_ids  = $request->input('media_ids');
+    $icon_ids     = $request->input('icon_id');
 
 //     dd([
 //     'urls' => gettype($urls),
@@ -115,12 +122,8 @@ class CompanyMediaAccountController
         $account = Company_media_account::find($account_id);
         if (!$account) continue;
 
-        $icon = $account->icon;
-        $filePath = $icon->icon_url;
-
-       
-        if (isset($icons[$index]) && $icons[$index]) {
-            $file = $icons[$index];
+        if (isset($icons[$index]) && $icons[$index]!= null) {
+            $file     = $icons[$index];
             $filename = $icon_names[$index] . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('socialMedia', $filename, 'public');
         
@@ -140,7 +143,7 @@ class CompanyMediaAccountController
             $media = Company_media_account::find($account_ids[$index]);
             if ($media) {
                 $media->update([
-                  'username_account' => $url,
+                  'username_account' => $urls,
                   'section_id'       => $section->id,
                     // نحتفظ بنفس icon_id إذا ما تم رفع صورة جديدة
                 ]);

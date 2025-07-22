@@ -16,6 +16,12 @@ class FeedbackTitleSeeder extends Seeder
                 'icon_name' => 'يوزر أخضر',
                 'section_id' => 1,
             ],
+            [
+                'section_name' => 'Our Clients Feedback',
+                'feedback_icon' => 'icon-user-green.png',
+                'icon_name' => 'Green User',
+                'section_id' => 2,
+            ],
         ]);
     }
 }

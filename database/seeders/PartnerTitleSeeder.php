@@ -15,6 +15,11 @@ class PartnerTitleSeeder extends Seeder
                 'sub_title' => 'يرحب تكوين بكل عملائنا ونحن نفتخر بكوننا جزء منكم',
                 'section_id' => 1,
             ],
+            [
+                'section_name' => 'Clients We Are Honored to Work With',
+                'sub_title' => 'Techwin warmly welcomes all our clients — we are proud to be part of your journey.',
+                'section_id' => 2,
+            ],
         ]);
     }
 }

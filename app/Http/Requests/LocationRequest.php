@@ -30,8 +30,8 @@ class LocationRequest extends FormRequest
             'locations_city'         => 'required|array|min:1',
             'locations_city.*'       => 'nullable|string|max:100',
 
-            'locations_image'          => 'required|array|min:1',
-            'locations_image.*'        => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'locations_image'          => 'array|min:1',
+            'locations_image.*'        => 'image|mimes:jpg,jpeg,png,webp|max:2048',
             
             'locations_url'         => 'required|array|min:1',
             'locations_url.*'       => 'nullable|string|max:100',

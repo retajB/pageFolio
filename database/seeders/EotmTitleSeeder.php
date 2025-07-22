@@ -14,6 +14,10 @@ class EotmTitleSeeder extends Seeder
                 'section_name' => 'افرادنــا المتميزيــن',
                 'section_id' => 1,
             ],
+             [
+                'section_name' => 'Stars of TechWin',
+                'section_id' => 2,
+            ],
         ]);
     }
 }

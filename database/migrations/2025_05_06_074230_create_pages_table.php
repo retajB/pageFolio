@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('text_color2');
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->enum('layout',['1' ,'2']);
+            $table->enum('language',['ar' ,'en']);
             $table->timestamps();
         });
     }

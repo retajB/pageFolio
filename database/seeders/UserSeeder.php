@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'email' => 'khaled@example.com',
                 'national_id' => '2020202020',
                 'phone_number' => '0557654321',
-                'company_id' => 1,
+                'company_id' => 2,
                 'remember_token' => null,
             ],
         ]);

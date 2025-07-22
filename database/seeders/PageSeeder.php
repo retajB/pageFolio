@@ -17,8 +17,25 @@ class PageSeeder extends Seeder
                 'text_color1' => '#ffffff',
                 'text_color2' => '#dfb458',
                 'company_id' => 1,
+                 'language'=>'ar',
                 'layout' => '2',
                
+            ],
+            [
+                'page_name' => 'Techwin national day',
+                'theme_color1' => '#013c2c',
+                'theme_color2' => '#f5f0e6',
+                'text_color1' => '#ffffff',
+                'text_color2' => '#dfb458',
+                'company_id' => 2,
+               'language'=>'en',
+                'layout' => '2',
+               
+
+
+
+
+
             ],
         ]);
     }

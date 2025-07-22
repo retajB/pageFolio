@@ -70,6 +70,22 @@
           </div>
 
           <div class="admin-form-group">
+  <label>Select Language</label>
+  <div class="admin-radio-group">
+    <label class="admin-radio">
+      <input type="radio" name="language" value="ar" checked>
+      <span class="admin-radio-checkmark"></span>
+      <span class="admin-radio-label">Arabic</span>
+    </label>
+    <label class="admin-radio">
+      <input type="radio" name="language" value="en">
+      <span class="admin-radio-checkmark"></span>
+      <span class="admin-radio-label">English</span>
+    </label>
+  </div>
+</div>
+
+          <div class="admin-form-group">
             <label for="layout_name">Layout Name</label>
             <input type="text" id="layout_name" name="layout_name" placeholder="e.g., Corporate Layout" required>
           </div>

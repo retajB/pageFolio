@@ -9,31 +9,40 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-    IconSeeder::class,
-    ImageSeeder::class,
-
+   
     CompanySeeder::class,
-    UserSeeder::class,
-
     PageSeeder::class,
     SectionSeeder::class,
+    UserSeeder::class,
 
     BackTitleSeeder::class,
-    ServiceTitleSeeder::class,
-    ObjectiveTitleSeeder::class,
-    FeedbackTitleSeeder::class,
-    EotmTitleSeeder::class,
-    LocationTitleSeeder::class,
-    PartnerTitleSeeder::class,
-
     BackgroundSeeder::class,
+
+    ServiceTitleSeeder::class,
     ServiceSeeder::class,
+
+    ObjectiveTitleSeeder::class,
     ObjectiveSeeder::class,
-    PartnerSeeder::class,
-    EmployeeOfTheMonthSeeder::class,
-    LocationSeeder::class,
+
+    FeedbackTitleSeeder::class,
     FeedbackSeeder::class,
-    CompanyMediaAccountSeeder::class,
+
+    EotmTitleSeeder::class,
+    EmployeeOfTheMonthSeeder::class,
+
+    LocationTitleSeeder::class,
+    LocationSeeder::class,
+
+    PartnerTitleSeeder::class,
+    PartnerSeeder::class,
+
+    MediaAccountSeeder::class,
+
+    IconSeeder::class,
+ 
+
+
+    
 ]);
     }
 }

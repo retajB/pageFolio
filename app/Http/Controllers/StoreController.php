@@ -54,6 +54,7 @@ public function storePage(Request $request, Company $company)
 {
     $validated = $request->validate([
         'layout' => 'required|in:1,2',
+        'language' => 'required|in:ar,en',
         'layout_name' => 'required|string',
         'backgroundColor1' => 'required|string',
         'backgroundColor2' => 'required|string',
@@ -64,6 +65,7 @@ public function storePage(Request $request, Company $company)
 
     $page = Page::create([
         'layout' => $validated['layout'],
+        'language' => $validated['language'],
         'page_name' => $validated['layout_name'],
         'theme_color1' => $validated['backgroundColor1'],
         'theme_color2' => $validated['backgroundColor2'],

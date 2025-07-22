@@ -14,6 +14,11 @@ class BackTitleSeeder extends Seeder
                 'section_name' => 'مين تــكـــويـن؟',
                 'section_id' => 1,
             ],
+            [
+                'section_name' => 'Who is TechWin?',
+                'section_id' => 2,
+            ],
+
         ]);
     }
 }

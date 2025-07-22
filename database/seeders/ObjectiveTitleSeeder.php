@@ -14,6 +14,10 @@ class ObjectiveTitleSeeder extends Seeder
                 'section_name' => 'اهدافنا',
                 'section_id' => 1,
             ],
+            [
+                'section_name' => 'What We Aim For',
+                'section_id' => 2,
+            ],
         ]);
     }
 }

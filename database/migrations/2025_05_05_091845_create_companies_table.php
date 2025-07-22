@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('domain');
             $table->string('slogan');
-            $table->string('logo_url')->default("");
-            $table->string('header_photo')->default("");
+           $table->string('logo_url')->nullable();
+$table->string('header_photo')->nullable();
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->timestamps();
