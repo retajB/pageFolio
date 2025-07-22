@@ -110,7 +110,7 @@ class LocationController
     $images = $request->file('locations_image');
     $image_names = $validated['location_image_name'];
     $location_ids    = $request->input('location_id');
-    $image_ids    = $request->input('image_id');
+    $image_ids = $request->input('location_image_id'); 
 
 
     foreach ($contents as $index => $content) {
