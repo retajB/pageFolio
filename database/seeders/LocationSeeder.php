@@ -57,7 +57,7 @@ class LocationSeeder extends Seeder
             'location_url' => 'https://maps.app.goo.gl/PLZNYnGww7FZhpTG7?g_st=ipc',
             'city_name' => 'Makkah',
             'content' => "At TechWin, we believe every talent deserves a real chance to shine. That’s why we built a practical and flexible training system that prepares you for the job market from day one.",
-            'location_title_id' => 3,
+            'location_title_id' => 4,
         ]);
 
         Image::create([
