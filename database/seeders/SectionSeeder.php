@@ -32,6 +32,28 @@ class SectionSeeder extends Seeder
                 'locations' => true,
                 'page_id' => 2,
             ],
+              [
+                'who_we_are' => true,
+                'services' => true,
+                'objectives' => true,
+                'partners' => true,
+                'feedbacks' => true,
+                'employee_of_the_months' => true,
+                'social_media' => true,
+                'locations' => true,
+                'page_id' => 3,
+            ],
+            [
+                'who_we_are' => true,
+                'services' => true,
+                'objectives' => true,
+                'partners' => true,
+                'feedbacks' => true,
+                'employee_of_the_months' => true,
+                'social_media' => true,
+                'locations' => true,
+                'page_id' => 4,
+            ],
         ]);
     }
 }

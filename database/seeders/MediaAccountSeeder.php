@@ -51,6 +51,45 @@ class MediaAccountSeeder extends Seeder
                 'icon_name' => 'TechWin X (Twitter)',
                 'icon_url' => 'socialMedia/techwin_x.png',
             ],
+
+             [
+                'username_account' => 'https://wa.me/966545021150',
+                'section_id' => 3,
+                'icon_name' => 'واتس تكوين',
+                'icon_url' => 'socialMedia/واتس تكوين.png',
+            ],
+            [
+                'username_account' => 'https://www.linkedin.com/company/tech-win/',
+                'section_id' => 3,
+                'icon_name' => 'لنكدان تكوين',
+                'icon_url' => 'socialMedia/لنكدان تكوين.png',
+            ],
+            [
+                'username_account' => 'https://x.com/techwin_og?s=21&t=zfLK7-3ntaeocCgAGbsFEA',
+                'section_id' => 3,
+                'icon_name' => 'اكس تكوين',
+                'icon_url' => 'socialMedia/اكس تكوين.png',
+            ],
+
+            // النسخة الإنجليزية
+            [
+                'username_account' => 'https://wa.me/966545021150',
+                'section_id' => 4,
+                'icon_name' => 'TechWin WhatsApp',
+                'icon_url' => 'socialMedia/techwin_whatsapp.png',
+            ],
+            [
+                'username_account' => 'https://www.linkedin.com/company/tech-win/',
+                'section_id' => 4,
+                'icon_name' => 'TechWin LinkedIn',
+                'icon_url' => 'socialMedia/techwin_linkedin.png',
+            ],
+            [
+                'username_account' => 'https://x.com/techwin_og?s=21&t=zfLK7-3ntaeocCgAGbsFEA',
+                'section_id' => 4,
+                'icon_name' => 'TechWin X (Twitter)',
+                'icon_url' => 'socialMedia/techwin_x.png',
+            ],
         ];
 
         foreach ($accounts as $data) {

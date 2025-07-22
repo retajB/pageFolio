@@ -18,6 +18,14 @@ class LocationTitleSeeder extends Seeder
                 'section_name' => 'Visit Us and Be Part of TechWin !',
                 'section_id' => 2,
             ],
+             [
+                'section_name' => 'قم بزيارتنا وانضم الينا !',
+                'section_id' => 3,
+            ],
+            [
+                'section_name' => 'Visit Us and Be Part of TechWin !',
+                'section_id' => 4,
+            ],
         ]);
     }
 }

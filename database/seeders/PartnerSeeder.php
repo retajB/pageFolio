@@ -22,6 +22,18 @@ class PartnerSeeder extends Seeder
             ['title_id' => 2, 'image_name' => 'Partner Image 2', 'image_url' => 'partners/partner_image_2.png'],
             ['title_id' => 2, 'image_name' => 'Partner Image 3', 'image_url' => 'partners/partner_image_3.png'],
             ['title_id' => 2, 'image_name' => 'Partner Image 4', 'image_url' => 'partners/partner_image_4.png'],
+
+             // النسخة العربية
+            ['title_id' => 3, 'image_name' => 'صوره الشريك 1', 'image_url' => 'partners/صوره الشريك 1.png'],
+            ['title_id' => 3, 'image_name' => 'صوره الشريك 2', 'image_url' => 'partners/صوره الشريك 2.png'],
+            ['title_id' => 3, 'image_name' => 'صوره الشريك 3', 'image_url' => 'partners/صوره الشريك 3.png'],
+            ['title_id' => 3, 'image_name' => 'صوره الشريك 4', 'image_url' => 'partners/صوره الشريك 4.png'],
+
+            // النسخة الإنجليزية
+            ['title_id' => 4, 'image_name' => 'Partner Image 1', 'image_url' => 'partners/partner_image_1.png'],
+            ['title_id' => 4, 'image_name' => 'Partner Image 2', 'image_url' => 'partners/partner_image_2.png'],
+            ['title_id' => 4, 'image_name' => 'Partner Image 3', 'image_url' => 'partners/partner_image_3.png'],
+            ['title_id' => 4, 'image_name' => 'Partner Image 4', 'image_url' => 'partners/partner_image_4.png'],
         ];
 
         foreach ($partners as $data) {

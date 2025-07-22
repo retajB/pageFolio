@@ -22,6 +22,18 @@ class FeedbackTitleSeeder extends Seeder
                 'icon_name' => 'Green User',
                 'section_id' => 2,
             ],
+            [
+                'section_name' => 'وش قالوا  تكوين',
+                'feedback_icon' => 'icon-user-green.png',
+                'icon_name' => 'يوزر أخضر',
+                'section_id' => 3,
+            ],
+            [
+                'section_name' => ' Clients Feedback',
+                'feedback_icon' => 'icon-user-green.png',
+                'icon_name' => 'Green User',
+                'section_id' => 4,
+            ],
         ]);
     }
 }

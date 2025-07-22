@@ -18,6 +18,14 @@ class ServiceTitleSeeder extends Seeder
                 'section_name' => 'Our services',
                 'section_id' =>2 ,
             ],
+            [
+                'section_name' => 'ايش نقدم لكم',
+                'section_id' => 3,
+            ],
+             [
+                'section_name' => 'Our services',
+                'section_id' => 4,
+            ],
         ]);
     }
 }
